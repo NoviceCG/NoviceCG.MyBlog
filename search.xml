@@ -1,57 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>test3</title>
-      <link href="/posts/64bcbdce/"/>
-      <url>/posts/64bcbdce/</url>
-      
-        <content type="html"><![CDATA[<h3 id="这是第三次测试"><a href="#这是第三次测试" class="headerlink" title="这是第三次测试"></a>这是第三次测试</h3><table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>test2</title>
+    <url>/posts/13bb8d58/</url>
+    <content><![CDATA[<h2 id="这是第二次测试"><a href="#这是第二次测试" class="headerlink" title="这是第二次测试"></a>这是第二次测试</h2><p>1</p>
+<p>2</p>
+<p>3</p>
+<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4>]]></content>
       <categories>
-          
-          <category> good </category>
-          
+        <category>test</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> good </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test2</title>
-      <link href="/posts/13bb8d58/"/>
-      <url>/posts/13bb8d58/</url>
-      
-        <content type="html"><![CDATA[<h2 id="这是第二次测试"><a href="#这是第二次测试" class="headerlink" title="这是第二次测试"></a>这是第二次测试</h2><p>1</p><p>2</p><p>3</p><h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4>]]></content>
-      
-      
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test3</title>
+    <url>/posts/64bcbdce/</url>
+    <content><![CDATA[<h3 id="这是第三次测试"><a href="#这是第三次测试" class="headerlink" title="这是第三次测试"></a>这是第三次测试</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
       <categories>
-          
-          <category> test </category>
-          
+        <category>good</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> test </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>good</tag>
+      </tags>
+  </entry>
 </search>
