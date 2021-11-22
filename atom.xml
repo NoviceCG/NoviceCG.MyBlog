@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>NoviceCG</title>
+  
+  <subtitle>成功的花，只会在汗水中盛开。</subtitle>
+  <link href="https://novicecg.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://novicecg.github.io/"/>
+  <updated>2021-11-22T10:16:28.943Z</updated>
+  <id>https://novicecg.github.io/</id>
+  
+  <author>
+    <name>NoviceCG</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test3</title>
+    <link href="https://novicecg.github.io/posts/64bcbdce/"/>
+    <id>https://novicecg.github.io/posts/64bcbdce/</id>
+    <published>2021-11-22T10:15:22.000Z</published>
+    <updated>2021-11-22T10:16:28.943Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;这是第三次测试&quot;&gt;&lt;a href=&quot;#这是第三次测试&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="good" scheme="https://novicecg.github.io/categories/good/"/>
+    
+    
+    <category term="good" scheme="https://novicecg.github.io/tags/good/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test2</title>
+    <link href="https://novicecg.github.io/posts/13bb8d58/"/>
+    <id>https://novicecg.github.io/posts/13bb8d58/</id>
+    <published>2021-11-22T08:57:55.000Z</published>
+    <updated>2021-11-22T09:05:13.289Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;这是第二次测试&quot;&gt;&lt;a href=&quot;#这是第二次测试&quot; class=&quot;headerlink&quot; title=&quot;这是第二次测试&quot;&gt;&lt;/a&gt;这是第二次测试&lt;/h2&gt;&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;h4 id=&quot;4&quot;&gt;&lt;a href=&quot;#4&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="test" scheme="https://novicecg.github.io/categories/test/"/>
+    
+    
+    <category term="test" scheme="https://novicecg.github.io/tags/test/"/>
+    
+  </entry>
+  
+</feed>
