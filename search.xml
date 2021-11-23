@@ -1,52 +1,3136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>test2</title>
-    <url>/posts/13bb8d58/</url>
-    <content><![CDATA[<h2 id="这是第二次测试"><a href="#这是第二次测试" class="headerlink" title="这是第二次测试"></a>这是第二次测试</h2><p>1</p>
-<p>2</p>
-<p>3</p>
-<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4>]]></content>
+    <title>初级_JAVASE基础(JVM)面试题</title>
+    <url>/posts/17cf4952/</url>
+    <content><![CDATA[<h2 id="初级-JAVASE基础-JVM-面试题"><a href="#初级-JAVASE基础-JVM-面试题" class="headerlink" title="初级_JAVASE基础(JVM)面试题"></a>初级_JAVASE基础(JVM)面试题</h2><ul>
+<li><h4 id="Java文件编译的过程"><a href="#Java文件编译的过程" class="headerlink" title="Java文件编译的过程"></a>Java文件编译的过程</h4><ul>
+<li>程序员编写的.java文件</li>
+<li>由javac编译成字节码文件.class：（为什么编译成class文件，因为JVM只认识.class文件）</li>
+<li>在由JVM编译成电脑认识的文件 （对于电脑系统来说 文件代表一切）</li>
+</ul>
+</li>
+<li><h4 id="说一下-JVM由那些部分组成，运行流程是什么？"><a href="#说一下-JVM由那些部分组成，运行流程是什么？" class="headerlink" title="说一下 JVM由那些部分组成，运行流程是什么？"></a>说一下 JVM由那些部分组成，运行流程是什么？</h4><ul>
+<li><img src="/posts/17cf4952/jvm%E5%9B%BE.jpg" alt="JVM图"></li>
+<li>JVM包含两个子系统和两个组件: 两个子系统为<code>Class loader(类装载)、Execution engine(执行引擎)； 两个组件为Runtime data area(运行时数据区)、Native Interface(本地接口)</code>。<ul>
+<li>**Class loader(类装载)**：根据给定的全限定名类名(如：java.lang.Object)来装载class文件到Runtime data area中的method area。</li>
+<li><strong>Execution engine（执行引擎）</strong>：执行classes中的指令。</li>
+<li>**Native Interface(本地接口)**：与native libraries交互，是其它编程语言交互的接口。</li>
+<li><strong>Runtime data area(运行时数据区域)<strong>：这就是我们常说的</strong>JVM的内存</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="说一下-JVM-运行时数据区"><a href="#说一下-JVM-运行时数据区" class="headerlink" title="说一下 JVM 运行时数据区"></a>说一下 JVM 运行时数据区</h4><ul>
+<li><strong>程序计数器</strong>：当前<strong>线程所执行的字节码的行号指示器</strong>，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个计数器来完成；</li>
+<li><strong>Java 虚拟机栈</strong>：<strong>每个方法在执行的同时都会在Java 虚拟机栈中创建一个栈帧</strong>用于存储局部变量表、操作数栈、动态链接、方法出口等信息；</li>
+<li><strong>本地方法栈（Native Method Stack）</strong>：虚拟机调用 Native 方法服务的；</li>
+<li><strong>Java 堆</strong>：Java 虚拟机中内存最大的一块，是<strong>被所有线程共享</strong>的，几乎<strong>所有的对象实例都在这里分配内存</strong>；</li>
+<li><strong>方法区</strong>：用于<strong>存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据</strong>。</li>
+</ul>
+</li>
+<li><h4 id="你能给我详细的介绍Java堆吗-（重点理解）"><a href="#你能给我详细的介绍Java堆吗-（重点理解）" class="headerlink" title="你能给我详细的介绍Java堆吗?（重点理解）"></a>你能给我详细的介绍Java堆吗?（重点理解）</h4><ul>
+<li><p>java堆（Java Heap）是java虚拟机所管理的内存中最大的一块，是<strong>被所有线程共享的一块内存区域</strong>，在虚拟机启动时创建。此内存区域的唯一目的就是<strong>存放对象实例</strong>。        </p>
+</li>
+<li><p><strong>在Java虚拟机规范中的描述是：所有的对象实例以及数组都要在堆上分配</strong>。</p>
+</li>
+<li><p>java堆是垃圾收集器管理的主要区域，因此也被成为“GC堆”。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="能不能解释一下方法区（重点理解）"><a href="#能不能解释一下方法区（重点理解）" class="headerlink" title="能不能解释一下方法区（重点理解）"></a>能不能解释一下方法区（重点理解）</h4><ul>
+<li>方法区是所有线程共享的内存区域，它用于存储已被Java虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</li>
+<li>它有个别命叫Non-Heap（非堆）。当方法区无法满足内存分配需求时，抛出OutOfMemoryError异常。</li>
+</ul>
+</li>
+<li><h4 id="什么是JVM字节码执行引擎"><a href="#什么是JVM字节码执行引擎" class="headerlink" title="什么是JVM字节码执行引擎"></a>什么是JVM字节码执行引擎</h4><ul>
+<li>虚拟机核心的组件就是执行引擎，它负责执行虚拟机的字节码，一般户先进行编译成机器码后执行。</li>
+<li>“虚拟机”是一个相对于“物理机”的概念，虚拟机的字节码是不能直接在物理机上运行的，需要JVM字节码执行引擎- 编译成机器码后才可在物理机上执行。</li>
+</ul>
+</li>
+<li><h4 id="知道垃圾收集系统吗？"><a href="#知道垃圾收集系统吗？" class="headerlink" title="知道垃圾收集系统吗？"></a>知道垃圾收集系统吗？</h4><ul>
+<li><p>垃圾收集系统是Java的核心，也是不可少的，Java有一套自己进行垃圾清理的机制，开发人员无需手工清理</p>
+</li>
+<li><p>有一部分原因就是因为Java垃圾回收系统的强大导致Java领先市场</p>
+</li>
+</ul>
+</li>
+<li><h4 id="堆栈的区别是什么？"><a href="#堆栈的区别是什么？" class="headerlink" title="堆栈的区别是什么？"></a>堆栈的区别是什么？</h4></li>
+<li><table>
+<thead>
+<tr>
+<th>对比</th>
+<th>JVM堆</th>
+<th>JVM栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物理地址</td>
+<td>堆的物理地址分配对对象是不连续的；性能慢。</td>
+<td>栈使用的是数据结构中的栈，先进后出的原则，物理地址分配是连续的；所以性能快。</td>
+</tr>
+<tr>
+<td>内存分别</td>
+<td>堆因为是不连续的，所以分配的内存是在运行期确认的，大小不固定。一般堆大小远远大于栈。</td>
+<td>栈是连续的，所以分配的内存大小要在编译期就确认，大小是固定的。</td>
+</tr>
+<tr>
+<td>存放的内容</td>
+<td>堆存放的是对象的实例和数组。因此该区更关注的是数据的存储</td>
+<td>栈存放：局部变量，操作数栈，返回结果。该区更关注的是程序方法的执行。</td>
+</tr>
+<tr>
+<td>程序的可见度</td>
+<td>堆对于整个应用程序都是共享、可见的。</td>
+<td>栈只对于线程是可见的。所以也是线程私有。他的生命周期和线程相同。</td>
+</tr>
+</tbody>
+</table></li>
+<li><h4 id="Java会存在内存泄漏吗？请说明为什么？"><a href="#Java会存在内存泄漏吗？请说明为什么？" class="headerlink" title="Java会存在内存泄漏吗？请说明为什么？"></a>Java会存在内存泄漏吗？请说明为什么？</h4><ul>
+<li>内存泄漏是指不再被使用的对象或者变量一直被占据在内存中。理论上来说，Java是有GC垃圾回收机制的，也就是说，不再被使用的对象，会被GC自动回收掉，自动从内存中清除。</li>
+<li>但是，即使这样，Java也还是存在着内存泄漏的情况，java导致内存泄露的原因很明确：长生命周期的对象持有短生命周期对象的引用就很可能发生内存泄露，<code>尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收</code>，这就是java中内存泄露的发生场景。</li>
+</ul>
+</li>
+<li><h4 id="JVM-中都有哪些引用类型？"><a href="#JVM-中都有哪些引用类型？" class="headerlink" title="JVM 中都有哪些引用类型？"></a>JVM 中都有哪些引用类型？</h4></li>
+<li></li>
+<li><h4 id="类加载的机制及过程"><a href="#类加载的机制及过程" class="headerlink" title="类加载的机制及过程"></a>类加载的机制及过程</h4></li>
+<li></li>
+<li><h4 id="JVM-调优的参数可以在那设置参数值"><a href="#JVM-调优的参数可以在那设置参数值" class="headerlink" title="JVM 调优的参数可以在那设置参数值"></a>JVM 调优的参数可以在那设置参数值</h4><ul>
+<li><p>可以在IDEA，Eclipse，工具里设置</p>
+</li>
+<li><p>如果上线了是WAR包的话可以在Tomcat设置</p>
+</li>
+<li><p>如果是Jar包直接 ：java -jar 是直接插入JVM命令就好了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java -Xms1024m -Xmx1024m ...等等等 JVM参数 -jar springboot_app.jar &amp; </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
-        <category>test</category>
+        <category>面试</category>
       </categories>
       <tags>
-        <tag>test</tag>
+        <tag>JavaSE</tag>
+        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
-    <title>test3</title>
-    <url>/posts/64bcbdce/</url>
-    <content><![CDATA[<h3 id="这是第三次测试"><a href="#这是第三次测试" class="headerlink" title="这是第三次测试"></a>这是第三次测试</h3><table>
+    <title>初级_JAVASE基础(异常)面试题</title>
+    <url>/posts/f1536d8d/</url>
+    <content><![CDATA[<h2 id="初级-JAVASE基础-异常-面试题"><a href="#初级-JAVASE基础-异常-面试题" class="headerlink" title="初级_JAVASE基础(异常)面试题"></a>初级_JAVASE基础(异常)面试题</h2><ul>
+<li><h4 id="Java异常简介"><a href="#Java异常简介" class="headerlink" title="Java异常简介"></a>Java异常简介</h4><p>Java异常是Java提供的一种<strong>识别及响应错误的一致性机制。</strong><br> Java异常机制可以使程序中<strong>异常处理代码和正常业务代码分离，保证程序代码更加优雅，并提高程序健壮性</strong>。在有效使用异常的情况下，异常能清晰的回答what, where, why这3个问题：异常类型回答了“什么”被抛出，异常堆栈跟踪回答了“在哪”抛出，异常信息回答了“为什么”会抛出。</p>
+</li>
+<li><h4 id="Java异常架构"><a href="#Java异常架构" class="headerlink" title="Java异常架构"></a>Java异常架构</h4><p><img src="/posts/f1536d8d/%E5%BC%82%E5%B8%B8%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="异常架构图"></p>
+</li>
+<li><h4 id="Java异常关键字"><a href="#Java异常关键字" class="headerlink" title="Java异常关键字"></a>Java异常关键字</h4><ul>
+<li><p><strong>try</strong> – 用于<strong>监听</strong>。将要被监听的代码(可能抛出异常的代码)放在try语句块之内，当try语句块内发生异常时，异常就被抛出。</p>
+</li>
+<li><p><strong>catch</strong> – 用于<strong>捕获异常</strong>。catch用来捕获try语句块中发生的异常。</p>
+</li>
+<li><p><strong>finally</strong> – finally语句块总是会被执行。它主要用于<strong>回收在try块里打开的物力资源</strong>(如数据库连接、网络连接和磁盘文件)。只有finally块，执行完成之后，才会回来执行try或者catch块中的return或者throw语句，如果finally中使用了return或者throw等终止方法的语句，则就不会跳回执行，直接停止。</p>
+</li>
+<li><p><strong>throw</strong> – 用于<strong>抛出异常</strong>。</p>
+</li>
+<li><p><strong>throws</strong> – 用在方法签名中，用于<strong>声明该方法可能抛出的异常</strong>。</p>
+</li>
+<li><h5 id="Java-语言如何进行异常处理，关键字：throws、throw、try、catch、finally-分别如何使用？"><a href="#Java-语言如何进行异常处理，关键字：throws、throw、try、catch、finally-分别如何使用？" class="headerlink" title="Java 语言如何进行异常处理，关键字：throws、throw、try、catch、finally 分别如何使用？"></a>Java 语言如何进行异常处理，关键字：throws、throw、try、catch、finally 分别如何使用？</h5></li>
+</ul>
+</li>
+<li><h4 id="Error-和-Exception-区别是什么？"><a href="#Error-和-Exception-区别是什么？" class="headerlink" title="Error 和 Exception 区别是什么？"></a>Error 和 Exception 区别是什么？</h4><ul>
+<li><p>Error 类型的错误通常为<strong>虚拟机相关错误</strong>，如系统崩溃，内存不足，堆栈溢出等，编译器不会对这类错误进行检测，JAVA 应用程序也不应对这类错误进行捕获，一旦这类错误发生，通常应用程序会被终止，仅靠应用程序本身无法恢复；</p>
+</li>
+<li><p>Exception 类的错误是<strong>可以在应用程序中进行捕获并处理的</strong>，通常遇到这种错误，应对其进行处理，使应用程序可以继续正常运行。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="运行时异常和一般异常-受检异常-区别是什么？"><a href="#运行时异常和一般异常-受检异常-区别是什么？" class="headerlink" title="运行时异常和一般异常(受检异常)区别是什么？"></a>运行时异常和一般异常(受检异常)区别是什么？</h4><ul>
+<li><p><strong>运行时异常</strong>包括 RuntimeException 类及其子类，表示 JVM 在运行期间可能出现的异常。 Java 编译器不会检查运行时异常。</p>
+</li>
+<li><p><strong>受检异常</strong>是Exception 中<strong>除 RuntimeException 及其子类之外的异常</strong>。 Java 编译器会检查受检异常。</p>
+</li>
+<li><p><strong>RuntimeException异常和受检异常之间的区别</strong>：<strong>是否强制要求调用者必须处理此异常</strong>，如果<strong>强制要求调用者必须进行处理</strong>，那么就使用受检异常，否则就选择非受检异常(RuntimeException)。一般来讲，如果没有特殊的要求，我们建议使用RuntimeException异常。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="throw-和-throws-的区别是什么？"><a href="#throw-和-throws-的区别是什么？" class="headerlink" title="throw 和 throws 的区别是什么？"></a>throw 和 throws 的区别是什么？</h4><ul>
+<li><code>throw</code> 关键字用在<strong>方法内部</strong>，只能用于<strong>抛出一种异常</strong>，用来抛出方法或代码块中的异常，受查异常和非受查异常都可以被抛出。</li>
+<li><code>throws </code>关键字用在<strong>方法声明</strong>上，可以<strong>抛出多个异常</strong>，用来标识该方法可能抛出的异常列表。一个方法用 throws 标识了可能抛出的异常列表，调用该方法的方法中必须包含可处理异常的代码，否则也要在方法签名中用 throws 关键字声明相应的异常。</li>
+</ul>
+</li>
+<li><h4 id="try-catch-finally-中哪个部分可以省略？"><a href="#try-catch-finally-中哪个部分可以省略？" class="headerlink" title="try-catch-finally 中哪个部分可以省略？"></a>try-catch-finally 中哪个部分可以省略？</h4><ul>
+<li>更为严格的说法其实是：<strong>try只适合处理运行时异常，try+catch适合处理运行时异常+普通异常</strong>。<strong>编译器硬性规定，普通异常如果选择捕获，则必须用catch显示声明以便进一步处理</strong>；而<strong>运行时异常在编译时没有如此规定，所以catch可以省略</strong>。</li>
+<li>至于加上finally，则是在不管有没捕获异常，都要进行的“扫尾”处理。</li>
+</ul>
+</li>
+<li><h4 id="try-catch-finally-中，如果-catch-中-return-了，finally-还会执行吗？"><a href="#try-catch-finally-中，如果-catch-中-return-了，finally-还会执行吗？" class="headerlink" title="try-catch-finally 中，如果 catch 中 return 了，finally 还会执行吗？"></a>try-catch-finally 中，如果 catch 中 return 了，finally 还会执行吗？</h4><ul>
+<li><p>答：会执行，在 return 前执行。</p>
+<blockquote>
+<p>在 finally 中改变返回值的做法是不好的，因为如果存在 finally 代码块，try中的 return 语句不会立马返回调用者，而是记录下返回值待 finally 代码块执行完毕之后再向调用者返回其值，然后如果在 finally 中修改了返回值，就会返回修改后的值。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><h4 id="常见的-RuntimeException-有哪些？"><a href="#常见的-RuntimeException-有哪些？" class="headerlink" title="常见的 RuntimeException 有哪些？"></a>常见的 RuntimeException 有哪些？</h4><ul>
+<li><p>ClassCastException(类转换异常)</p>
+</li>
+<li><p>IndexOutOfBoundsException(数组越界)</p>
+</li>
+<li><p>NullPointerException(空指针)</p>
+</li>
+<li><p>ArrayStoreException(数据存储异常，操作数组时类型不一致)</p>
+</li>
+<li><p>还有IO操作的BufferOverflowException异常</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Java常见异常有哪些"><a href="#Java常见异常有哪些" class="headerlink" title="Java常见异常有哪些"></a>Java常见异常有哪些</h4><ul>
+<li><p><code>java.lang.IllegalAccessError</code>：违法访问错误。当一个应用试图访问、修改某个类的域（Field）或者调用其方法，但是又违反域或方法的可见性声明，则抛出该异常。</p>
+</li>
+<li><p><code>java.lang.InstantiationError</code>：实例化错误。当一个应用试图通过Java的new操作符构造一个抽象类或者接口时抛出该异常.</p>
+</li>
+<li><p><code>java.lang.OutOfMemoryError</code>：内存不足错误。当可用内存不足以让Java虚拟机分配给一个对象时抛出该错误。</p>
+</li>
+<li><p><code>java.lang.StackOverflowError</code>：堆栈溢出错误。当一个应用递归调用的层次太深而导致堆栈溢出或者陷入死循环时抛出该错误。</p>
+</li>
+<li><p><code>java.lang.ClassCastException</code>：类造型异常。假设有类A和B（A不是B的父类或子类），O是A的实例，那么当强制将O构造为类B的实例时抛出该异常。该异常经常被称为强制类型转换异常。</p>
+</li>
+<li><p><code>java.lang.ClassNotFoundException</code>：找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH之后找不到对应名称的class文件时，抛出该异常。</p>
+</li>
+<li><p><code>java.lang.ArithmeticException</code>：算术条件异常。譬如：整数除零等。</p>
+</li>
+<li><p><code>java.lang.ArrayIndexOutOfBoundsException</code>：数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。</p>
+</li>
+<li><p><code>java.lang.IndexOutOfBoundsException</code>：索引越界异常。当访问某个序列的索引值小于0或大于等于序列大小时，抛出该异常。</p>
+</li>
+<li><p><code>java.lang.InstantiationException</code>：实例化异常。当试图通过newInstance()方法创建某个类的实例，而该类是一个抽象类或接口时，抛出该异常。</p>
+</li>
+<li><p><code>java.lang.NoSuchFieldException</code>：属性不存在异常。当访问某个类的不存在的属性时抛出该异常。</p>
+</li>
+<li><p><code>java.lang.NoSuchMethodException</code>：方法不存在异常。当访问某个类的不存在的方法时抛出该异常。-</p>
+</li>
+<li><p><code>java.lang.NullPointerException</code>：空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等。</p>
+</li>
+<li><p><code>java.lang.NumberFormatException</code>：数字格式异常。当试图将一个String转换为指定的数字类型，而该字符串确不满足数字类型要求的格式时，抛出该异常。</p>
+</li>
+<li><p><code>java.lang.StringIndexOutOfBoundsException</code>：字符串索引越界异常。当使用索引值访问某个字符串中的字符，而该索引值小于0或大于等于序列大小时，抛出该异常。</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>JavaSE</tag>
+        <tag>异常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_框架_SpringMVC基础面试题</title>
+    <url>/posts/1c13398b/</url>
+    <content><![CDATA[<h2 id="初级·框架·SpringMVC基础面试题"><a href="#初级·框架·SpringMVC基础面试题" class="headerlink" title="初级·框架·SpringMVC基础面试题"></a>初级·框架·SpringMVC基础面试题</h2><ul>
+<li><h4 id="什么是Spring-MVC？简单介绍下你对Spring-MVC的理解？"><a href="#什么是Spring-MVC？简单介绍下你对Spring-MVC的理解？" class="headerlink" title="什么是Spring MVC？简单介绍下你对Spring MVC的理解？"></a>什么是Spring MVC？简单介绍下你对Spring MVC的理解？</h4><ul>
+<li>Spring MVC是一个基于Java的实现了MVC设计模式的请求驱动类型的轻量级Web框架，通过把模型-视图-控制器分离，将web层进行职责解耦，把复杂的web应用分成逻辑清晰的几部分，简化开发，减少出错，方便组内开发人员之间的配合。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC的优点"><a href="#Spring-MVC的优点" class="headerlink" title="Spring MVC的优点"></a>Spring MVC的优点</h4><ul>
+<li>可以支持各种视图技术,而不仅仅局限于JSP；</li>
+<li>与Spring框架集成（如IoC容器、AOP等）；</li>
+<li>清晰的角色分配：前端控制器(dispatcherServlet) , 请求到处理器映射（handlerMapping), 处理器适配器（HandlerAdapter), 视图解析器（ViewResolver）。</li>
+<li>支持各种请求资源的映射策略。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC的主要组件？"><a href="#Spring-MVC的主要组件？" class="headerlink" title="Spring MVC的主要组件？"></a>Spring MVC的主要组件？</h4><p>（1）前端控制器 DispatcherServlet</p>
+<ul>
+<li>作用：接收请求、响应结果，相当于转发器，有了DispatcherServlet 就减少了其它组件之间的耦合度。</li>
+</ul>
+<p>（2）处理器映射器HandlerMapping</p>
+<ul>
+<li>作用：根据请求的URL来查找Handler</li>
+</ul>
+<p>（3）处理器适配器HandlerAdapter</p>
+<ul>
+<li>注意：在编写Handler的时候要按照HandlerAdapter要求的规则去编写，这样适配器HandlerAdapter才可以正确的去执行Handler。</li>
+</ul>
+<p>（4）处理器Handler（需要程序员开发）</p>
+<p>（5）视图解析器 ViewResolver（不需要程序员开发）</p>
+<ul>
+<li>作用：进行视图的解析，根据视图逻辑名解析成真正的视图（view）</li>
+</ul>
+<p>（6）视图View（需要程序员开发jsp）</p>
+<ul>
+<li>View是一个接口， 它的实现类支持不同的视图类型（jsp，freemarker，pdf等等）</li>
+</ul>
+</li>
+<li><h4 id="什么是DispatcherServlet"><a href="#什么是DispatcherServlet" class="headerlink" title="什么是DispatcherServlet"></a>什么是DispatcherServlet</h4><ul>
+<li>Spring的MVC框架是围绕DispatcherServlet来设计的，它用来处理所有的HTTP请求和响应。</li>
+</ul>
+</li>
+<li><h4 id="请描述Spring-MVC的工作流程？描述一下-DispatcherServlet-的工作流程？"><a href="#请描述Spring-MVC的工作流程？描述一下-DispatcherServlet-的工作流程？" class="headerlink" title="请描述Spring MVC的工作流程？描述一下 DispatcherServlet 的工作流程？"></a>请描述Spring MVC的工作流程？描述一下 DispatcherServlet 的工作流程？</h4><ul>
+<li><p>（1）用户发送请求至前端控制器DispatcherServlet；</p>
+</li>
+<li><p>（2） DispatcherServlet收到请求后，调用HandlerMapping处理器映射器，请求获取Handle；</p>
+</li>
+<li><p>（3）处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet；</p>
+</li>
+<li><p>（4）DispatcherServlet 调用 HandlerAdapter处理器适配器；</p>
+</li>
+<li><p>（5）HandlerAdapter 经过适配调用 具体处理器(Handler，也叫后端控制器)；</p>
+</li>
+<li><p>（6）Handler执行完成返回ModelAndView；</p>
+</li>
+<li><p>（7）HandlerAdapter将Handler执行结果ModelAndView返回给DispatcherServlet；</p>
+</li>
+<li><p>（8）DispatcherServlet将ModelAndView传给ViewResolver视图解析器进行解析；</p>
+</li>
+<li><p>（9）ViewResolver解析后返回具体View；</p>
+</li>
+<li><p>（10）DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）</p>
+</li>
+<li><p>（11）DispatcherServlet响应用户。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="MVC是什么？MVC设计模式的好处有哪些"><a href="#MVC是什么？MVC设计模式的好处有哪些" class="headerlink" title="MVC是什么？MVC设计模式的好处有哪些"></a>MVC是什么？MVC设计模式的好处有哪些</h4><ul>
+<li><p>mvc是一种设计模式。模型（model）-视图（view）-控制器（controller），三层架构的设计模式。用于实现前端页面的展现与后端业务数据处理的分离。</p>
+</li>
+<li><p>mvc设计模式的好处</p>
+<ol>
+<li>分层设计，实现了业务系统各个组件之间的解耦，有利于业务系统的可扩展性，可维护性。</li>
+<li>有利于系统的并行开发，提升开发效率。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><h4 id="注解原理是什么"><a href="#注解原理是什么" class="headerlink" title="注解原理是什么"></a>注解原理是什么</h4><ul>
+<li>注解本质是一个继承了Annotation的特殊接口，其具体实现类是Java运行时生成的动态代理类。我们通过反射获取注解时，返回的是Java运行时生成的动态代理对象。通过代理对象调用自定义注解的方法，会最终调用AnnotationInvocationHandler的invoke方法。该方法会从memberValues这个Map中索引出对应的值。而memberValues的来源是Java常量池。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC常用的注解有哪些？"><a href="#Spring-MVC常用的注解有哪些？" class="headerlink" title="Spring MVC常用的注解有哪些？"></a>Spring MVC常用的注解有哪些？</h4><ul>
+<li><p>@RequestMapping：用于处理请求 url 映射的注解，可用于类或方法上。用于类上，则表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
+</li>
+<li><p>@RequestBody：注解实现接收http请求的json数据，将json转换为java对象。</p>
+</li>
+<li><p>@ResponseBody：注解实现将conreoller方法返回对象转化为json对象响应给客户。</p>
+</li>
+<li><p>@Conntroller：控制器的注解，表示是表现层,不能用用别的注解代替</p>
+</li>
+</ul>
+</li>
+<li><h4 id="SpingMvc中的控制器的注解一般用哪个-有没有别的注解可以替代？"><a href="#SpingMvc中的控制器的注解一般用哪个-有没有别的注解可以替代？" class="headerlink" title="SpingMvc中的控制器的注解一般用哪个,有没有别的注解可以替代？"></a>SpingMvc中的控制器的注解一般用哪个,有没有别的注解可以替代？</h4><ul>
+<li>答：一般用@Controller注解,也可以使用@RestController,@RestController注解相当于@ResponseBody ＋ @Controller,表示是表现层,除此之外，一般不用别的注解代替。</li>
+</ul>
+</li>
+<li><h4 id="Controller注解的作用"><a href="#Controller注解的作用" class="headerlink" title="@Controller注解的作用"></a>@Controller注解的作用</h4><ul>
+<li><p>在Spring MVC 中，控制器Controller 负责处理由DispatcherServlet 分发的请求，它把用户请求的数据经过业务处理层处理之后封装成一个Model ，然后再把该Model 返回给对应的View 进行展示。在Spring MVC 中提供了一个非常简便的定义Controller 的方法，你无需继承特定的类或实现特定的接口，只需使用@Controller 标记一个类是Controller ，然后使用@RequestMapping 和@RequestParam 等一些注解用以定义URL 请求和Controller 方法之间的映射，这样的Controller 就能被外界访问到。此外Controller 不会直接依赖于HttpServletRequest 和HttpServletResponse 等HttpServlet 对象，它们可以通过Controller 的方法参数灵活的获取到。</p>
+</li>
+<li><p>@Controller 用于标记在一个类上，使用它标记的类就是一个Spring MVC Controller 对象。分发处理器将会扫描使用了该注解的类的方法，并检测该方法是否使用了@RequestMapping 注解。@Controller 只是定义了一个控制器类，而使用@RequestMapping 注解的方法才是真正处理请求的处理器。单单使用@Controller 标记在一个类上还不能真正意义上的说它就是Spring MVC 的一个控制器类，因为这个时候Spring 还不认识它。那么要如何做Spring 才能认识它呢？这个时候就需要我们把这个控制器类交给Spring 来管理。有两种方式：</p>
+</li>
+<li><p>在Spring MVC 的配置文件中定义MyController 的bean 对象。</p>
+</li>
+<li><p>在Spring MVC 的配置文件中告诉Spring 该到哪里去找标记为@Controller 的Controller 控制器。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="RequestMapping注解的作用"><a href="#RequestMapping注解的作用" class="headerlink" title="@RequestMapping注解的作用"></a>@RequestMapping注解的作用</h4><ul>
+<li><p>RequestMapping是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
+</li>
+<li><p>RequestMapping注解有六个属性，下面我们把她分成三类进行说明（下面有相应示例）。</p>
+<ul>
+<li><p><strong>value， method</strong></p>
+<ul>
+<li>value： 指定请求的实际地址，指定的地址可以是URI Template 模式（后面将会说明）；</li>
+<li>method： 指定请求的method类型， GET、POST、PUT、DELETE等；</li>
+</ul>
+</li>
+<li><p><strong>consumes，produces</strong></p>
+<ul>
+<li>consumes： 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</li>
+<li>produces: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</li>
+</ul>
+</li>
+<li><p><strong>params，headers</strong></p>
+<ul>
+<li>params： 指定request中必须包含某些参数值是，才让该方法处理。</li>
+<li>headers： 指定request中必须包含某些指定的header值，才能让该方法处理请求。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="ResponseBody注解的作用"><a href="#ResponseBody注解的作用" class="headerlink" title="@ResponseBody注解的作用"></a>@ResponseBody注解的作用</h4><ul>
+<li>作用： 该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</li>
+<li>使用时机：返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；</li>
+</ul>
+</li>
+<li><h4 id="PathVariable和-RequestParam的区别"><a href="#PathVariable和-RequestParam的区别" class="headerlink" title="@PathVariable和@RequestParam的区别"></a>@PathVariable和@RequestParam的区别</h4><ul>
+<li>请求路径上有个id的变量值，可以通过@PathVariable来获取 @RequestMapping(value = “/page/{id}”, method = RequestMethod.GET)</li>
+<li>@RequestParam用来获得静态的URL请求入参 spring注解时action里用到。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC怎么样设定重定向和转发的？"><a href="#Spring-MVC怎么样设定重定向和转发的？" class="headerlink" title="Spring MVC怎么样设定重定向和转发的？"></a>Spring MVC怎么样设定重定向和转发的？</h4><ul>
+<li>（1）转发：在返回值前面加”forward:”，譬如”forward:user.do?name=method4”</li>
+<li>（2）重定向：在返回值前面加”redirect:”，譬如”redirect:<a href="https://link.juejin.cn/?target=http://www.baidu.com">www.baidu.com</a>“</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC怎么和AJAX相互调用的？"><a href="#Spring-MVC怎么和AJAX相互调用的？" class="headerlink" title="Spring MVC怎么和AJAX相互调用的？"></a>Spring MVC怎么和AJAX相互调用的？</h4><ul>
+<li>通过Jackson框架就可以把Java里面的对象直接转化成Js可以识别的Json对象。具体步骤如下 ：<ul>
+<li>（1）加入Jackson.jar</li>
+<li>（2）在配置文件中配置json的映射</li>
+<li>（3）在接受Ajax方法里面可以直接返回Object,List等,但方法前面要加上@ResponseBody注解。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="如何解决POST请求中文乱码问题，GET的又如何处理呢？"><a href="#如何解决POST请求中文乱码问题，GET的又如何处理呢？" class="headerlink" title="如何解决POST请求中文乱码问题，GET的又如何处理呢？"></a>如何解决POST请求中文乱码问题，GET的又如何处理呢？</h4><p>（1）解决post请求乱码问题：</p>
+<p>​    在web.xml中配置一个CharacterEncodingFilter过滤器，设置成utf-8；</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）get请求中文参数出现乱码解决方法有两个：</p>
+<ul>
+<li>1、修改tomcat配置文件添加编码与工程编码一致，如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;ConnectorURIEncoding=&quot;utf-8&quot; connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>2、另外一种方法对参数进行重新编码：</p>
+<p>String userName = new String(request.getParamter(“userName”).getBytes(“ISO8859-1”),“utf-8”)</p>
+<p>ISO8859-1是tomcat默认编码，需要将tomcat编码后的内容按utf-8编码。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC的异常处理？"><a href="#Spring-MVC的异常处理？" class="headerlink" title="Spring MVC的异常处理？"></a>Spring MVC的异常处理？</h4><ul>
+<li>答：可以将异常抛给Spring框架，由Spring框架来处理；我们只需要配置简单的异常处理器，在异常处理器中添视图页面即可。</li>
+</ul>
+</li>
+<li><h4 id="如果在拦截请求中，我想拦截get方式提交的方法-怎么配置"><a href="#如果在拦截请求中，我想拦截get方式提交的方法-怎么配置" class="headerlink" title="如果在拦截请求中，我想拦截get方式提交的方法,怎么配置"></a>如果在拦截请求中，我想拦截get方式提交的方法,怎么配置</h4><ul>
+<li>答：可以在@RequestMapping注解里面加上method=RequestMethod.GET。</li>
+</ul>
+</li>
+<li><h4 id="怎样在方法里面得到Request-或者Session？"><a href="#怎样在方法里面得到Request-或者Session？" class="headerlink" title="怎样在方法里面得到Request,或者Session？"></a>怎样在方法里面得到Request,或者Session？</h4><ul>
+<li>答：直接在方法的形参中声明request,Spring MVC就自动把request对象传入。    </li>
+</ul>
+</li>
+<li><h4 id="如果想在拦截的方法里面得到从前台传入的参数-怎么得到？"><a href="#如果想在拦截的方法里面得到从前台传入的参数-怎么得到？" class="headerlink" title="如果想在拦截的方法里面得到从前台传入的参数,怎么得到？"></a>如果想在拦截的方法里面得到从前台传入的参数,怎么得到？</h4><ul>
+<li>答：直接在形参里面声明这个参数就可以,但必须名字和传过来的参数一样。</li>
+</ul>
+</li>
+<li><h4 id="如果前台有很多个参数传入-并且这些参数都是一个对象的-那么怎么样快速得到这个对象？"><a href="#如果前台有很多个参数传入-并且这些参数都是一个对象的-那么怎么样快速得到这个对象？" class="headerlink" title="如果前台有很多个参数传入,并且这些参数都是一个对象的,那么怎么样快速得到这个对象？"></a>如果前台有很多个参数传入,并且这些参数都是一个对象的,那么怎么样快速得到这个对象？</h4><ul>
+<li>答：直接在方法中声明这个对象,Spring MVC就自动会把属性赋值到这个对象里面。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC用什么对象从后台向前台传递数据的？"><a href="#Spring-MVC用什么对象从后台向前台传递数据的？" class="headerlink" title="Spring MVC用什么对象从后台向前台传递数据的？"></a>Spring MVC用什么对象从后台向前台传递数据的？</h4><ul>
+<li>答：通过ModelMap对象,可以在这个对象里面调用put方法,把对象加到里面,前台就可以通过el表达式拿到。</li>
+</ul>
+</li>
+<li><h4 id="怎么样把ModelMap里面的数据放入Session里面？"><a href="#怎么样把ModelMap里面的数据放入Session里面？" class="headerlink" title="怎么样把ModelMap里面的数据放入Session里面？"></a>怎么样把ModelMap里面的数据放入Session里面？</h4><ul>
+<li>答：可以在类上面加上@SessionAttributes注解,里面包含的字符串就是要放入session里面的key。</li>
+</ul>
+</li>
+<li><h4 id="Spring-MVC里面拦截器是怎么写的"><a href="#Spring-MVC里面拦截器是怎么写的" class="headerlink" title="Spring MVC里面拦截器是怎么写的"></a>Spring MVC里面拦截器是怎么写的</h4><p>有两种写法,一种是实现HandlerInterceptor接口，另外一种是继承适配器类，接着在接口方法当中，实现处理逻辑；然后在Spring MVC的配置文件中配置拦截器即可：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Spring MVC的拦截器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置一个拦截器的Bean就可以了 默认是对所有请求都拦截 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;myInterceptor&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.zwp.action.MyHandlerInterceptor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 只针对部分请求拦截 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/modelMap.do&quot;</span> /&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.zwp.action.MyHandlerInterceptorAdapter&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>SpringMVC</tag>
+        <tag>框架</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_JAVASE基础(集合)面试题</title>
+    <url>/posts/6a4ee6c0/</url>
+    <content><![CDATA[<h2 id="初级-JAVASE基础-集合-面试题"><a href="#初级-JAVASE基础-集合-面试题" class="headerlink" title="初级_JAVASE基础(集合)面试题"></a>初级_JAVASE基础(集合)面试题</h2><ul>
+<li><h4 id="集合和数组的区别"><a href="#集合和数组的区别" class="headerlink" title="集合和数组的区别"></a>集合和数组的区别</h4><ul>
+<li>数组是固定长度的；集合可变长度的。</li>
+<li>数组可以存储基本数据类型，也可以存储引用数据类型；集合只能存储引用数据类型。</li>
+<li>数组存储的元素必须是同一个数据类型；集合存储的对象可以是不同数据类型。</li>
+</ul>
+</li>
+<li><h4 id="使用集合的好处"><a href="#使用集合的好处" class="headerlink" title="使用集合的好处"></a>使用集合的好处</h4><ul>
+<li>容量自增长；</li>
+<li>提供了高性能的数据结构和算法，使编码更轻松，提高了程序速度和质量；</li>
+<li>可以方便地扩展或改写集合，提高代码复用性和可操作性。</li>
+<li>通过使用JDK自带的集合类，可以降低代码维护和学习新API成本。</li>
+</ul>
+</li>
+<li><h4 id="常用的集合类有哪些？"><a href="#常用的集合类有哪些？" class="headerlink" title="常用的集合类有哪些？"></a>常用的集合类有哪些？</h4><ul>
+<li><p>Map接口和Collection接口是所有集合框架的父接口：</p>
+</li>
+<li><p>Collection接口的子接口包括：Set接口和List接口、queue</p>
+</li>
+<li><p>Map接口的实现类主要有：HashMap、TreeMap、Hashtable、ConcurrentHashMap以及Properties等</p>
+</li>
+<li><p>Set接口的实现类主要有：HashSet、TreeSet、LinkedHashSet等</p>
+</li>
+<li><p>List接口的实现类主要有：ArrayList、LinkedList、Stack以及Vector等</p>
+</li>
+</ul>
+</li>
+<li><h4 id="List，Set，Map三者的区别？"><a href="#List，Set，Map三者的区别？" class="headerlink" title="List，Set，Map三者的区别？"></a>List，Set，Map三者的区别？</h4><ul>
+<li><p>Java 容器分为 Collection 和 Map 两大类，Collection集合的子接口有<strong>Set、List、Queue</strong>三种子接口。</p>
+</li>
+<li><p>Collection集合主要有<strong>List和Set</strong>两大接口</p>
+<ul>
+<li>List：一个<strong>有序容器</strong>，<strong>元素可以重复</strong>，<strong>可以插入多个null元素</strong>，<strong>元素都有索引</strong>。常用的实现类有 ArrayList、LinkedList 和 Vector。</li>
+<li>Set：一个<strong>无序容器</strong>，<strong>不可以存储重复元素</strong>，<strong>只允许存入一个null元素</strong>，<strong>必须保证元素唯一性</strong>。Set 接口常用实现类是 HashSet、LinkedHashSet 以及 TreeSet。</li>
+</ul>
+</li>
+<li><p>Map是一个键值对集合，存储键、值和之间的映射。 Key无序，唯一；value 不要求有序，允许重复。</p>
+<ul>
+<li>Map 的常用实现类：HashMap、TreeMap、HashTable、LinkedHashMap、ConcurrentHashMap </li>
+</ul>
+</li>
+<li><h5 id="List-和-Set-的区别"><a href="#List-和-Set-的区别" class="headerlink" title="List 和 Set 的区别"></a>List 和 Set 的区别</h5><ul>
+<li>List插入删除速度比Set慢，查询快</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="哪些集合类是线程安全的？"><a href="#哪些集合类是线程安全的？" class="headerlink" title="哪些集合类是线程安全的？"></a>哪些集合类是线程安全的？</h4><ul>
+<li><p>Vector：就比Arraylist多了个 synchronized （线程安全），因为效率较低，现在已经不太建议使用。</p>
+</li>
+<li><p>hashTable：就比hashMap多了个synchronized (线程安全)，不建议使用。</p>
+</li>
+<li><p>ConcurrentHashMap：是Java5中支持高并发、高吞吐量的线程安全HashMap实现。它由Segment数组结构和HashEntry数组结构组成。Segment数组在ConcurrentHashMap里扮演锁的角色，HashEntry则用于存储键-值对数据。一个ConcurrentHashMap里包含一个Segment数组，Segment的结构和HashMap类似，是一种数组和链表结构；一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素；每个Segment守护着一个HashEntry数组里的元素，当对HashEntry数组的数据进行修改时，必须首先获得它对应的Segment锁。（推荐使用）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何边遍历边移除-Collection-中的元素？"><a href="#如何边遍历边移除-Collection-中的元素？" class="headerlink" title="如何边遍历边移除 Collection 中的元素？"></a>如何边遍历边移除 Collection 中的元素？</h4><ul>
+<li><p>边遍历边修改 Collection 的唯一正确方式是使用 Iterator.remove() 方法，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Iterator&lt;Integer&gt; it = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">   *<span class="comment">// do something*</span></span><br><span class="line">   it.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="遍历一个-List-有哪些不同的方式？每种方法的实现原理是什么？"><a href="#遍历一个-List-有哪些不同的方式？每种方法的实现原理是什么？" class="headerlink" title="遍历一个 List 有哪些不同的方式？每种方法的实现原理是什么？"></a>遍历一个 List 有哪些不同的方式？每种方法的实现原理是什么？</h4><ul>
+<li><p><strong>for 循环遍历，基于计数器</strong>。在集合外部维护一个计数器，然后依次读取每一个位置的元素，当读取到最后一个元素后停止。</p>
+</li>
+<li><p><strong>迭代器遍历，Iterator</strong>。Iterator 是面向对象的一个设计模式，目的是屏蔽不同数据集合的特点，统一遍历集合的接口。Java 在 Collections 中支持了 Iterator 模式。</p>
+</li>
+<li><p><strong>foreach 循环遍历</strong>。foreach 内部也是采用了 Iterator 的方式实现，使用时不需要显式声明 Iterator 或计数器。优点是代码简洁，不易出错；缺点是只能做简单的遍历，不能在遍历过程中操作数据集合，例如删除、替换。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="说一下-ArrayList-的优缺点"><a href="#说一下-ArrayList-的优缺点" class="headerlink" title="说一下 ArrayList 的优缺点"></a>说一下 ArrayList 的优缺点</h4><ul>
+<li><p>ArrayList的优点如下：</p>
+<ul>
+<li>ArrayList 底层以数组实现，是一种顺序访问模式。</li>
+<li>ArrayList 在顺序添加一个元素的时候非常方便。</li>
+</ul>
+</li>
+<li><p>ArrayList 的缺点如下：</p>
+<ul>
+<li>删除元素的时候，需要做一次元素复制操作。如果要复制的元素很多，那么就会比较耗费性能。</li>
+<li>插入元素的时候，也需要做一次元素复制操作，缺点同上。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>ArrayList 比较适合顺序添加、随机访问的场景。</p>
+</blockquote>
+</li>
+<li><h4 id="如何实现数组和-List-之间的转换？"><a href="#如何实现数组和-List-之间的转换？" class="headerlink" title="如何实现数组和 List 之间的转换？"></a>如何实现数组和 List 之间的转换？</h4><ul>
+<li>数组转 List：使用<code> Arrays. asList(array)</code> 进行转换。</li>
+<li>List 转数组：使用 List 自带的 <code>toArray()</code> 方法。</li>
+</ul>
+</li>
+<li><h4 id="ArrayList-和-LinkedList-的区别是什么？"><a href="#ArrayList-和-LinkedList-的区别是什么？" class="headerlink" title="ArrayList 和 LinkedList 的区别是什么？"></a>ArrayList 和 LinkedList 的区别是什么？</h4><ul>
+<li>数据结构实现：ArrayList 是<strong>动态数组</strong>的数据结构实现，而 LinkedList 是<strong>双向链表</strong>的数据结构实现。</li>
+<li>随机访问效率：<strong>ArrayList 比 LinkedList 在随机访问的时候效率要高</strong>，因为 LinkedList 是线性的数据存储方式，所以需要移动指针从前往后依次查找。</li>
+<li>增加和删除效率：在非首尾的增加和删除操作，<strong>LinkedList 要比 ArrayList 效率要高</strong>，因为 ArrayList 增删操作要影响数组内的其他数据的下标。</li>
+<li>内存空间占用：<strong>LinkedList 比 ArrayList 更占内存</strong>，因为 LinkedList 的节点除了存储数据，还存储了两个引用，一个指向前一个元素，一个指向后一个元素。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="ArrayList-和-Vector-的区别是什么？"><a href="#ArrayList-和-Vector-的区别是什么？" class="headerlink" title="ArrayList 和 Vector 的区别是什么？"></a>ArrayList 和 Vector 的区别是什么？</h4><ul>
+<li>线程安全：Vector 使用了 Synchronized 来实现线程同步，是线程安全的，而 ArrayList 是非线程安全的。</li>
+<li>性能：<strong>ArrayList 在性能方面要优于 Vector</strong>。</li>
+<li>扩容：ArrayList 和 Vector 都会根据实际的需要动态的调整容量，只不过在 **Vector 扩容每次会增加 1 倍，而 ArrayList 只会增加 50%**。</li>
+</ul>
+</li>
+<li><h4 id="插入数据时，ArrayList、LinkedList、Vector谁速度较快？阐述-ArrayList、Vector、LinkedList-的存储性能和特性？"><a href="#插入数据时，ArrayList、LinkedList、Vector谁速度较快？阐述-ArrayList、Vector、LinkedList-的存储性能和特性？" class="headerlink" title="插入数据时，ArrayList、LinkedList、Vector谁速度较快？阐述 ArrayList、Vector、LinkedList 的存储性能和特性？"></a>插入数据时，ArrayList、LinkedList、Vector谁速度较快？阐述 ArrayList、Vector、LinkedList 的存储性能和特性？</h4><ul>
+<li><p>ArrayList和Vector 底层的实现都是使用数组方式存储数据。数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以<strong>索引数据快</strong>而插入数据慢。</p>
+</li>
+<li><p>Vector 中的方法由于加了 synchronized 修饰，因此 <strong>Vector</strong> <strong>是线程安全容器，但性能上较ArrayList差</strong>。</p>
+</li>
+<li><p>LinkedList 使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历，但插入数据时只需要记录当前项的前后项即可，所以 <strong>LinkedList</strong> <strong>插入速度较快</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="说一下-HashSet-的实现原理？"><a href="#说一下-HashSet-的实现原理？" class="headerlink" title="说一下 HashSet 的实现原理？"></a>说一下 HashSet 的实现原理？</h4><p>HashSet 是基于 <strong>HashMap 实现的</strong>，<strong>HashSet的值存放于HashMap的key</strong>上，<strong>HashMap的value统一为present</strong>，基本上都是直接调用底层 HashMap 的相关方法来完成，<strong>HashSet 不允许重复的值</strong>。</p>
+</li>
+<li><h4 id="HashSet如何检查重复？HashSet是如何保证数据不可重复的？"><a href="#HashSet如何检查重复？HashSet是如何保证数据不可重复的？" class="headerlink" title="HashSet如何检查重复？HashSet是如何保证数据不可重复的？"></a>HashSet如何检查重复？HashSet是如何保证数据不可重复的？</h4><ul>
+<li><p>向HashSet 中add ()元素时，判断元素是否存在的依据，不仅要<strong>比较hash值，同时还要结合equles</strong> 方法比较。</p>
+</li>
+<li><p>HashSet 中的add ()方法会使用HashMap 的put()方法。</p>
+</li>
+<li><p>HashMap 的 key 是唯一的，由源码可以看出 HashSet 添加进去的值就是作为HashMap 的key，并且在HashMap中如果K/V相同时，会用新的V覆盖掉旧的V，然后返回旧的V。（ HashMap 比较key是否相等是先比较hashcode 再比较equals ）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="hashCode（）与equals（）的相关规定："><a href="#hashCode（）与equals（）的相关规定：" class="headerlink" title="hashCode（）与equals（）的相关规定："></a><strong>hashCode（）与equals（）的相关规定</strong>：</h4><ul>
+<li><p>如果两个对象相等，则hashcode一定也是相同的</p>
+</li>
+<li><p>hashCode是jdk根据对象的地址或者字符串或者数字算出来的int类型的数值</p>
+</li>
+<li><p>两个对象相等,对两个equals方法返回true</p>
+</li>
+<li><p>两个对象有相同的hashcode值，它们也不一定是相等的</p>
+</li>
+<li><p>综上，equals方法被覆盖过，则hashCode方法也必须被覆盖</p>
+</li>
+<li><p>hashCode()的默认行为是对堆上的对象产生独特值。如果没有重写hashCode()，则该class的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="HashSet与HashMap的区别"><a href="#HashSet与HashMap的区别" class="headerlink" title="HashSet与HashMap的区别"></a>HashSet与HashMap的区别</h4><table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th align="center"><strong>HashMap</strong></th>
+<th align="center">HashSet</th>
 </tr>
 </thead>
 <tbody><tr>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">实现了Map接口</td>
+<td align="center">实现Set接口</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">存储键值对</td>
+<td align="center">仅存储对象</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">调用put（）向map中添加元素</td>
+<td align="center">调用add（）方法向Set中添加元素</td>
+</tr>
+<tr>
+<td align="center">HashMap使用键（Key）计算Hashcode</td>
+<td align="center">HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性，如果两个对象不同的话，那么返回false</td>
+</tr>
+<tr>
+<td align="center">HashMap相对于HashSet较快，因为它是使用唯一的键获取对象</td>
+<td align="center">HashSet较HashMap来说比较慢</td>
 </tr>
 </tbody></table>
+</li>
+<li><h4 id="说一下HashMap的实现原理？"><a href="#说一下HashMap的实现原理？" class="headerlink" title="说一下HashMap的实现原理？"></a>说一下HashMap的实现原理？</h4><ul>
+<li><p>HashMap概述： HashMap是基于<strong>哈希表的Map接口的非同步实现</strong>。此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</p>
+</li>
+<li><p>HashMap的数据结构： 在Java编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“链表散列”的数据结构，即<strong>数组和链表的结合体</strong>。</p>
+</li>
+<li><p>HashMap 基于 <strong>Hash 算法实现的</strong></p>
+<ul>
+<li>当我们往HashMap中put元素时，利用key的hashCode重新hash计算出当前对象的元素在数组中的下标</li>
+<li>存储时，如果<strong>出现hash值相同的key</strong>，此时有两种情况。</li>
+</ul>
+<p>​             (1)<strong>如果key相同，则覆盖原始值</strong>；</p>
+<p>​             (2)<strong>如果key不同（出现冲突），则将当前的key-value放入链表中</strong></p>
+</li>
+<li><p>需要注意Jdk 1.8中对HashMap的实现做了优化，当链表中的节点数据超过八个之后，该链表会转为红黑树来提高查询效率，从原来的O(n)到O(logn)</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="HashMap在JDK1-7和JDK1-8中有哪些不同？"><a href="#HashMap在JDK1-7和JDK1-8中有哪些不同？" class="headerlink" title="HashMap在JDK1.7和JDK1.8中有哪些不同？"></a>HashMap在JDK1.7和JDK1.8中有哪些不同？</h4><table>
+<thead>
+<tr>
+<th align="center">不同</th>
+<th align="center">JDK 1.7</th>
+<th align="center">JDK 1.8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">存储结构</td>
+<td align="center">数组 + 链表</td>
+<td align="center">数组 + 链表 + 红黑树</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">存放数据的规则</td>
+<td align="center">无冲突时，存放数组；冲突时，存放链表</td>
+<td align="center">无冲突时，存放数组；冲突 &amp; 链表长度 &lt; 8：存放单链表；冲突 &amp; 链表长度 &gt; 8：树化并存放红黑树</td>
+</tr>
+<tr>
+<td align="center">插入数据方式</td>
+<td align="center">头插法（先讲原位置的数据移到后1位，再插入数据到该位置）</td>
+<td align="center">尾插法（直接插入到链表尾部/红黑树）</td>
+</tr>
+<tr>
+<td align="center">扩容机制</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><h4 id="为什么HashMap中String、Integer这样的包装类适合作为K？"><a href="#为什么HashMap中String、Integer这样的包装类适合作为K？" class="headerlink" title="为什么HashMap中String、Integer这样的包装类适合作为K？"></a>为什么HashMap中String、Integer这样的包装类适合作为K？</h4><ul>
+<li>答：String、Integer等包装类的特性能够<strong>保证Hash值的不可更改性和计算准确性</strong>，能够有效的<strong>减少Hash碰撞的几率</strong><ul>
+<li>都是final类型，即不可变性，保证key的不可更改性，不会存在获取hash值不同的情况</li>
+<li>内部已重写了<code>equals()</code>、<code>hashCode()</code>等方法，遵守了HashMap内部的规范（不清楚可以去上面看看putValue的过程），不容易出现Hash值计算错误的情况；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="HashMap-与-HashTable-有什么区别？"><a href="#HashMap-与-HashTable-有什么区别？" class="headerlink" title="HashMap 与 HashTable 有什么区别？"></a>HashMap 与 HashTable 有什么区别？</h4><ul>
+<li><p><strong>线程安全</strong>： HashMap 是非线程安全的，HashTable 是线程安全的；</p>
+</li>
+<li><p><strong>效率</strong>： 因为线程安全的问题，HashMap 要比 HashTable 效率高一点。</p>
+</li>
+<li><p><strong>对Null key 和Null value的支持</strong>： HashMap 中，null 可以作为键，这样的键只有一个，可以有一个或多个键所对应的值为 null。但是在 HashTable 中 put 进的键值只要有一个 null，直接抛NullPointerException。</p>
+</li>
+<li><p><strong>初始容量大小和每次扩充容量大小的不同</strong> ：</p>
+<ul>
+<li>Hashtable 默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap 默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。</li>
+<li>创建时如果给定了容量初始值，那么 Hashtable 会直接使用你给定的大小，而 HashMap 会将其扩充为2的幂次方大小。</li>
+</ul>
+</li>
+<li><p><strong>底层数据结构</strong>： JDK1.8 以后的 HashMap 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是TreeMap-简介"><a href="#什么是TreeMap-简介" class="headerlink" title="什么是TreeMap 简介"></a>什么是TreeMap 简介</h4><ul>
+<li><p>TreeMap 是一个<strong>有序的key-value集合</strong>，它是通过红黑树实现的。</p>
+</li>
+<li><p>TreeMap基于<strong>红黑树（Red-Black tree）实现</strong>。该映射根据<strong>其键的自然顺序进行排序</strong>，或者根据<strong>创建映射时提供的 Comparator 进行排序</strong>，具体取决于使用的构造方法。</p>
+</li>
+<li><p>TreeMap是线程<strong>非同步</strong>的。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何决定使用-HashMap-还是-TreeMap？"><a href="#如何决定使用-HashMap-还是-TreeMap？" class="headerlink" title="如何决定使用 HashMap 还是 TreeMap？"></a>如何决定使用 HashMap 还是 TreeMap？</h4><p>对于在Map中插入、删除和定位元素这类操作，HashMap是最好的选择。然而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历。</p>
+</li>
+<li><h4 id="Array-和-ArrayList-有何区别？"><a href="#Array-和-ArrayList-有何区别？" class="headerlink" title="Array 和 ArrayList 有何区别？"></a>Array 和 ArrayList 有何区别？</h4><ul>
+<li><p>Array 可以存储<strong>基本数据类型和对象</strong>，ArrayList 只能存储<strong>对象</strong>。</p>
+</li>
+<li><p>Array 是指定<strong>固定大小的</strong>，而 ArrayList <strong>大小是自动扩展的</strong>。</p>
+</li>
+<li><p><strong>Array 内置方法没有 ArrayList 多</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="comparable-和-comparator的区别？"><a href="#comparable-和-comparator的区别？" class="headerlink" title="comparable 和 comparator的区别？"></a>comparable 和 comparator的区别？</h4><ul>
+<li>comparable接口实际上是出自java.lang包，它有一个 <code>compareTo(Object obj)</code>方法用来排序</li>
+<li>comparator接口实际上是出自 java.util 包，它有一个<code>compare(Object obj1, Object obj2)</code>方法用来排序</li>
+</ul>
+</li>
+<li><h4 id="Collection-和-Collections-有什么区别？"><a href="#Collection-和-Collections-有什么区别？" class="headerlink" title="Collection 和 Collections 有什么区别？"></a>Collection 和 Collections 有什么区别？</h4><ul>
+<li>java.util.Collection 是一个集合接口（集合类的一个顶级接口）。它提供了对集合对象进行基本操作的通用接口方法。Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式，其直接继承接口有List与Set。</li>
+<li>Collections则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。</li>
+</ul>
+</li>
+<li><h4 id="TreeMap-和-TreeSet-在排序时如何比较元素？Collections-工具类中的-sort-方法如何比较元素？"><a href="#TreeMap-和-TreeSet-在排序时如何比较元素？Collections-工具类中的-sort-方法如何比较元素？" class="headerlink" title="TreeMap 和 TreeSet 在排序时如何比较元素？Collections 工具类中的 sort()方法如何比较元素？"></a>TreeMap 和 TreeSet 在排序时如何比较元素？Collections 工具类中的 sort()方法如何比较元素？</h4><ul>
+<li><p>TreeSet 要求存放的对象所属的类必须实现 <strong>Comparable 接口</strong>，该接口提供了比较元素的 compareTo()方法，当插入元素时会回调该方法比较元素的大小。TreeMap 要求存放的键值对映射的键必须实现 Comparable 接口从而根据键对元素进 行排 序。</p>
+</li>
+<li><p>第一种要求传入的待排序容器中存放的对象比较实现 Comparable 接口以实现元素的比较；</p>
+</li>
+<li><p>第二种不强制性的要求容器中的元素必须可比较，但是要求传入第二个参数，参数是Comparator 接口的子类型（需要重写 compare 方法实现元素的比较），相当于一个临时定义的排序规则，其实就是通过接口注入比较元素大小的算法，也是对回调模式的应用（Java 中对函数式编程的支持）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="迭代器Iterator是什么？"><a href="#迭代器Iterator是什么？" class="headerlink" title="迭代器Iterator是什么？"></a>迭代器Iterator是什么？</h4><ul>
+<li>Iterator 接口提供<strong>遍历任何 Collection 的接口</strong>。我们可以从一个 Collection 中使用迭代器方法来获取迭代器实例。</li>
+<li><strong>所有Collection接继承了Iterator迭代器</strong></li>
+</ul>
+</li>
+<li><h4 id="HashMap的键值需要注意什么？"><a href="#HashMap的键值需要注意什么？" class="headerlink" title="HashMap的键值需要注意什么？"></a>HashMap的键值需要注意什么？</h4><ul>
+<li>HashMap 的 key 相等的条件是，条件 1 必须满足，条件2和3必须满足一个。<ol>
+<li>key 的 hash 值相等</li>
+<li>内存中是同一个对象，即使用 == 判断 key 相等</li>
+<li>key 不为 null， 且使用 equals 判断 key 相等</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><h4 id="List、Set、Map哪个继承自Collection接口？"><a href="#List、Set、Map哪个继承自Collection接口？" class="headerlink" title="List、Set、Map哪个继承自Collection接口？"></a>List、Set、Map哪个继承自Collection接口？</h4><ul>
+<li>List 和 Set 继承自 Collection 接口</li>
+<li>Map 是一个接口，未继承其他接口，仅仅默认继承了 Object 类</li>
+</ul>
+</li>
+<li><h4 id="Map的实现类中，哪些是有序的，哪些是无序的，如何保证其有序性？"><a href="#Map的实现类中，哪些是有序的，哪些是无序的，如何保证其有序性？" class="headerlink" title="Map的实现类中，哪些是有序的，哪些是无序的，如何保证其有序性？"></a>Map的实现类中，哪些是有序的，哪些是无序的，如何保证其有序性？</h4><ul>
+<li><p>Map 的实现类有 HashMap、LinkedHashMap、TreeMap</p>
+</li>
+<li><p>HashMap是有无序的</p>
+</li>
+<li><p>LinkedHashMap 和 TreeMap 是有序的。LinkedHashMap 记录了添加数据的顺序；TreeMap 默认是升序</p>
+</li>
+<li><p>LinkedHashMap 底层存储结构是哈希表+链表，链表记录了添加数据的顺序</p>
+</li>
+<li><p>TreeMap 底层存储结构是二叉树，二叉树的中序遍历保证了数据的有序性</p>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>good</category>
+        <category>面试</category>
       </categories>
       <tags>
-        <tag>good</tag>
+        <tag>JavaSE</tag>
+        <tag>集合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_JAVASE基础面试题</title>
+    <url>/posts/a474a1c2/</url>
+    <content><![CDATA[<h2 id="初级-JAVASE基础面试题"><a href="#初级-JAVASE基础面试题" class="headerlink" title="初级_JAVASE基础面试题"></a>初级_JAVASE基础面试题</h2><h3 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h3><ul>
+<li><h4 id="Jdk和JRE和JVM的区别"><a href="#Jdk和JRE和JVM的区别" class="headerlink" title="Jdk和JRE和JVM的区别"></a>Jdk和JRE和JVM的区别</h4><p>JDK ：Jdk还包括了一些Jre之外的东西 ，就是这些东西帮我们编译Java代码的， 还有就是监控Jvm的一些工具 Java Development Kit是提供给Java开发人员使用的，<strong>其中包含了Java的开发工具，也包括了JRE</strong></p>
+<p><strong>JDK=JRE+java开发工具</strong></p>
+<p>JRE ：Jre大部分都是 <strong>C 和 C++ 语言编写</strong>的，他是我们在编译<strong>java时所需要的基础的类库； Java Runtime Environment包括Java虚拟机和Java程序所需的核心类库</strong>等。核心类库主要是java.lang包：包含了运行Java程序必不可少的系统类，如基本数据类型、基本数学函数、字符串处理、线程、异常处理类等，系统缺省加载这个包</p>
+<blockquote>
+<p>如果想要运行一个开发好的Java程序，计算机中只需要安装JRE即可。</p>
+</blockquote>
+<p><strong>JRE=JVM+java所需要的核心类库</strong></p>
+<p>Jvm：在倒数第二层   由他可以在（最后一层的）各种平台上运行。 Java Virtual Machine是<strong>Java虚拟机</strong>，Java程序需要运行在虚拟机，不同的平台有自己的虚拟机，因此Java语言可以实现跨平台。</p>
+<ul>
+<li><h5 id="什么是JVM？"><a href="#什么是JVM？" class="headerlink" title="什么是JVM？"></a>什么是JVM？</h5></li>
+<li><h5 id="什么是JDK？"><a href="#什么是JDK？" class="headerlink" title="什么是JDK？"></a>什么是JDK？</h5></li>
+<li><h5 id="什么是JRE？"><a href="#什么是JRE？" class="headerlink" title="什么是JRE？"></a>什么是JRE？</h5></li>
+</ul>
+</li>
+<li><h4 id="什么是跨平台性？原理是什么？"><a href="#什么是跨平台性？原理是什么？" class="headerlink" title="什么是跨平台性？原理是什么？"></a>什么是跨平台性？原理是什么？</h4><ul>
+<li>所谓跨平台性，是指java语言编写的程序，<strong>一次编译后，可以在多个系统平台上运行</strong>。</li>
+<li>实现原理：Java程序是通过java虚拟机在系统平台上运行的，只要该系统可以安装相应的java虚拟机，该系统就可以运行java程序。</li>
+</ul>
+</li>
+<li><h4 id="Java语言有哪些特点？"><a href="#Java语言有哪些特点？" class="headerlink" title="Java语言有哪些特点？"></a>Java语言有哪些特点？</h4><ul>
+<li><p><strong>简单易学</strong>（Java语言的语法与C语言和C++语言很接近）</p>
+</li>
+<li><p><strong>面向对象</strong>（封装，继承，多态）</p>
+</li>
+<li><p><strong>平台无关性</strong>（Java虚拟机实现平台无关性）</p>
+</li>
+<li><p><strong>支持网络编程并且很方便</strong>（Java语言诞生本身就是为简化网络编程设计的）</p>
+</li>
+<li><p><strong>支持多线程</strong>（多线程机制使应用程序在同一时间并行执行多项任）</p>
+</li>
+<li><p><strong>健壮性</strong>（Java语言的强类型机制、异常处理、垃圾的自动收集等）</p>
+</li>
+<li><p><strong>安全性好</strong></p>
+</li>
+</ul>
+</li>
+<li><h4 id="Java和C-的区别："><a href="#Java和C-的区别：" class="headerlink" title="Java和C++的区别："></a>Java和C++的区别：</h4><ul>
+<li>都是<strong>面向对象的语言</strong>，都<strong>支持封装、继承和多态</strong></li>
+<li>Java<strong>不提供指针</strong>来直接访问内存，程序内存更加<strong>安全</strong></li>
+<li>Java的<strong>类是单继承的，C++支持多重继承</strong>；虽然Java的类不可以多继承，但是<strong>接口可以多继承</strong>。</li>
+<li>Java有<strong>自动内存管理机制</strong>，不需要程序员手动释放无用内存</li>
+</ul>
+</li>
+<li><h4 id="Object类有哪些常用的方法？"><a href="#Object类有哪些常用的方法？" class="headerlink" title="Object类有哪些常用的方法？"></a>Object类有哪些常用的方法？</h4><ul>
+<li><code>public final native Class&lt;?&gt; getClass()</code> 获取类结构信息</li>
+<li><code>public native int hashCode()</code> 获取哈希码</li>
+<li><code>public boolean equals(Object)</code> 默认比较对象的地址值是否相等，子类可以重写比较规则</li>
+<li><code>protected native Object clone() throws CloneNotSupportedException</code> 用于对象克隆</li>
+<li><code>public String toString()</code>把对象转变成字符串</li>
+<li><code>public final native void notify()</code> 多线程中唤醒功能</li>
+<li><code>public final native void notifyAll()</code> 多线程中唤醒所有等待线程的功能</li>
+<li><code>public final void wait() throws InterruptedException</code> 让持有对象锁的线程进入等待</li>
+<li><code>public final native void wait(long timeout) throws InterruptedException</code> 让持有对象锁的线程进入等待，设置超时毫秒数时间</li>
+<li><code>public final void wait(long timeout, int nanos) throws InterruptedException</code> 让持有对象锁的线程进入等待，设置超时纳秒数时间</li>
+<li><code>protected void finalize() throws Throwable</code> 垃圾回收前执行的方法</li>
+</ul>
+</li>
+<li><h4 id="一个”-java”源文件中是否可以包含多个类（不是内部类）？有什么限制？"><a href="#一个”-java”源文件中是否可以包含多个类（不是内部类）？有什么限制？" class="headerlink" title="一个”.java”源文件中是否可以包含多个类（不是内部类）？有什么限制？"></a>一个”.java”源文件中是否可以包含多个类（不是内部类）？有什么限制？</h4><p>可以<strong>有多个类，但只能有一个public的类</strong>，并且<strong>public的类名必须与文件名相一致</strong>。</p>
+</li>
+<li><h4 id="Java语言采用何种编码方案？有何特点？"><a href="#Java语言采用何种编码方案？有何特点？" class="headerlink" title="Java语言采用何种编码方案？有何特点？"></a>Java语言采用何种编码方案？有何特点？</h4><p>Java语言采用<code>Unicode</code>编码标准，Unicode（标准码），它为每个字符制订了一个唯一的数值，因此在任何的语言，平台，程序都可以放心的使用。</p>
+<ul>
+<li><h5 id="char-型变量中能不能存贮一个中文汉字，为什么？"><a href="#char-型变量中能不能存贮一个中文汉字，为什么？" class="headerlink" title="char 型变量中能不能存贮一个中文汉字，为什么？"></a>char 型变量中能不能存贮一个中文汉字，为什么？</h5></li>
+</ul>
+</li>
+</ul>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><ul>
+<li><h4 id="Java有哪些数据类型？"><a href="#Java有哪些数据类型？" class="headerlink" title="Java有哪些数据类型？"></a>Java有哪些数据类型？</h4><ul>
+<li><strong>基本数据类型</strong><ul>
+<li>数值型<ul>
+<li>整数类型(<code>byte,short,int,long</code>)</li>
+<li>浮点类型(<code>float,double</code>)</li>
+</ul>
+</li>
+<li>字符型(<code>char</code>)</li>
+<li>布尔型(<code>boolean</code>)</li>
+</ul>
+</li>
+<li><strong>引用数据类型</strong><ul>
+<li>类(<code>class</code>)</li>
+<li>接口(<code>interface</code>)</li>
+<li>数组(<code>[]</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="switch-是否能作用在-byte-上，是否能作用在-long-上，是否能作用在-String-上"><a href="#switch-是否能作用在-byte-上，是否能作用在-long-上，是否能作用在-String-上" class="headerlink" title="switch 是否能作用在 byte 上，是否能作用在 long 上，是否能作用在 String 上?"></a>switch 是否能作用在 byte 上，是否能作用在 long 上，是否能作用在 String 上?</h4><ul>
+<li>Java1.5之前：switch(expr)中，expr 只能是 <code>byte、short、char、int</code></li>
+<li>Java1.5：switch(expr)中，expr 也可以是 <code>enum </code>类型</li>
+<li>Java1.7：expr 还可以是<code>字符串（String）</code></li>
+<li><strong>长整型（long）在目前所有的版本中都是不可以的</strong></li>
+</ul>
+</li>
+<li><h4 id="用最有效率的方法计算-2-乘以-8"><a href="#用最有效率的方法计算-2-乘以-8" class="headerlink" title="用最有效率的方法计算 2 乘以 8"></a>用最有效率的方法计算 2 乘以 8</h4><p>位运算：<code>2 &lt;&lt; 3</code>（左移 3 位相当于乘以 2 的 3 次方，右移 3 位相当于除以 2 的 3 次方）。</p>
+<ul>
+<li><h5 id="Java中的-lt-lt-gt-gt-gt-gt-gt-是什么？"><a href="#Java中的-lt-lt-gt-gt-gt-gt-gt-是什么？" class="headerlink" title="Java中的 &lt;&lt; &gt;&gt; &gt;&gt;&gt; 是什么？"></a>Java中的 &lt;&lt; &gt;&gt; &gt;&gt;&gt; 是什么？</h5><p>位运算：<code>&gt;&gt;&gt;</code>无符号右移</p>
+</li>
+<li><h5 id="十进制100转换成八进制是多少？"><a href="#十进制100转换成八进制是多少？" class="headerlink" title="十进制100转换成八进制是多少？"></a>十进制100转换成八进制是多少？</h5><p>先转换成2进制，4位计算就是8进制</p>
+</li>
+</ul>
+</li>
+<li><h4 id="i-和-i的作用和区别"><a href="#i-和-i的作用和区别" class="headerlink" title="i++和++i的作用和区别"></a>i++和++i的作用和区别</h4><ul>
+<li>作用：<strong>都是给变量 i 加 1，相当于 i = i + 1;</strong> </li>
+<li><code>i++</code> <strong>先运算后加 1</strong></li>
+<li><code>++i</code> <strong>先加 1 再运算</strong></li>
+</ul>
+</li>
+<li><h4 id="Math-round-11-5-等于多少？Math-round-11-5-等于多少"><a href="#Math-round-11-5-等于多少？Math-round-11-5-等于多少" class="headerlink" title="Math.round(11.5) 等于多少？Math.round(-11.5)等于多少"></a>Math.round(11.5) 等于多少？Math.round(-11.5)等于多少</h4><p>Math.round(11.5)的返回值是 12，Math.round(-11.5)的返回值是-11。</p>
+<p>四舍五入的原理是<strong>在参数上加 0.5 然后进行下取整</strong>。</p>
+</li>
+<li><h4 id="float-f-3-4-是否正确"><a href="#float-f-3-4-是否正确" class="headerlink" title="float f=3.4;是否正确"></a>float f=3.4;是否正确</h4><p>不正确。3.4 是双精度数，将双精度型（double）赋值给浮点型（float）属于下转型（down-casting，也称为窄化）会造成精度损失，因此**需要强制类型转换float f =(float)3.4; 或者写成 float f =3.4F;**。</p>
+</li>
+<li><h4 id="short-s1-1-s1-s1-1-有错吗-short-s1-1-s1-1-有错吗"><a href="#short-s1-1-s1-s1-1-有错吗-short-s1-1-s1-1-有错吗" class="headerlink" title="short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗"></a>short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗</h4><p>对于 short s1 = 1; s1 = s1 + 1;由于 1 是 int 类型，因此 s1+1 运算结果也是 int型，需要<strong>强制转换类型</strong>才能赋值给 short 型。</p>
+<p>而 short s1 = 1; s1 <strong>+=</strong> 1;可以正确编译，因为 s1+= 1;相当于 s1 = (short(s1 + 1);<strong>其中有隐含的强制类型转换。</strong></p>
+</li>
+<li><h4 id="什么Java注释？Java注释种类"><a href="#什么Java注释？Java注释种类" class="headerlink" title="什么Java注释？Java注释种类"></a>什么Java注释？Java注释种类</h4><p><strong>用于解释说明程序的文字</strong></p>
+<ul>
+<li>单行注释<br>格式： <code>// 注释文字</code></li>
+<li>多行注释<br>格式：<code> /* 注释文字 */</code></li>
+<li>文档注释<br>格式：<code>/** 注释文字 */</code></li>
+</ul>
+</li>
+<li><h4 id="访问修饰符-public-private-protected-以及不写（默认）时的区别"><a href="#访问修饰符-public-private-protected-以及不写（默认）时的区别" class="headerlink" title="访问修饰符 public,private,protected,以及不写（默认）时的区别"></a>访问修饰符 public,private,protected,以及不写（默认）时的区别</h4><ul>
+<li><p><code>private</code> : 在<strong>同一类内可见</strong>。使用对象：<u>变量、方法</u>。 注意：<strong>不能修饰类（外部类）</strong></p>
+</li>
+<li><p><code>default</code> (即缺省，什么也不写，不使用任何关键字）: 在<strong>同一包内可见，不使用任何修饰符</strong>。使用对象：类、接口、变量、方法。</p>
+</li>
+<li><p><code>protected </code>: 对<strong>同一包内的类和所有子类可见</strong>。使用对象：<u>变量、方法</u>。 注意：<strong>不能修饰类（外部类）</strong>。</p>
+</li>
+<li><p><code>public</code> : 对<strong>所有类可见</strong>。使用对象：<u>类、接口、变量、方法</u></p>
+</li>
+</ul>
+</li>
+<li><h4 id="amp-和-amp-amp-的区别"><a href="#amp-和-amp-amp-的区别" class="headerlink" title="&amp;和&amp;&amp;的区别"></a>&amp;和&amp;&amp;的区别</h4><ul>
+<li><p>&amp;运算符有两种用法：**(1)按位与；(2)逻辑与。**</p>
+</li>
+<li><p>&amp;&amp;运算符是<strong>短路与运算</strong>。逻辑与跟短路与的差别是非常巨大的，虽然二者都要求运算符左右两端的布尔值都是true 整个表达式的值才是 true。**&amp;&amp;之所以称为短路运算，是因为如果&amp;&amp;左边的表达式的值是 false，右边的表达式会被直接短路掉，不会进行运算。**</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Java-有没有-goto"><a href="#Java-有没有-goto" class="headerlink" title="Java 有没有 goto"></a>Java 有没有 goto</h4><ul>
+<li>goto 是 Java 中的<strong>保留字</strong>，在目前版本的 Java 中没有使用。</li>
+</ul>
+</li>
+<li><h4 id="final与static的区别"><a href="#final与static的区别" class="headerlink" title="final与static的区别"></a>final与static的区别</h4><ul>
+<li><p>都可以修饰<strong>类、方法、成员变量</strong>。</p>
+</li>
+<li><p>都<strong>不能用于修饰构造方法</strong>。</p>
+</li>
+<li><p><strong>static 可以修饰类的代码块，final 不可以。</strong></p>
+</li>
+<li><p><strong>static 不可以修饰方法内的局部变量，final 可以</strong>。</p>
+</li>
+<li><h5 id="final在java中的作用"><a href="#final在java中的作用" class="headerlink" title="final在java中的作用"></a>final在java中的作用</h5><ul>
+<li>被final修饰的类不可以被继承</li>
+<li>被final修饰的方法不可以被重写</li>
+<li>被final修饰的变量不可以被改变，被<strong>final修饰不可变的是变量的引用，而不是引用指向的内容，引用指向的内容是可以改变的</strong></li>
+<li>final 类不能被继承，没有子类，final 类中的方法默认是 final 的</li>
+</ul>
+</li>
+<li><h5 id="static存在的主要意义"><a href="#static存在的主要意义" class="headerlink" title="static存在的主要意义"></a>static存在的主要意义</h5><ul>
+<li>static 修饰表示<strong>静态或全局</strong>，<strong>被修饰的属性和方法属于类</strong>，可以用<strong>类名.静态属性 / 方法名</strong> 访问</li>
+<li>static 修饰的代码块表示<strong>静态代码块</strong>，当 Java 虚拟机（JVM）加载类时，就会执行该代码块,只会被执行一次</li>
+<li>static 修饰的属性，也就是<strong>类变量</strong>，是在类加载时被创建并进行初始化，只会被创建一次</li>
+<li>static 修饰的变量可以重新赋值</li>
+<li>static 方法中<strong>不能用 this 和 super 关键字</strong></li>
+<li><strong>static 方法必须被实现，而不能是抽象的abstract</strong></li>
+<li><strong>static 方法不能被重写</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="final-finally-finalize区别"><a href="#final-finally-finalize区别" class="headerlink" title="final finally finalize区别"></a>final finally finalize区别</h4><ul>
+<li><p>final可以修饰<strong>类、变量、方法</strong>，修饰类表示该类不能被继承、修饰方法表示该方法不能被重写、修饰变量表示该变量是一个常量不能被重新赋值。</p>
+</li>
+<li><p>finally一般作用在try-catch代码块中，在处理异常的时候，通常我们将<strong>一定要执行的代码方法finally代码块</strong> 中，表示不管是否出现异常，该代码块都会执行，一般用来存放一些关闭资源的代码。</p>
+</li>
+<li><p>finalize是一个方法，属于<strong>Object类的一个方法</strong>，而Object类是所有类的父类，该方法一般由垃圾回收器来调 用，当我们调用System.gc() 方法的时候，由<strong>垃圾回收器调用finalize()，回收垃圾</strong>，一个对象是否可回收的 最后判断。</p>
+</li>
+<li><h5 id="finally语句块一定执行吗？"><a href="#finally语句块一定执行吗？" class="headerlink" title="finally语句块一定执行吗？"></a>finally语句块一定执行吗？</h5><p>实际上，finally在部分代码中可以省略</p>
+</li>
+<li><h5 id="return与finally的执行顺序对返回值的影响"><a href="#return与finally的执行顺序对返回值的影响" class="headerlink" title="return与finally的执行顺序对返回值的影响"></a>return与finally的执行顺序对返回值的影响</h5></li>
+</ul>
+</li>
+<li><h4 id="this与super的区别"><a href="#this与super的区别" class="headerlink" title="this与super的区别"></a>this与super的区别</h4><ul>
+<li><p>super: 它引用当前对象的直接<strong>父类中的成员</strong>，基类与派生类中有相同成员定义时如：super.变量名 super.成员函数据名（实参）</p>
+</li>
+<li><p>this：它代表当前对象名（在<strong>程序中易产生二义性之处，应使用this来指明当前对象；如果函数的形参与类中的成员数据同名，这时需用this来指明成员变量名</strong>）</p>
+</li>
+<li><p>super()和this()类似,区别是，<strong>super()在子类中调用父类的构造方法，this()在本类内调用本类的其它构造方法</strong>。</p>
+</li>
+<li><p><strong>super()和this()均需放在构造方法内第一行</strong>。尽管可以用this调用一个构造器，但<strong>却不能调用两个</strong>。</p>
+</li>
+<li><p><strong>this和super不能同时出现在一个构造函数里面</strong>。</p>
+</li>
+<li><p><strong>this()和super()都指的是对象</strong>，所以，<strong>均不可以在static环境中使用</strong>。包括：static变量,static方法，static语句块。</p>
+</li>
+<li><p>从本质上讲，<strong>this是一个指向本对象的指针, 然而super是一个Java关键字</strong>。</p>
+</li>
+<li><h5 id="this关键字的用法"><a href="#this关键字的用法" class="headerlink" title="this关键字的用法"></a>this关键字的用法</h5></li>
+<li><h5 id="super关键字的用法"><a href="#super关键字的用法" class="headerlink" title="super关键字的用法"></a>super关键字的用法</h5></li>
+</ul>
+</li>
+<li><h4 id="break-continue-return-的区别及作用"><a href="#break-continue-return-的区别及作用" class="headerlink" title="break ,continue ,return 的区别及作用"></a>break ,continue ,return 的区别及作用</h4><ul>
+<li>break 跳出总上一层循环，不再执行循环(<strong>结束当前的循环体</strong>)</li>
+<li>continue 跳出本次循环，继续执行下次循环(<strong>结束正在执行的循环 进入下一个循环条件</strong>)</li>
+<li>return 程序返回，不再执行下面的代码(<strong>结束当前的方法 直接返回</strong>)</li>
+</ul>
+</li>
+<li><h4 id="在-Java-中，如何跳出当前的多重嵌套循环"><a href="#在-Java-中，如何跳出当前的多重嵌套循环" class="headerlink" title="在 Java 中，如何跳出当前的多重嵌套循环"></a>在 Java 中，如何跳出当前的多重嵌套循环</h4><p>在Java中，要想跳出多重循环，可以在<strong>外面的循环语句前定义一个标号，然后在里层循环体的代码中使用带有标号的break 语句</strong>，即可跳出外层循环。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    ok:</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;i=&quot;</span> + i + <span class="string">&quot;,j=&quot;</span> + j);</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">5</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span> ok;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><ul>
+<li><h4 id="面向对象和面向过程的区别"><a href="#面向对象和面向过程的区别" class="headerlink" title="面向对象和面向过程的区别"></a>面向对象和面向过程的区别</h4></li>
+<li><p><strong>面向过程</strong>：</p>
+<ul>
+<li>优点：<strong>性能比面向对象高</strong>，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</li>
+<li>缺点：<strong>没有面向对象易维护、易复用、易扩展</strong></li>
+</ul>
+</li>
+<li><p><strong>面向对象</strong>：</p>
+<ul>
+<li>优点：<strong>易维护、易复用、易扩展</strong>，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</li>
+<li>缺点：<strong>性能比面向过程低</strong></li>
+</ul>
+</li>
+<li><h4 id="面向对象三大特性"><a href="#面向对象三大特性" class="headerlink" title="面向对象三大特性"></a>面向对象三大特性</h4><ul>
+<li><p><strong>封装</strong>把一个<strong>对象的属性私有化</strong>，同时提供一些可以被外界访问的属性的方法，如果属性不想被外界访问，我们大可不必提供方法给外界访问。但是如果一个类没有提供给外界访问的方法，那么这个类也没有什么意义了。</p>
+</li>
+<li><p><strong>继承</strong>是使用<strong>已存在的类的定义作为基础建立新类的技术</strong>，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。通过使用继承我们能够非常方便地复用以前的代码。</p>
+<blockquote>
+<ul>
+<li>子类拥有父类非 private 的属性和方法。</li>
+<li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展。</li>
+<li>子类可以用自己的方式实现父类的方法。（以后介绍）。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>多态</strong>：<strong>父类或接口定义的引用变量可以指向子类或具体实现类的实例对象</strong>。提高了程序的拓展性。在Java中有两种形式可以实现多态：<strong>继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是多态机制？Java语言是如何实现多态的？"><a href="#什么是多态机制？Java语言是如何实现多态的？" class="headerlink" title="什么是多态机制？Java语言是如何实现多态的？"></a>什么是多态机制？Java语言是如何实现多态的？</h4><ul>
+<li><p>所谓多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在<strong>编程时并不确定，而是在程序运行期间才确定</strong>，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</p>
+</li>
+<li><p>多态分为<strong>编译时多态和运行时多态</strong>。其中<strong>编辑时多态是静态的，主要是指方法的重载</strong>，它是根据参数列表的不同来区分不同的函数，通过编辑之后会变成两个不同的函数，在运行时谈不上多态。而<strong>运行时多态是动态的，它是通过动态绑定来实现的</strong>，也就是我们所说的多态性。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="抽象类和接口的对比"><a href="#抽象类和接口的对比" class="headerlink" title="抽象类和接口的对比"></a>抽象类和接口的对比</h4><table>
+<thead>
+<tr>
+<th align="left"><strong>参数</strong></th>
+<th align="center">抽象类</th>
+<th align="center">接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">声明</td>
+<td align="center">抽象类使用<code>abstract</code>关键字声明</td>
+<td align="center">接口使用<code>interface</code>关键字声明</td>
+</tr>
+<tr>
+<td align="left">实现</td>
+<td align="center">子类使用<code>extends</code>关键字来继承抽象类。如果子类不是抽象类的话，它需要提供抽象类中所有声明的方法的实现</td>
+<td align="center">子类使用<code>implements</code>关键字来实现接口。它需要提供接口中所有声明的方法的实现</td>
+</tr>
+<tr>
+<td align="left">构造器</td>
+<td align="center">抽象类可以有构造器</td>
+<td align="center">接口不能有构造器</td>
+</tr>
+<tr>
+<td align="left">访问修饰符</td>
+<td align="center">抽象类中的方法可以是任意访问修饰符</td>
+<td align="center">接口方法默认修饰符是public。并且不允许定义为 private 或者 protected</td>
+</tr>
+<tr>
+<td align="left">多继承</td>
+<td align="center">一个类最多只能继承一个抽象类</td>
+<td align="center">一个类可以实现多个接口</td>
+</tr>
+<tr>
+<td align="left">字段声明</td>
+<td align="center">抽象类的字段声明可以是任意的</td>
+<td align="center">接口的<strong>字段默认都是 static 和 final 的</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li><h5 id="abstract方法是否可是static的？"><a href="#abstract方法是否可是static的？" class="headerlink" title="abstract方法是否可是static的？"></a>abstract方法是否可是static的？</h5></li>
+<li><h5 id="接口是否可继承（extends）接口？抽象类是否可实现-（implements）接口？抽象类是否可继承具体类（concrete-class）？"><a href="#接口是否可继承（extends）接口？抽象类是否可实现-（implements）接口？抽象类是否可继承具体类（concrete-class）？" class="headerlink" title="接口是否可继承（extends）接口？抽象类是否可实现 （implements）接口？抽象类是否可继承具体类（concrete class）？"></a>接口是否可继承（extends）接口？抽象类是否可实现 （implements）接口？抽象类是否可继承具体类（concrete class）？</h5></li>
+</ul>
+</li>
+<li><h4 id="普通类和抽象类有哪些区别？"><a href="#普通类和抽象类有哪些区别？" class="headerlink" title="普通类和抽象类有哪些区别？"></a>普通类和抽象类有哪些区别？</h4><ul>
+<li><p>普通类不能包含抽象方法，抽象类可以包含抽象方法。</p>
+</li>
+<li><p><strong>抽象类不能直接实例化，普通类可以直接实例化。</strong></p>
+</li>
+<li><h5 id="抽象类必须要有抽象方法吗？"><a href="#抽象类必须要有抽象方法吗？" class="headerlink" title="抽象类必须要有抽象方法吗？"></a>抽象类必须要有抽象方法吗？</h5></li>
+<li><h5 id="抽象类能使用final修饰吗？"><a href="#抽象类能使用final修饰吗？" class="headerlink" title="抽象类能使用final修饰吗？"></a>抽象类能使用final修饰吗？</h5></li>
+</ul>
+</li>
+<li><h4 id="创建一个对象用什么关键字？对象实例与对象引用有何不同？"><a href="#创建一个对象用什么关键字？对象实例与对象引用有何不同？" class="headerlink" title="创建一个对象用什么关键字？对象实例与对象引用有何不同？"></a>创建一个对象用什么关键字？对象实例与对象引用有何不同？</h4><ul>
+<li>new关键字，new创建对象实例（对象实例在堆内存中），<strong>对象引用指向对象实例</strong>（对象引用存放在栈内存中）。一个对象引用可以指向0个或1个对象（一根绳子可以不系气球，也可以系一个气球）;一个对象可以有n个引用指向它（可以用n条绳子系住一个气球）</li>
+</ul>
+</li>
+<li><h4 id="成员变量与局部变量的区别有哪些"><a href="#成员变量与局部变量的区别有哪些" class="headerlink" title="成员变量与局部变量的区别有哪些"></a>成员变量与局部变量的区别有哪些</h4><ul>
+<li>变量：在程序执行的过程中，在某个范围内其值可以发生改变的量。从本质上讲，变量其实是内存中的一小块区域</li>
+<li>成员变量：方法外部，类内部定义的变量</li>
+<li>局部变量：类的方法中的变量。</li>
+</ul>
+</li>
+<li><h4 id="在Java中定义一个不做事且没有参数的构造方法的作用"><a href="#在Java中定义一个不做事且没有参数的构造方法的作用" class="headerlink" title="在Java中定义一个不做事且没有参数的构造方法的作用"></a>在Java中定义一个不做事且没有参数的构造方法的作用</h4><ul>
+<li>Java程序在执行子类的构造方法之前，如果没有用super()来调用父类特定的构造方法，则会调用父类中“没有参数的构造方法”。因此，<strong>如果父类中只定义了有参数的构造方法，而在子类的构造方法中又没有用super()来调用父类中特定的构造方法，则编译时将发生错误，因为Java程序在父类中找不到没有参数的构造方法可供执行</strong>。解决办法是在父类里加上一个不做事且没有参数的构造方法。</li>
+</ul>
+</li>
+<li><h4 id="一个类的构造方法的作用是什么？若一个类没有声明构造方法，改程序能正确执行吗？为什么？"><a href="#一个类的构造方法的作用是什么？若一个类没有声明构造方法，改程序能正确执行吗？为什么？" class="headerlink" title="一个类的构造方法的作用是什么？若一个类没有声明构造方法，改程序能正确执行吗？为什么？"></a>一个类的构造方法的作用是什么？若一个类没有声明构造方法，改程序能正确执行吗？为什么？</h4><ul>
+<li>主要作用是完成对类对象的初始化工作。可以执行。因为<strong>一个类即使没有声明构造方法也会有默认的不带参数的构造方法</strong>。</li>
+</ul>
+</li>
+<li><h4 id="构造方法有哪些特性？"><a href="#构造方法有哪些特性？" class="headerlink" title="构造方法有哪些特性？"></a>构造方法有哪些特性？</h4><ul>
+<li>名字与类名相同；</li>
+<li>没有返回值，但不能用void声明构造函数；</li>
+<li>生成类的对象时自动执行，无需调用。</li>
+</ul>
+</li>
+<li><h4 id="静态变量和实例变量区别"><a href="#静态变量和实例变量区别" class="headerlink" title="静态变量和实例变量区别"></a>静态变量和实例变量区别</h4><ul>
+<li>静态变量： 静态变量由于不属于任何实例对象，属于类的，所以在内存中只会有一份，在类的加载过程中，JVM只为静态变量分配一次内存空间。</li>
+<li>实例变量： 每次创建对象，都会为每个对象分配成员变量内存空间，实例变量是属于实例对象的，在内存中，创建几次对象，就有几份成员变量。</li>
+</ul>
+</li>
+<li><h4 id="静态方法和实例方法有何不同？"><a href="#静态方法和实例方法有何不同？" class="headerlink" title="静态方法和实例方法有何不同？"></a>静态方法和实例方法有何不同？</h4><ul>
+<li>在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。</li>
+<li>静态方法在访问本类的成员时，只允许访问静态成员（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制</li>
+</ul>
+</li>
+<li><h4 id="在一个静态方法内调用一个非静态成员为什么是非法的？"><a href="#在一个静态方法内调用一个非静态成员为什么是非法的？" class="headerlink" title="在一个静态方法内调用一个非静态成员为什么是非法的？"></a>在一个静态方法内调用一个非静态成员为什么是非法的？</h4><ul>
+<li><p>由于静态方法可以不通过对象进行调用，因此在静态方法里，不能调用其他非静态变量，也不可以访问非静态变量成员。</p>
+</li>
+<li><h5 id="是否可以从一个静态（static）方法内部发出对非静态（non-static）方法的调用？"><a href="#是否可以从一个静态（static）方法内部发出对非静态（non-static）方法的调用？" class="headerlink" title="是否可以从一个静态（static）方法内部发出对非静态（non-static）方法的调用？"></a>是否可以从一个静态（static）方法内部发出对非静态（non-static）方法的调用？</h5></li>
+</ul>
+</li>
+<li><h4 id="什么是方法的返回值？返回值的作用是什么？"><a href="#什么是方法的返回值？返回值的作用是什么？" class="headerlink" title="什么是方法的返回值？返回值的作用是什么？"></a>什么是方法的返回值？返回值的作用是什么？</h4><ul>
+<li>方法的返回值是指我们获取到的某个方法体中的代码执行后产生的结果！（前提是该方法可能产生结果）。返回值的作用:接收出结果，使得它可以用于其他的操作！</li>
+</ul>
+</li>
+<li><h4 id="内部类的分类有哪些"><a href="#内部类的分类有哪些" class="headerlink" title="内部类的分类有哪些"></a>内部类的分类有哪些</h4><ul>
+<li><p>成员内部类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">     <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>局部内部类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFunctionClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testStaticFunctionClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>匿名内部类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Service() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;匿名内部类&quot;</span> );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.method();</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//匿名内部类必须继承或实现一个已有的接口 </span></span><br><span class="line"> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>静态内部类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticInner</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="重载（Overload）和重写（Override）的区别。重载的方法能否根据返回类型进行区分？"><a href="#重载（Overload）和重写（Override）的区别。重载的方法能否根据返回类型进行区分？" class="headerlink" title="重载（Overload）和重写（Override）的区别。重载的方法能否根据返回类型进行区分？"></a>重载（Overload）和重写（Override）的区别。重载的方法能否根据返回类型进行区分？</h4><ul>
+<li><p>方法的重载和重写都是<strong>实现多态的方式</strong>，区别在于前者实现的是<strong>编译时的多态性，而后者实现的是运行时的多态性</strong>。</p>
+</li>
+<li><p>重载：发生在<strong>同一个类中</strong>，方法名相同参数列表不同（<strong>参数类型不同、个数不同、顺序不同</strong>），与方法返回值和访问修饰符无关，即重载的方法不能根据返回类型进行区分</p>
+</li>
+<li><p>重写：发生在<strong>父子类中</strong>，<strong>方法名、参数列表必须相同</strong>，返回值小于等于父类，抛出的异常小于等于父类，访问修饰符大于等于父类（里氏代换原则）；如果父类方法访问修饰符为private则子类中就不是重写。</p>
+</li>
+<li><h5 id="构造器是否可被重写"><a href="#构造器是否可被重写" class="headerlink" title="构造器是否可被重写?"></a>构造器是否可被重写?</h5></li>
+</ul>
+</li>
+<li><h4 id="和-equals-的区别是什么"><a href="#和-equals-的区别是什么" class="headerlink" title="== 和 equals 的区别是什么"></a>== 和 equals 的区别是什么</h4><ul>
+<li><p><strong>==</strong> : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象。(基本数据类型 == 比较的是值，引用数据类型 == 比较的是内存地址)</p>
+</li>
+<li><p><strong>equals()</strong> : 它的作用也是判断两个对象是否相等。但它一般有两种使用情况：</p>
+<ul>
+<li>情况1：类没有覆盖 equals() 方法。则通过 equals() 比较该类的两个对象时，等价于通过“==”比较这两个对象。</li>
+</ul>
+</li>
+<li><p>情况2：类覆盖了 equals() 方法。一般，我们都覆盖 equals() 方法来两个对象的内容相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。</p>
+</li>
+<li><h5 id="基本类型和包装类对象使用-和-equals进行比较的结果？"><a href="#基本类型和包装类对象使用-和-equals进行比较的结果？" class="headerlink" title="基本类型和包装类对象使用 == 和 equals进行比较的结果？"></a>基本类型和包装类对象使用 == 和 equals进行比较的结果？</h5></li>
+</ul>
+</li>
+<li><h4 id="hashCode（）与equals（）的相关规定"><a href="#hashCode（）与equals（）的相关规定" class="headerlink" title="hashCode（）与equals（）的相关规定"></a>hashCode（）与equals（）的相关规定</h4><ul>
+<li><p><strong>如果两个对象相等，那么它们的hashCode()值一定相同</strong></p>
+</li>
+<li><p><strong>两个对象相等,对两个对象分别调用 equals 方法都返回 true</strong></p>
+</li>
+<li><p><strong>如果两个对象hashCode()相等，它们并不一定相等</strong></p>
+</li>
+<li><h5 id="hashCode-相同，equals-也一定为true吗？"><a href="#hashCode-相同，equals-也一定为true吗？" class="headerlink" title="hashCode()相同，equals()也一定为true吗？"></a>hashCode()相同，equals()也一定为true吗？</h5></li>
+<li><h5 id="为什么要重写-hashcode-还要重写-equals-？反之亦可问。"><a href="#为什么要重写-hashcode-还要重写-equals-？反之亦可问。" class="headerlink" title="为什么要重写 hashcode( ) 还要重写 equals( ) ？反之亦可问。"></a>为什么要重写 hashcode( ) 还要重写 equals( ) ？反之亦可问。</h5></li>
+<li><h5 id="两个对象值相同-x-equals-y-true-，但却可有不同的-hash-code，这句话对不对？"><a href="#两个对象值相同-x-equals-y-true-，但却可有不同的-hash-code，这句话对不对？" class="headerlink" title="两个对象值相同(x.equals(y) == true)，但却可有不同的 hash code，这句话对不对？"></a>两个对象值相同(x.equals(y) == true)，但却可有不同的 hash code，这句话对不对？</h5></li>
+</ul>
+</li>
+<li><h4 id="值传递和引用传递有什么区别"><a href="#值传递和引用传递有什么区别" class="headerlink" title="值传递和引用传递有什么区别"></a>值传递和引用传递有什么区别</h4><ul>
+<li><p>值传递：指的是<strong>在方法调用时，传递的参数是按值的拷贝传递，</strong>传递的是<strong>值的拷贝</strong>，也就是说传递后就互不相关了。</p>
+</li>
+<li><p>引用传递：指的是在方法调用时，<strong>传递的参数是按引用进行传递</strong>，其实<strong>传递的引用的地址</strong>，也就是变量所对应的内存空间的地址。传递的是值的引用，也就是说传递前和传递后都指向同一个引用（也就是同一个内存空间）。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="JDK-中常用的包有哪些"><a href="#JDK-中常用的包有哪些" class="headerlink" title="JDK 中常用的包有哪些"></a>JDK 中常用的包有哪些</h4><ul>
+<li><p>java.lang：这个是系统的<strong>基础类</strong>；</p>
+</li>
+<li><p>java.io：这里面是所有<strong>输入输出有关的类</strong>，比如文件操作等；</p>
+</li>
+<li><p>java.nio：为了完善 io 包中的功能，提高 io 包中性能而写的一个新包；</p>
+</li>
+<li><p>java.net：这里面是与<strong>网络有关的类</strong>；</p>
+</li>
+<li><p>java.util：这个是<strong>系统辅助类，特别是集合类</strong>；</p>
+</li>
+<li><p>java.sql：这个是<strong>数据库操作的类</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是字符串常量池？"><a href="#什么是字符串常量池？" class="headerlink" title="什么是字符串常量池？"></a>什么是字符串常量池？</h4><ul>
+<li>字符串常量池位于<strong>堆内存中</strong>，专门用来<strong>存储字符串常量</strong>，可以<strong>提高内存的使用率</strong>，<strong>避免开辟多块空间存储相同的字符串</strong>，在创建字符串时 JVM 会首先检查字符串常量池，如果该字符串已经存在池中，则返回它的引用，如果不存在，则实例化一个字符串放到池中，并返回其引用。</li>
+</ul>
+</li>
+<li><h4 id="String-是最基本的数据类型吗"><a href="#String-是最基本的数据类型吗" class="headerlink" title="String 是最基本的数据类型吗"></a>String 是最基本的数据类型吗</h4><ul>
+<li>不是。Java 中的基本数据类型只有 8 个 ：<code>byte、short、int、long、float、double、char、boolean</code>；除了基本类型（primitive type），剩下的都是<strong>引用类型</strong>（referencetype），Java 5 以后引入的枚举类型也算是一种比较特殊的引用类型。</li>
+</ul>
+</li>
+<li><h4 id="String有哪些特性"><a href="#String有哪些特性" class="headerlink" title="String有哪些特性"></a>String有哪些特性</h4><ul>
+<li><p><strong>不变性</strong>：String 是只读字符串，是一个典型的 immutable 对象，对它进行任何操作，其实都是创建一个新的对象，再把引用指向该对象。不变模式的主要作用在于当一个对象需要被多线程共享并频繁访问时，可以保证数据的一致性。</p>
+</li>
+<li><p><strong>常量池优化</strong>：String 对象创建之后，会在字符串常量池中进行缓存，如果下次创建同样的对象时，会直接返回缓存的引用。</p>
+</li>
+<li><p>final：使用 final 来定义 String 类，表示 String 类不能被继承，提高了系统的安全性。</p>
+</li>
+<li><h5 id="是否可以继承-String-类"><a href="#是否可以继承-String-类" class="headerlink" title="是否可以继承 String 类"></a>是否可以继承 String 类</h5></li>
+<li><h5 id="String类可以被继承吗？"><a href="#String类可以被继承吗？" class="headerlink" title="String类可以被继承吗？"></a>String类可以被继承吗？</h5></li>
+<li><h5 id="String为什么是不可变的吗？"><a href="#String为什么是不可变的吗？" class="headerlink" title="String为什么是不可变的吗？"></a>String为什么是不可变的吗？</h5></li>
+</ul>
+</li>
+<li><h4 id="数组有没有-length-方法？String-有没有-length-方法"><a href="#数组有没有-length-方法？String-有没有-length-方法" class="headerlink" title="数组有没有 length()方法？String 有没有 length()方法"></a>数组有没有 length()方法？String 有没有 length()方法</h4><ul>
+<li>数组没有 length()方法 ，有 <strong>length 的属性</strong>。String 有 <strong>length()方法</strong>。JavaScript中，获得字符串的长度是通过 length 属性得到的，这一点容易和 Java 混淆。</li>
+</ul>
+</li>
+<li><h4 id="String-s-new-String-“xyz”-创建了几个字符串对象"><a href="#String-s-new-String-“xyz”-创建了几个字符串对象" class="headerlink" title="String s = new String(“xyz”);创建了几个字符串对象"></a>String s = new String(“xyz”);创建了几个字符串对象</h4></li>
+<li><p><strong>两个或一个</strong></p>
+<ul>
+<li><p>第一次调用 new String(“xyz”); 时，会在堆内存中创建一个字符串对象，同时在<strong>字符串常量池中创建一个对象 “xyz”</strong></p>
+</li>
+<li><p>第二次调用 new String(“xyz”); 时，只会在堆内存中创建一个字符串对象，<strong>指向之前在字符串常量池中创建的 “xyz”</strong></p>
+</li>
+<li><h5 id="String-s-”a”-”b”-”c”-”d”-创建了几个对象？"><a href="#String-s-”a”-”b”-”c”-”d”-创建了几个对象？" class="headerlink" title="String s=”a”+”b”+”c”+”d”;创建了几个对象？"></a>String s=”a”+”b”+”c”+”d”;创建了几个对象？</h5></li>
+</ul>
+</li>
+<li><h4 id="String-str-”i”与-String-str-new-String-“i”-一样吗？"><a href="#String-str-”i”与-String-str-new-String-“i”-一样吗？" class="headerlink" title="String str=”i”与 String str=new String(“i”)一样吗？"></a>String str=”i”与 String str=new String(“i”)一样吗？</h4><ul>
+<li>String str=”i”常量池中调用；String str=new String(“i”)会在堆内存中创建</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="如何将字符串反转？"><a href="#如何将字符串反转？" class="headerlink" title="如何将字符串反转？"></a>如何将字符串反转？</h4><ul>
+<li><p>使用 StringBuilder 或 StringBuffer 的 <code>reverse</code> 方法，本质都调用了它们的父类 AbstractStringBuilder 的 reverse 方法实现。（JDK1.8）</p>
+</li>
+<li><p>不考虑字符串中的字符是否是 Unicode 编码，自己实现：<strong>递归</strong></p>
+</li>
+<li><h5 id="如何实现字符串的反转及替换？"><a href="#如何实现字符串的反转及替换？" class="headerlink" title="如何实现字符串的反转及替换？"></a>如何实现字符串的反转及替换？</h5></li>
+</ul>
+</li>
+<li><h4 id="String和StringBuffer、StringBuilder的区别是什么？"><a href="#String和StringBuffer、StringBuilder的区别是什么？" class="headerlink" title="String和StringBuffer、StringBuilder的区别是什么？"></a>String和StringBuffer、StringBuilder的区别是什么？</h4><p><strong>可变性</strong></p>
+<ul>
+<li>String类中使用字符数组保存字符串，<strong>string对象是不可变的</strong>。<strong>StringBuilder与StringBuffer这两种对象都是可变的</strong>。</li>
+</ul>
+<p><strong>线程安全性</strong></p>
+<ul>
+<li>String中的对象是不可变的，<strong>线程安全</strong>。</li>
+<li>StringBuffer对方法加了同步锁或者对调用的方法加了<strong>同步锁</strong>，所以是<strong>线程安全</strong>的。</li>
+<li>StringBuilder并没有对方法进行加同步锁，所以是<strong>非线程安全的</strong>。</li>
+</ul>
+<p><strong>性能</strong></p>
+<ul>
+<li>StirngBuilder&gt;StringBuffer&gt;String</li>
+</ul>
+</li>
+<li><h4 id="说说字符串与基本数据之间的转换"><a href="#说说字符串与基本数据之间的转换" class="headerlink" title="说说字符串与基本数据之间的转换"></a>说说字符串与基本数据之间的转换</h4><pre><code>- 字符串转基本数据
+
+  - 基本数据类型的包装类中的 `parseXXX(String)`
+
+- 
+  基本数据转字符串
+
+  - 基本数据类型与空字符串 &quot;&quot; 用 + 连接即可获得基本类型的字符串
+  - 调用 String 类中的 `valueOf(…) `方法返回相应字符串 
+</code></pre>
+</li>
+</ul>
+<h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><ul>
+<li><h4 id="自动装箱与拆箱"><a href="#自动装箱与拆箱" class="headerlink" title="自动装箱与拆箱"></a>自动装箱与拆箱</h4><ul>
+<li><strong>装箱</strong>：将基本类型用它们对应的引用类型包装起来；</li>
+<li><strong>拆箱</strong>：将包装类型转换为基本数据类型；</li>
+</ul>
+</li>
+<li><h4 id="int-和-Integer-有什么区别"><a href="#int-和-Integer-有什么区别" class="headerlink" title="int 和 Integer 有什么区别"></a>int 和 Integer 有什么区别</h4><ul>
+<li><p>Java 是一个近乎纯洁的面向对象编程语言，但是为了编程的方便还是引入了基本数据类型，但是为了能够将这些基本数据类型当成对象操作，Java 为每一个基本数据类型都引入了对应的包装类型（wrapper class），int 的包装类就是 Integer，从 Java 5 开始引入了自动装箱/拆箱机制，使得二者可以相互转换。</p>
+</li>
+<li><p>Java 为每个原始类型提供了包装类型：</p>
+<ul>
+<li>原始类    型: boolean，char，byte，short，int，long，float，double</li>
+<li>包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Integer-a-127-与-Integer-b-127相等吗"><a href="#Integer-a-127-与-Integer-b-127相等吗" class="headerlink" title="Integer a= 127 与 Integer b = 127相等吗"></a>Integer a= 127 与 Integer b = 127相等吗</h4><ul>
+<li><p>对于<strong>对象引用类型</strong>：==比较的是对象的内存地址。</p>
+</li>
+<li><p>对于<strong>基本数据类型</strong>：==比较的是值。</p>
+<blockquote>
+<p>如果整型字面量的值在-128到127之间，那么自动装箱时不会new新的Integer对象，而是直接引用常量池中的Integer对象，超过范围 a1==b1的结果是false</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>JavaSE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_MySQL基础面试题</title>
+    <url>/posts/55aa21a3/</url>
+    <content><![CDATA[<h2 id="初级-MySQL基础面试题"><a href="#初级-MySQL基础面试题" class="headerlink" title="初级_MySQL基础面试题"></a>初级_MySQL基础面试题</h2><ul>
+<li><h4 id="什么是SQL？什么是MySQL"><a href="#什么是SQL？什么是MySQL" class="headerlink" title="什么是SQL？什么是MySQL?"></a>什么是SQL？什么是MySQL?</h4><ul>
+<li>结构化查询语言(Structured Query Language)简称SQL，是一种<strong>数据库查询语言</strong>。</li>
+<li>MySQL是一个<strong>关系型数据库管理系统</strong>，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。在Java企业级开发中非常常用，因为 MySQL 是开源免费的，并且方便扩展。</li>
+</ul>
+</li>
+<li><h4 id="MySql-Oracle的区别"><a href="#MySql-Oracle的区别" class="headerlink" title="MySql, Oracle的区别"></a>MySql, Oracle的区别</h4><ul>
+<li><p>MySql开源免费的，Oracle要钱</p>
+</li>
+<li><p>MySql很小，Oracle最大</p>
+</li>
+<li><p>Oracle支持大并发量，大访问量，而MySql的话压力没这么大，因此现在的MySql的话最好是要使用集群或者缓存来搭配使用</p>
+</li>
+<li><p>Oracle支持多用户不同权限来进行操作，而MySql只要有登录权限就可操作全部数据库</p>
+</li>
+<li><p>Oracle占用特别大的内存空间和其他机器性能</p>
+</li>
+</ul>
+</li>
+<li><h4 id="数据库三大范式是什么"><a href="#数据库三大范式是什么" class="headerlink" title="数据库三大范式是什么"></a>数据库三大范式是什么</h4><ul>
+<li>第一范式：每个列都不可以再拆分。</li>
+<li>第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分。</li>
+<li>第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。</li>
+</ul>
+</li>
+<li><h4 id="数据库经常使用的函数"><a href="#数据库经常使用的函数" class="headerlink" title="数据库经常使用的函数"></a>数据库经常使用的函数</h4><ul>
+<li><p>count(*/column)：返回行数</p>
+</li>
+<li><p>sum(column)： 返回指定列中唯一值的和</p>
+</li>
+<li><p>max(column)：返回指定列或表达式中的数值最大值</p>
+</li>
+<li><p>min(column)：返回指定列或表达式中的数值最小值</p>
+</li>
+<li><p>avg(column)：返回指定列或表达式中的数值平均值</p>
+</li>
+<li><p>date（Expression）: 返回指定表达式代表的日期值</p>
+</li>
+</ul>
+</li>
+<li><h4 id="MySQL存储引擎MyISAM与InnoDB区别"><a href="#MySQL存储引擎MyISAM与InnoDB区别" class="headerlink" title="MySQL存储引擎MyISAM与InnoDB区别"></a>MySQL存储引擎MyISAM与InnoDB区别</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">比较</th>
+<th align="center">MyISAM</th>
+<th align="center">Innodb</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">存储空间</td>
+<td align="center">MyISAM可被压缩，存储空间较小</td>
+<td align="center">InnoDB的表需要更多的内存和存储，它会在主内存中建立其专用的缓冲池用于高速缓冲数据和索引</td>
+</tr>
+<tr>
+<td align="center">可移植性、备份及恢复</td>
+<td align="center">以文件的形式存储，所以在跨平台的数据转移中会很方便。在备份和恢复时可单独针对某个表进行操作</td>
+<td align="center">免费的方案可以是拷贝数据文件、备份 binlog，或者用 mysqldump，在数据量达到几十G的时候就相对痛苦了</td>
+</tr>
+<tr>
+<td align="center">外键</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">事务</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">锁支持</td>
+<td align="center">表级锁定</td>
+<td align="center">行级锁定、表级锁定，锁定力度小并发能力高</td>
+</tr>
+<tr>
+<td align="center">SELECT</td>
+<td align="center">MyISAM更优</td>
+<td align="center">–</td>
+</tr>
+<tr>
+<td align="center">INSERT、UPDATE、DELETE</td>
+<td align="center">–</td>
+<td align="center">InnoDB更优</td>
+</tr>
+<tr>
+<td align="center">哈希索引</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">全文索引</td>
+<td align="center">支持</td>
+<td align="center">不支持</td>
+</tr>
+</tbody></table>
+<ul>
+<li><h4 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h4><ul>
+<li><p>索引是一种特殊的文件(InnoDB数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的引用指针。</p>
+</li>
+<li><p>索引是一种数据结构。数据库索引，是数据库管理系统中一个排序的数据结构，以协助快速查询、更新数据库表中数据。</p>
+</li>
+<li><p>更通俗的说，索引就相当于目录。索引是一个文件，它是要占据物理空间的。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="索引有哪些优缺点？"><a href="#索引有哪些优缺点？" class="headerlink" title="索引有哪些优缺点？"></a>索引有哪些优缺点？</h4><ul>
+<li><p><strong>索引的优点</strong></p>
+<ul>
+<li>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。</li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。</li>
+</ul>
+</li>
+<li><p><strong>索引的缺点</strong></p>
+<ul>
+<li>时间方面：创建索引和维护索引要耗费时间，当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，会降低增/改/删的执行效率；</li>
+<li>空间方面：索引需要占物理空间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="简述有哪些索引和作用"><a href="#简述有哪些索引和作用" class="headerlink" title="简述有哪些索引和作用"></a>简述有哪些索引和作用</h4><ul>
+<li><p>普通索引:基本的索引类型，没有唯一性的限制，允许为NULL值。</p>
+</li>
+<li><p>唯一索引：不允许有俩行具有相同的值</p>
+</li>
+<li><p>主键索引：为了保持数据库表与表之间的关系</p>
+</li>
+<li><p>聚集索引：表中行的物理顺序与键值的逻辑（索引）顺序相同。</p>
+</li>
+<li><p>非聚集索引：聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致</p>
+</li>
+<li><p>复合索引：在创建索引时，并不是只能对一列进行创建索引，可以与主键一样，讲多个组合为索引</p>
+</li>
+<li><p>全文索引： 全文索引为在字符串数据中进行复杂的词搜索提供有效支持</p>
+</li>
+<li><h5 id="索引有哪几种类型？"><a href="#索引有哪几种类型？" class="headerlink" title="索引有哪几种类型？"></a>索引有哪几种类型？</h5></li>
+</ul>
+</li>
+<li><h4 id="主键索引与唯一索引的区别"><a href="#主键索引与唯一索引的区别" class="headerlink" title="主键索引与唯一索引的区别"></a>主键索引与唯一索引的区别</h4><ul>
+<li><p>主键是一种约束，唯一索引是一种索引，两者在本质上是不同的。</p>
+</li>
+<li><p>主键创建后一定包含一个唯一性索引，唯一性索引并不一定就是主键。</p>
+</li>
+<li><p>唯一性索引列允许空值，而主键列不允许为空值。</p>
+</li>
+<li><p>主键列在创建时，已经默认为空值 ++    唯一索引了。</p>
+</li>
+<li><p>一个表最多只能创建一个主键，但可以创建多个唯一索引。</p>
+</li>
+<li><p>主键更适合那些不容易更改的唯一标识，如自动递增列、身份证号等。</p>
+</li>
+<li><p>主键可以被其他表引用为外键，而唯一索引不能。   </p>
+</li>
+</ul>
+</li>
+<li><h4 id="索引设计的原则？"><a href="#索引设计的原则？" class="headerlink" title="索引设计的原则？"></a>索引设计的原则？</h4><ul>
+<li><p>适合索引的列是出现在where子句中的列，或者连接子句中指定的列</p>
+</li>
+<li><p>基数较小的类，索引效果较差，没有必要在此列建立索引</p>
+</li>
+<li><p>使用短索引，如果对长字符串列进行索引，应该指定一个前缀长度，这样能够节省大量索引空间</p>
+</li>
+<li><p>不要过度索引。索引需要额外的磁盘空间，并降低写操作的性能。在修改表内容的时候，索引会进行更新甚至重构，索引列越多，这个时间就会越长。所以只保持需要的索引有利于查询即可。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="创建索引的原则"><a href="#创建索引的原则" class="headerlink" title="创建索引的原则"></a>创建索引的原则</h4><ul>
+<li><p><strong>最左前缀匹配原则</strong>，组合索引非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+</li>
+<li><p>较频繁作为查询条件的字段才去创建索引</p>
+</li>
+<li><p>更新频繁字段不适合创建索引</p>
+</li>
+<li><p>若是不能有效区分数据的列不适合做索引列(如性别，男女未知，最多也就三种，区分度实在太低)</p>
+</li>
+<li><p>尽量的扩展索引，不要新建索引。比如表中已经有a的索引，现在要加(a,b)的索引，那么只需要修改原来的索引即可。</p>
+</li>
+<li><p>定义有外键的数据列一定要建立索引。</p>
+</li>
+<li><p>对于那些查询中很少涉及的列，重复值比较多的列不要建立索引。</p>
+</li>
+<li><p>对于定义为text、image和bit的数据类型的列不要建立索引。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="创建索引的三种方式"><a href="#创建索引的三种方式" class="headerlink" title="创建索引的三种方式"></a>创建索引的三种方式</h4><ul>
+<li>第一种方式：在执行CREATE TABLE时创建索引</li>
+<li>第二种方式：使用ALTER TABLE命令去增加索引</li>
+<li>第三种方式：使用CREATE INDEX命令创建</li>
+</ul>
+</li>
+<li><h4 id="如何删除索引"><a href="#如何删除索引" class="headerlink" title="如何删除索引"></a>如何删除索引</h4><ul>
+<li>根据索引名删除普通索引、唯一索引、全文索引：<code>alter table 表名 drop KEY 索引名</code></li>
+<li>删除主键索引：<code>alter table 表名 drop primary key</code>（因为主键只有一个）。这里值得注意的是，如果主键自增长，那么不能直接执行此操作（自增长依赖于主键索引）：</li>
+<li>需要取消自增长再行删除：</li>
+<li>但通常不会删除主键，因为设计主键一定与业务逻辑无关。</li>
+</ul>
+</li>
+<li><h4 id="什么是最左前缀原则？什么是最左匹配原则"><a href="#什么是最左前缀原则？什么是最左匹配原则" class="headerlink" title="什么是最左前缀原则？什么是最左匹配原则"></a>什么是最左前缀原则？什么是最左匹配原则</h4><ul>
+<li>顾名思义，就是最左优先，在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。</li>
+<li>最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</li>
+<li>=和in可以乱序，比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式</li>
+</ul>
+</li>
+<li><h4 id="什么是聚簇索引？何时使用聚簇索引与非聚簇索引"><a href="#什么是聚簇索引？何时使用聚簇索引与非聚簇索引" class="headerlink" title="什么是聚簇索引？何时使用聚簇索引与非聚簇索引"></a>什么是聚簇索引？何时使用聚簇索引与非聚簇索引</h4><ul>
+<li>聚簇索引：将数据存储与索引放到了一块，找到索引也就找到了数据</li>
+<li>非聚簇索引：将数据存储于索引分开结构，索引结构的叶子节点指向了数据的对应行，myisam通过key_buffer把索引先缓存到内存中，当需要访问数据时（通过索引访问数据），在内存中直接搜索索引，然后通过索引找到磁盘相应数据</li>
+</ul>
+</li>
+<li><h4 id="什么是数据库事务？"><a href="#什么是数据库事务？" class="headerlink" title="什么是数据库事务？"></a>什么是数据库事务？</h4><ul>
+<li><p>事务是一个不可分割的数据库操作序列，也是数据库<strong>并发控制的基本单位</strong>，其执行的结果必须使数据库从一种一致性状态变到另一种一致性状态。事务是逻辑上的一组操作，要么都执行，要么都不执行。</p>
+</li>
+<li><p>事务最经典也经常被拿出来说例子就是转账了。</p>
+</li>
+<li><p>假如小明要给小红转账1000元，这个转账会涉及到两个关键操作就是：将小明的余额减少1000元，将小红的余额增加1000元。万一在这两个操作之间突然出现错误比如银行系统崩溃，导致小明余额减少而小红的余额没有增加，这样就不对了。事务就是保证这两个关键操作要么都成功，要么都要失败。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="事物的四大特性-ACID-介绍一下"><a href="#事物的四大特性-ACID-介绍一下" class="headerlink" title="事物的四大特性(ACID)介绍一下?"></a>事物的四大特性(ACID)介绍一下?</h4><ul>
+<li><p><strong>原子性：</strong> 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</p>
+</li>
+<li><p><strong>一致性：</strong> 执行事务前后，数据保持一致，多个事务对同一个数据读取的结果是相同的；</p>
+</li>
+<li><p><strong>隔离性：</strong> 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</p>
+</li>
+<li><p><strong>持久性：</strong> 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是脏读？幻读？不可重复读？"><a href="#什么是脏读？幻读？不可重复读？" class="headerlink" title="什么是脏读？幻读？不可重复读？"></a>什么是脏读？幻读？不可重复读？</h4><ul>
+<li><p>脏读(Drity Read)：某个事务已更新一份数据，另一个事务在此时读取了同一份数据，由于某些原因，前一个RollBack了操作，则后一个事务所读取的数据就会是不正确的。</p>
+</li>
+<li><p>不可重复读(Non-repeatable read):在一个事务的两次查询之中数据不一致，这可能是两次查询过程中间插入了一个事务更新的原有的数据。</p>
+</li>
+<li><p>幻读(Phantom Read):在一个事务的两次查询中数据笔数不一致，例如有一个事务查询了几列(Row)数据，而另一个事务却在此时插入了新的几列数据，先前的事务在接下来的查询中，就会发现有几列数据是它先前所没有的。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是事务的隔离级别？MySQL的默认隔离级别是什么？"><a href="#什么是事务的隔离级别？MySQL的默认隔离级别是什么？" class="headerlink" title="什么是事务的隔离级别？MySQL的默认隔离级别是什么？"></a>什么是事务的隔离级别？MySQL的默认隔离级别是什么？</h4><ul>
+<li><p><strong>READ-UNCOMMITTED(读取未提交)：</strong> 最低的隔离级别，允许读取尚未提交的数据变更，<strong>可能会导致脏读、幻读或不可重复读</strong>。</p>
+</li>
+<li><p><strong>READ-COMMITTED(读取已提交)：</strong> 允许读取并发事务已经提交的数据，<strong>可以阻止脏读，但是幻读或不可重复读仍有可能发生</strong>。</p>
+</li>
+<li><p><strong>REPEATABLE-READ(可重复读)：</strong> 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，<strong>可以阻止脏读和不可重复读，但幻读仍有可能发生</strong>。</p>
+</li>
+<li><p><strong>SERIALIZABLE(可串行化)：</strong> 最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，<strong>该级别可以防止脏读、不可重复读以及幻读</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="从锁的类别上分MySQL都有哪些锁呢？"><a href="#从锁的类别上分MySQL都有哪些锁呢？" class="headerlink" title="从锁的类别上分MySQL都有哪些锁呢？"></a>从锁的类别上分MySQL都有哪些锁呢？</h4><ul>
+<li>共享锁: 又叫做读锁。 当用户要进行数据的读取时，对数据加上共享锁。共享锁就是让多个线程同时获取一个锁。</li>
+<li>排他锁: 又叫做写锁。 当用户要进行数据的写入时，对数据加上排他锁。排它锁也称作独占锁，一个锁在某一时刻只能被一个线程占有，其它线程必须等待锁被释放之后才可能获取到锁。排他锁只可以加一个，他和其他的排他锁，共享锁都相斥。</li>
+</ul>
+</li>
+<li><h4 id="什么是死锁？怎么解决？"><a href="#什么是死锁？怎么解决？" class="headerlink" title="什么是死锁？怎么解决？"></a>什么是死锁？怎么解决？</h4><ul>
+<li>死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。</li>
+<li>常见的解决死锁的方法<ul>
+<li>1、如果不同程序会并发存取多个表，尽量约定以相同的顺序访问表，可以大大降低死锁机会。</li>
+<li>2、在同一个事务中，尽可能做到一次锁定所需要的所有资源，减少死锁产生概率；</li>
+<li>3、对于非常容易产生死锁的业务部分，可以尝试使用升级锁定颗粒度，通过表级锁定来减少死锁产生的概率；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="数据库的乐观锁和悲观锁是什么？怎么实现的？"><a href="#数据库的乐观锁和悲观锁是什么？怎么实现的？" class="headerlink" title="数据库的乐观锁和悲观锁是什么？怎么实现的？"></a>数据库的乐观锁和悲观锁是什么？怎么实现的？</h4><ul>
+<li><p>数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。乐观并发控制（乐观锁）和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。</p>
+</li>
+<li><p><strong>悲观锁</strong>：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。在查询完数据的时候就把事务锁起来，直到提交事务。实现方式：使用数据库中的锁机制</p>
+</li>
+<li><p><strong>乐观锁</strong>：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。在修改数据的时候把事务锁起来，通过version的方式来进行锁定。实现方式：乐一般会使用版本号机制或CAS算法实现。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="为什么要使用视图？什么是视图？"><a href="#为什么要使用视图？什么是视图？" class="headerlink" title="为什么要使用视图？什么是视图？"></a>为什么要使用视图？什么是视图？</h4><ul>
+<li>为了提高复杂SQL语句的复用性和表操作的安全性，MySQL数据库管理系统提供了视图特性。所谓视图，本质上是一种虚拟表，在物理上是不存在的，视图并不在数据库中以储存的数据值形式存在。行和列数据来自定义视图的查询所引用基本表，并且在具体引用视图时动态生成。</li>
+<li>视图使开发者只关心感兴趣的某些特定数据和所负责的特定任务，只能看到视图中所定义的数据，而不是视图所引用表中的数据，从而提高了数据库中数据的安全性。</li>
+</ul>
+</li>
+<li><h4 id="视图的优点"><a href="#视图的优点" class="headerlink" title="视图的优点"></a>视图的优点</h4><ul>
+<li><p>视图的列可以来自不同的表，是表的抽象和在逻辑意义上建立的新关系。</p>
+</li>
+<li><p>视图是由基本表(实表)产生的表(虚表)。</p>
+</li>
+<li><p>视图的建立和删除不影响基本表。</p>
+</li>
+<li><p>对视图内容的更新(添加，删除和修改)直接影响基本表。</p>
+</li>
+<li><p>当视图来自多个基本表时，不允许添加和删除数据。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="视图的缺点"><a href="#视图的缺点" class="headerlink" title="视图的缺点"></a>视图的缺点</h4><ul>
+<li>性能。数据库必须把视图的查询转化成对基本表的查询，如果这个视图是由一个复杂的多表查询所定义，那么，即使是视图的一个简单查询，数据库也把它变成一个复杂的结合体，需要花费一定的时间。</li>
+<li>修改限制。当用户试图修改视图的某些行时，数据库必须把它转化为对基本表的某些行的修改。事实上，当从视图中插入或者删除时，情况也是这样。对于简单视图来说，这是很方便的，但是，对于比较复杂的视图，可能是不可修改的</li>
+</ul>
+</li>
+<li><h4 id="SQL语句主要分为哪几类"><a href="#SQL语句主要分为哪几类" class="headerlink" title="SQL语句主要分为哪几类"></a>SQL语句主要分为哪几类</h4><ul>
+<li><p>数据定义语言DDL（Data Ddefinition Language）CREATE，DROP，ALTER    主要为以上操作 即对逻辑结构等有操作的，其中包括表结构，视图和索引。</p>
+</li>
+<li><p>数据查询语言DQL（Data Query Language）SELECT这个较为好理解 即查询操作，以select关键字。各种简单查询，连接查询等 都属于DQL。</p>
+</li>
+<li><p>数据操纵语言DML（Data Manipulation Language）INSERT，UPDATE，DELETE主要为以上操作 即对数据进行操作的，对应上面所说的查询操作 DQL与DML共同构建了多数初级程序员常用的增删改查操作。而查询是较为特殊的一种 被划分到DQL中。</p>
+</li>
+<li><p>数据控制功能DCL（Data Control Language）GRANT，REVOKE，COMMIT，ROLLBACK主要为以上操作 即对数据库安全性完整性等有操作的，可以简单的理解为权限控制等。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="SQL语句的语法顺序："><a href="#SQL语句的语法顺序：" class="headerlink" title="SQL语句的语法顺序："></a>SQL语句的语法顺序：</h4><ol>
+<li>SELECT</li>
+<li>FROM</li>
+<li>JOIN</li>
+<li>ON</li>
+<li>WHERE</li>
+<li>GROUP BY</li>
+<li>HAVING</li>
+<li>UNION</li>
+<li>ORDER BY</li>
+<li>LIMIT</li>
+</ol>
+</li>
+<li><h4 id="SQL-约束有哪几种？"><a href="#SQL-约束有哪几种？" class="headerlink" title="SQL 约束有哪几种？"></a>SQL 约束有哪几种？</h4><ul>
+<li><p>NOT NULL: 用于控制字段的内容一定不能为空（NULL）。</p>
+</li>
+<li><p>UNIQUE: 控件字段内容不能重复，一个表允许有多个 Unique 约束。</p>
+</li>
+<li><p>PRIMARY KEY: 也是用于控件字段内容不能重复，但它在一个表只允许出现一个。</p>
+</li>
+<li><p>FOREIGN KEY: 用于预防破坏表之间连接的动作，也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。</p>
+</li>
+<li><p>CHECK: 用于控制字段的值范围。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="六种关联查询"><a href="#六种关联查询" class="headerlink" title="六种关联查询"></a>六种关联查询</h4><ul>
+<li>交叉连接（CROSS JOIN）</li>
+<li>内连接（INNER JOIN）</li>
+<li>外连接（LEFT JOIN/RIGHT JOIN）</li>
+<li>联合查询（UNION与UNION ALL）</li>
+<li>全连接（FULL JOIN）</li>
+<li>交叉连接（CROSS JOIN）</li>
+</ul>
+</li>
+<li><h4 id="varchar与char的区别"><a href="#varchar与char的区别" class="headerlink" title="varchar与char的区别"></a>varchar与char的区别</h4><ul>
+<li><p><strong>char的特点</strong></p>
+<ul>
+<li>char表示定长字符串，长度是固定的；</li>
+<li>如果插入数据的长度小于char的固定长度时，则用空格填充；</li>
+<li>因为长度固定，所以存取速度要比varchar快很多，甚至能快50%，但正因为其长度固定，所以会占据多余的空间，是空间换时间的做法；</li>
+<li>对于char来说，最多能存放的字符个数为255，和编码无关</li>
+</ul>
+</li>
+<li><p><strong>varchar的特点</strong></p>
+<ul>
+<li>varchar表示可变长字符串，长度是可变的；</li>
+<li>插入的数据是多长，就按照多长来存储；</li>
+<li>varchar在存取方面与char相反，它存取慢，因为长度不固定，但正因如此，不占据多余的空间，是时间换空间的做法；</li>
+<li>对于varchar来说，最多能存放的字符个数为65532</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="varchar-50-中50的涵义"><a href="#varchar-50-中50的涵义" class="headerlink" title="varchar(50)中50的涵义"></a>varchar(50)中50的涵义</h4><p>​    最多存放50个字符，varchar(50)和(200)存储hello所占空间一样，但后者在排序时会消耗更多内存。在早期 MySQL 版本中， 50 代表字节数，现在代表字符数。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="int-20-中20的涵义"><a href="#int-20-中20的涵义" class="headerlink" title="int(20)中20的涵义"></a>int(20)中20的涵义</h4><ul>
+<li>是指显示字符的长度。20表示最大显示宽度为20，但仍占4字节存储，存储范围不变；</li>
+<li>不影响内部存储，只是影响带 zerofill 定义的 int 时，前面补多少个 0，易于报表展示</li>
+</ul>
+</li>
+<li><h4 id="mysql中int-10-和char-10-以及varchar-10-的区别"><a href="#mysql中int-10-和char-10-以及varchar-10-的区别" class="headerlink" title="mysql中int(10)和char(10)以及varchar(10)的区别"></a>mysql中int(10)和char(10)以及varchar(10)的区别</h4><ul>
+<li><p>int(10)的10表示显示的数据的长度，不是存储数据的大小；chart(10)和varchar(10)的10表示存储数据的大小，即表示存储多少个字符。</p>
+</li>
+<li><p>char(10)表示存储定长的10个字符，不足10个就用空格补齐，占用更多的存储空间</p>
+</li>
+<li><p>varchar(10)表示存储10个变长的字符，存储多少个就是多少个，空格也按一个字符存储，这一点是和char(10)的空格不同的，char(10)的空格表示占位不算一个字符</p>
+</li>
+</ul>
+</li>
+<li><h4 id="drop、delete与truncate的区别"><a href="#drop、delete与truncate的区别" class="headerlink" title="drop、delete与truncate的区别"></a>drop、delete与truncate的区别</h4><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>Delete</th>
+<th>Truncate</th>
+<th>Drop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>属于DML</td>
+<td>属于DDL</td>
+<td>属于DDL</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>可回滚</td>
+<td>不可回滚</td>
+<td>不可回滚</td>
+</tr>
+<tr>
+<td>删除内容</td>
+<td>表结构还在，删除表的全部或者一部分数据行</td>
+<td>表结构还在，删除表中的所有数据</td>
+<td>从数据库中删除表，所有的数据行，索引和权限也会被删除</td>
+</tr>
+<tr>
+<td>删除速度</td>
+<td>删除速度慢，需要逐行删除</td>
+<td>删除速度快</td>
+<td>删除速度最快</td>
+</tr>
+</tbody>
+</table></li>
+<li><h4 id="UNION与UNION-ALL的区别？"><a href="#UNION与UNION-ALL的区别？" class="headerlink" title="UNION与UNION ALL的区别？"></a>UNION与UNION ALL的区别？</h4><ul>
+<li>如果使用UNION ALL，不会合并重复的记录行</li>
+<li>效率 UNION 高于 UNION ALL</li>
+</ul>
+</li>
+<li><h4 id="说出一些数据库优化方面的经验"><a href="#说出一些数据库优化方面的经验" class="headerlink" title="说出一些数据库优化方面的经验?"></a>说出一些数据库优化方面的经验?</h4><ul>
+<li><p>有外键约束的话会影响增删改的性能，如果应用程序可以保证数据库的完整性那就去除外键</p>
+</li>
+<li><p>Sql语句全部大写，特别是列名大写，因为数据库的机制是这样的，sql语句发送到数据库服务器，数据库首先就会把sql编译成大写在执行，如果一开始就编译成大写就不需要了把sql编译成大写这个步骤了</p>
+</li>
+<li><p>如果应用程序可以保证数据库的完整性，可以不需要按照三大范式来设计数据库</p>
+</li>
+<li><p>其实可以不必要创建很多索引，索引可以加快查询速度，但是索引会消耗磁盘空间</p>
+</li>
+<li><p>如果是jdbc的话，使用PreparedStatement不使用Statement，来创建SQl，PreparedStatement的性能比Statement的速度要快，使用PreparedStatement对象SQL语句会预编译在此对象中，PreparedStatement对象可以多次高效的执行</p>
+</li>
+</ul>
+</li>
+<li><h4 id="怎么优化SQL查询语句吗"><a href="#怎么优化SQL查询语句吗" class="headerlink" title="怎么优化SQL查询语句吗"></a>怎么优化SQL查询语句吗</h4><ul>
+<li><p>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引</p>
+</li>
+<li><p>用索引可以提高查询</p>
+</li>
+<li><p>SELECT子句中避免使用*号，尽量全部大写SQL</p>
+</li>
+<li><p>应尽量避免在 where 子句中对字段进行 is null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，使用 IS NOT NULL</p>
+</li>
+<li><p>where 子句中使用 or 来连接条件，也会导致引擎放弃使用索引而进行全表扫描</p>
+</li>
+<li><p>in 和 not in 也要慎用，否则会导致全表扫描</p>
+</li>
+</ul>
+</li>
+<li><h4 id="SQL的执行顺序"><a href="#SQL的执行顺序" class="headerlink" title="SQL的执行顺序"></a>SQL的执行顺序</h4><ol>
+<li>FROM：将数据从硬盘加载到数据缓冲区，方便对接下来的数据进行操作。</li>
+<li>WHERE：从基表或视图中选择满足条件的元组。（不能使用聚合函数）</li>
+<li>JOIN（如right left 右连接——-从右边表中读取某个元组，并且找到该元组在左边表中对应的元组或元组集）</li>
+<li>ON：join on实现多表连接查询，推荐该种方式进行多表查询，不使用子查询。</li>
+<li>GROUP BY：分组，一般和聚合函数一起使用。</li>
+<li>HAVING：在元组的基础上进行筛选，选出符合条件的元组。（一般与GROUP BY进行连用）</li>
+<li>SELECT：查询到得所有元组需要罗列的哪些列。</li>
+<li>DISTINCT：去重的功能。</li>
+<li>UNION：将多个查询结果合并（默认去掉重复的记录）。</li>
+<li>ORDER BY：进行相应的排序。</li>
+<li>LIMIT 1：显示输出一条数据记录（元组）</li>
+</ol>
+</li>
+<li><h4 id="主键使用自增ID还是UUID？"><a href="#主键使用自增ID还是UUID？" class="headerlink" title="主键使用自增ID还是UUID？"></a>主键使用自增ID还是UUID？</h4><ul>
+<li>推荐使用自增ID，不要使用UUID。</li>
+<li>因为在InnoDB存储引擎中，主键索引是作为聚簇索引存在的，也就是说，主键索引的B+树叶子节点上存储了主键索引以及全部的数据(按照顺序)，如果主键索引是自增ID，那么只需要不断向后排列即可，如果是UUID，由于到来的ID与原来的大小不确定，会造成非常多的数据插入，数据移动，然后导致产生很多的内存碎片，进而造成插入性能的下降。</li>
+</ul>
+</li>
+<li><h4 id="如何优化查询过程中的数据访问"><a href="#如何优化查询过程中的数据访问" class="headerlink" title="如何优化查询过程中的数据访问"></a>如何优化查询过程中的数据访问</h4><ul>
+<li><p>访问数据太多导致查询性能下降</p>
+</li>
+<li><p>确定应用程序是否在检索大量超过需要的数据，可能是太多行或列</p>
+</li>
+<li><p>确认MySQL服务器是否在分析大量不必要的数据行</p>
+</li>
+<li><p>避免犯如下SQL语句错误</p>
+</li>
+<li><p>避免查询不需要的数据。解决办法：使用limit解决</p>
+</li>
+<li><p>多表关联返回全部列。解决办法：指定列名</p>
+</li>
+<li><p>总是返回全部列。解决办法：避免使用SELECT *</p>
+</li>
+<li><p>重复查询相同的数据。解决办法：可以缓存数据，下次直接读取缓存</p>
+</li>
+<li><p>使用explain进行分析，如果发现查询需要扫描大量的数据，但只返回少数的行，可以通过如下技巧去优化：</p>
+</li>
+<li><p>使用索引覆盖扫描，把所有的列都放到索引中，这样存储引擎不需要回表获取对应行就可以返回结果。</p>
+</li>
+<li><p>改变数据库和表的结构，修改数据表范式</p>
+</li>
+<li><p>重写SQL语句，让优化器可以以更优的方式执行查询。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何优化长难的查询语句"><a href="#如何优化长难的查询语句" class="headerlink" title="如何优化长难的查询语句"></a>如何优化长难的查询语句</h4><ul>
+<li><p>分析是一个复杂查询还是多个简单查询速度快</p>
+</li>
+<li><p>MySQL内部每秒能扫描内存中上百万行数据，相比之下，响应数据给客户端就要慢得多</p>
+</li>
+<li><p>使用尽可能小的查询是好的，但是有时将一个大的查询分解为多个小的查询是很有必要的。</p>
+</li>
+<li><p>将一个大的查询分为多个小的相同的查询</p>
+</li>
+<li><p>一次性删除1000万的数据要比一次删除1万，暂停一会的方案更加损耗服务器开销。</p>
+</li>
+<li><p>分解关联查询，让缓存的效率更高。</p>
+</li>
+<li><p>执行单个查询可以减少锁的竞争。</p>
+</li>
+<li><p>在应用层做关联更容易对数据库进行拆分。</p>
+</li>
+<li><p>查询效率会有大幅提升。</p>
+</li>
+<li><p>较少冗余记录的查询。</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_框架_Mybatis基础面试题</title>
+    <url>/posts/58d59bc0/</url>
+    <content><![CDATA[<h2 id="初级·框架·Mybatis基础面试题"><a href="#初级·框架·Mybatis基础面试题" class="headerlink" title="初级·框架·Mybatis基础面试题"></a>初级·框架·Mybatis基础面试题</h2><ul>
+<li><h4 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h4><ul>
+<li>Mybatis 是一个<strong>半 ORM（对象关系映射）框架，</strong>它内部封装了 JDBC，开发时只需要关注 SQL 语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement 等繁杂的过程。程序员直接编写原生态 sql，可以严格控制 sql 执行性能，灵活度高。</li>
+<li>MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO 映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。</li>
+</ul>
+</li>
+<li><h4 id="Mybatis优缺点"><a href="#Mybatis优缺点" class="headerlink" title="Mybatis优缺点"></a>Mybatis优缺点</h4></li>
+<li><p><strong>优点</strong></p>
+<p>与传统的数据库访问技术相比，ORM有以下优点：</p>
+<ul>
+<li>基于SQL语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL写在XML里，解除sql与程序代码的耦合，便于统一管理；提供XML标签，支持编写动态SQL语句，并可重用</li>
+<li>与JDBC相比，减少了50%以上的代码量，消除了JDBC大量冗余的代码，不需要手动开关连接</li>
+<li>很好的与各种数据库兼容（因为MyBatis使用JDBC来连接数据库，所以只要JDBC支持的数据库MyBatis都支持）</li>
+<li>提供映射标签，支持对象与数据库的ORM字段关系映射；提供对象关系映射标签，支持对象关系组件维护</li>
+<li>能够与Spring很好的集成</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>SQL语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL语句的功底有一定要求</li>
+<li>SQL语句依赖于数据库，导致数据库移植性差，不能随意更换数据库</li>
+</ul>
+</li>
+<li><h4 id="ORM是什么"><a href="#ORM是什么" class="headerlink" title="ORM是什么"></a>ORM是什么</h4><ul>
+<li>ORM（Object Relational Mapping），<strong>对象关系映射</strong>，是一种为了解决关系型数据库数据与简单Java对象（POJO）的映射关系的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将程序中的对象自动持久化到关系型数据库中。</li>
+</ul>
+</li>
+<li><h4 id="传统JDBC开发存在什么问题？"><a href="#传统JDBC开发存在什么问题？" class="headerlink" title="传统JDBC开发存在什么问题？"></a>传统JDBC开发存在什么问题？</h4><ul>
+<li><p>频繁创建数据库连接对象、释放，容易造成系统资源浪费，影响系统性能。可以使用连接池解决这个问题。但是使用jdbc需要自己实现连接池。</p>
+</li>
+<li><p>sql语句定义、参数设置、结果集处理存在硬编码。实际项目中sql语句变化的可能性较大，一旦发生变化，需要修改java代码，系统需要重新编译，重新发布。不好维护。</p>
+</li>
+<li><p>使用preparedStatement向占有位符号传参数存在硬编码，因为sql语句的where条件不一定，可能多也可能少，修改sql还要修改代码，系统不易维护。</p>
+</li>
+<li><p>结果集处理存在重复代码，处理麻烦。如果可以映射成Java对象会比较方便。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="JDBC编程有哪些不足之处，MyBatis是如何解决的？"><a href="#JDBC编程有哪些不足之处，MyBatis是如何解决的？" class="headerlink" title="JDBC编程有哪些不足之处，MyBatis是如何解决的？"></a>JDBC编程有哪些不足之处，MyBatis是如何解决的？</h4><p>1、数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。</p>
+<ul>
+<li>解决：在mybatis-config.xml中配置数据链接池，使用连接池管理数据库连接。</li>
+</ul>
+<p>2、Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。-</p>
+<ul>
+<li>解决：将Sql语句配置在XXXXmapper.xml文件中与java代码分离。</li>
+</ul>
+<p>3、向sql语句传参数麻烦，因为sql语句的where条件不一定，可能多也可能少，占位符需要和参数一一对应。</p>
+<ul>
+<li>解决： Mybatis自动将java对象映射至sql语句。</li>
+</ul>
+<p>4、对结果集解析麻烦，sql变化导致解析代码变化，且解析前需要遍历，如果能将数据库记录封装成pojo对象解析比较方便。</p>
+<ul>
+<li>解决：Mybatis自动将sql执行结果映射至java对象。</li>
+</ul>
+</li>
+<li><h4 id="MyBatis编程步骤是什么样的？"><a href="#MyBatis编程步骤是什么样的？" class="headerlink" title="MyBatis编程步骤是什么样的？"></a>MyBatis编程步骤是什么样的？</h4><p>1、 创建SqlSessionFactory</p>
+<p>2、 通过SqlSessionFactory创建SqlSession</p>
+<p>3、 通过sqlsession执行数据库操作</p>
+<p>4、 调用session.commit()提交事务</p>
+<p>5、 调用session.close()关闭会话</p>
+</li>
+<li><h4 id="为什么需要预编译"><a href="#为什么需要预编译" class="headerlink" title="为什么需要预编译"></a>为什么需要预编译</h4><ul>
+<li><p>定义：</p>
+</li>
+<li><p>SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之前对 SQL 语句进行编译，这样 DBMS 执行 SQL 时，就不需要重新编译。</p>
+</li>
+<li><p>为什么需要预编译</p>
+<ul>
+<li>JDBC 中使用对象 PreparedStatement 来抽象预编译语句，使用预编译。预编译阶段可以优化 SQL 的执行。预编译之后的 SQL 多数情况下可以直接执行，DBMS 不需要再次编译，越复杂的SQL，编译的复杂度将越大，预编译阶段可以合并多次操作为一个操作。同时预编译语句对象可以重复利用。把一个 SQL 预编译后产生的 PreparedStatement 对象缓存下来，下次对于同一个SQL，可以直接使用这个缓存的 PreparedState 对象。Mybatis默认情况下，将对所有的 SQL 进行预编译。</li>
+<li>还有一个重要的原因，复制SQL注入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="和-的区别"><a href="#和-的区别" class="headerlink" title="#{}和${}的区别"></a>#{}和${}的区别</h4><ul>
+<li><p>#{}是占位符，预编译处理；${}是拼接符，字符串替换，没有预编译处理。</p>
+</li>
+<li><p>Mybatis在处理#{}时，#{}传入参数是以字符串传入，会将SQL中的#{}替换为?号，调用PreparedStatement的set方法来赋值。</p>
+</li>
+<li><p>#{} 可以有效的防止SQL注入，提高系统安全性；${} 不能防止SQL 注入</p>
+</li>
+<li><p>#{} 的变量替换是在DBMS 中；${} 的变量替换是在 DBMS 外</p>
+</li>
+</ul>
+</li>
+<li><h4 id="模糊查询like语句该怎么写"><a href="#模糊查询like语句该怎么写" class="headerlink" title="模糊查询like语句该怎么写"></a>模糊查询like语句该怎么写</h4><ul>
+<li>1 ’%${question}%’ 可能引起SQL注入，不推荐</li>
+<li>2 “%”#{question}”%” 注意：因为#{…}解析成sql语句时候，会在变量外侧自动加单引号’ ‘，所以这里 % 需要使用双引号” “，不能使用单引号 ’ ‘，不然会查不到任何结果。</li>
+<li>3 CONCAT(’%’,#{question},’%’) 使用CONCAT()函数，（推荐）</li>
+<li>4 使用bind标签（不推荐）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;listUserLikeUsername&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.jourwon.pojo.User&quot;</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span><span class="tag">&lt;<span class="name">bind</span> <span class="attr">name</span>=<span class="string">&quot;pattern&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#x27;%&#x27; + username + &#x27;%&#x27;&quot;</span> /&gt;</span></span><br><span class="line"><span class="symbol">&amp;emsp;</span><span class="symbol">&amp;emsp;</span>select id,sex,age,username,password from person where username LIKE #&#123;pattern&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><h4 id="在mapper中如何传递多个参数"><a href="#在mapper中如何传递多个参数" class="headerlink" title="在mapper中如何传递多个参数"></a>在mapper中如何传递多个参数</h4><p><strong>方法1：顺序传参法</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">public User selectUser(String name, int deptId);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUser&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserResultMap&quot;</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line">    where user_name = #&#123;0&#125; and dept_id = #&#123;1&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>#{}里面的数字代表传入参数的顺序。</p>
+<ul>
+<li>这种方法不建议使用，sql层表达不直观，且一旦顺序调整容易出错。</li>
+</ul>
+</li>
+</ul>
+<p><strong>方法2：@Param注解传参法</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">public User selectUser(@Param(&quot;userName&quot;) String name, int @Param(&quot;deptId&quot;) deptId);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUser&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserResultMap&quot;</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line">    where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>#{}里面的名称对应的是注解@Param括号里面修饰的名称。</p>
+</li>
+<li><p>这种方法在参数不多的情况还是比较直观的，（推荐使用）。</p>
+<p><strong>方法3：Map传参法</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">public User selectUser(Map&lt;String, Object&gt; params);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.util.Map&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserResultMap&quot;</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line">    where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>#{}里面的名称对应的是Map里面的key名称。</li>
+<li>这种方法适合传递多个参数，且参数易变能灵活传递的情况。（推荐使用）。</li>
+</ul>
+<p><strong>方法4：Java Bean传参法</strong></p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">public User selectUser(User user);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.jourwon.pojo.User&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;UserResultMap&quot;</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line">    where user_name = #&#123;userName&#125; and dept_id = #&#123;deptId&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>#{}里面的名称对应的是User类里面的成员属性。</p>
+</li>
+<li><p>这种方法直观，需要建一个实体类，扩展不容易，需要加属性，但代码可读性强，业务逻辑处理方便，推荐使用。（推荐使用）。</p>
+</li>
+<li><h4 id="Mybatis如何执行批量操作"><a href="#Mybatis如何执行批量操作" class="headerlink" title="Mybatis如何执行批量操作"></a>Mybatis如何执行批量操作</h4><ul>
+<li><strong>使用foreach标签</strong></li>
+<li>foreach的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。foreach标签的属性主要有item，index，collection，open，separator，close。<ul>
+<li>item      表示集合中每一个元素进行迭代时的别名，随便起的变量名；</li>
+<li>index    指定一个名字，用于表示在迭代过程中，每次迭代到的位置，不常用；</li>
+<li>open    表示该语句以什么开始，常用“(”；</li>
+<li>separator 表示在每次进行迭代之间以什么符号作为分隔符，常用“,”；</li>
+<li>close    表示以什么结束，常用“)”。</li>
+</ul>
+</li>
+<li>在使用foreach的时候最关键的也是最容易出错的就是collection属性，该属性是必须指定的，但是在不同情况下，该属性的值是不一样的，主要有一下3种情况：<ol>
+<li>如果传入的是单参数且参数类型是一个List的时候，collection属性值为list</li>
+<li>如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array</li>
+<li>如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map，实际上如果你在传入参数的时候，在MyBatis里面也是会把它封装成一个Map的，<br>map的key就是参数名，所以这个时候collection属性值就是传入的List或array对象在自己封装的map里面的key</li>
+</ol>
+</li>
+<li>具体用法如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量保存(foreach插入多条数据两种方法)</span></span><br><span class="line"><span class="comment">       int addEmpsBatch(@Param(&quot;emps&quot;) List&lt;Employee&gt; emps); --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- MySQL下批量保存，可以foreach遍历 mysql支持values(),(),()语法 --&gt;</span> //推荐使用</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addEmpsBatch&quot;</span>&gt;</span></span><br><span class="line">    INSERT INTO emp(ename,gender,email,did)</span><br><span class="line">    VALUES</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;emps&quot;</span> <span class="attr">item</span>=<span class="string">&quot;emp&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        (#&#123;emp.eName&#125;,#&#123;emp.gender&#125;,#&#123;emp.email&#125;,#&#123;emp.dept.id&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 这种方式需要数据库连接属性allowMutiQueries=true的支持</span></span><br><span class="line"><span class="comment"> 如jdbc.url=jdbc:mysql://localhost:3306/mybatis?allowMultiQueries=true --&gt;</span>  </span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addEmpsBatch&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;emps&quot;</span> <span class="attr">item</span>=<span class="string">&quot;emp&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;;&quot;</span>&gt;</span>                                 </span><br><span class="line">        INSERT INTO emp(ename,gender,email,did)</span><br><span class="line">        VALUES(#&#123;emp.eName&#125;,#&#123;emp.gender&#125;,#&#123;emp.email&#125;,#&#123;emp.dept.id&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>使用ExecutorType.BATCH</strong></p>
+<ul>
+<li><p>Mybatis内置的ExecutorType有3种，默认为simple,该模式下它为每个语句的执行创建一个新的预处理语句，单条提交sql；而batch模式重复使用已经预处理的语句，并且批量执行所有更新语句，显然batch性能将更优； 但batch模式也有自己的问题，比如在Insert操作时，在事务没有提交之前，是没有办法获取到自增的id，这在某型情形下是不符合业务要求的</p>
+</li>
+<li><p>具体用法如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//批量保存方法测试</span></span><br><span class="line"><span class="meta">@Test</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testBatch</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();</span><br><span class="line">    <span class="comment">//可以执行批量操作的sqlSession</span></span><br><span class="line">    SqlSession openSession = sqlSessionFactory.openSession(ExecutorType.BATCH);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//批量保存执行前时间</span></span><br><span class="line">    <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            mapper.addEmp(<span class="keyword">new</span> Employee(UUID.randomUUID().toString().substring(<span class="number">0</span>, <span class="number">5</span>), <span class="string">&quot;b&quot;</span>, <span class="string">&quot;1&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        openSession.commit();</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//批量保存执行后的时间</span></span><br><span class="line">        System.out.println(<span class="string">&quot;执行时长&quot;</span> + (end - start));</span><br><span class="line">        <span class="comment">//批量 预编译sql一次==》设置参数==》10000次==》执行1次   677</span></span><br><span class="line">        <span class="comment">//非批量  （预编译=设置参数=执行 ）==》10000次   1121</span></span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        openSession.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>mapper和mapper.xml如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeMapper</span> </span>&#123;   </span><br><span class="line">      <span class="comment">//批量保存员工</span></span><br><span class="line">      <span class="function">Long <span class="title">addEmp</span><span class="params">(Employee employee)</span></span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.jourwon.mapper.EmployeeMapper&quot;</span></span></span><br><span class="line"><span class="tag">     &lt;!<span class="attr">--</span>批量保存员工 <span class="attr">--</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addEmp&quot;</span>&gt;</span></span><br><span class="line">          insert into employee(lastName,email,gender)</span><br><span class="line">          values(#&#123;lastName&#125;,#&#123;email&#125;,#&#123;gender&#125;)</span><br><span class="line">      <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="当实体类中的属性名和表中的字段名不一样 ，怎么办"></a>当实体类中的属性名和表中的字段名不一样 ，怎么办</h4><p>第1种： 通过在查询的SQL语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getOrder&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.jourwon.pojo.Order&quot;</span>&gt;</span></span><br><span class="line">       select order_id id, order_no orderno ,order_price price form orders where order_id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第2种： 通过<code>&lt;resultMap&gt;</code>来映射字段名和实体类属性名的一一对应的关系。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure></li>
+</ul>
+<select id="getOrder" parametertype="int" resultmap="orderResultMap">
+      select * from orders where order_id=#{id}
+  </select>
+
+
+  <resultMap type="com.jourwon.pojo.Order" id="orderResultMap">
+      <!–用id属性来映射主键字段–>
+      <id property="id" column="order_id">
+      
+
+<pre><code>  &lt;!–用result属性来映射非主键字段，property为实体类属性名，column为数据库表中的属性–&gt;
+
+  &lt;result property =&quot;orderno&quot; column =&quot;order_no&quot;/&gt;
+  &lt;result property=&quot;price&quot; column=&quot;order_price&quot; /&gt;
+</code></pre>
+  
+
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line">- #### 如何获取生成的主键</span><br><span class="line"></span><br><span class="line">- 新增标签中添加：keyProperty=&quot; ID &quot;  即可</span><br><span class="line"></span><br><span class="line">  ```xml</span><br><span class="line">  &lt;insert id=&quot;insert&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;userId&quot; &gt;</span><br><span class="line">      insert into user( </span><br><span class="line">      user_name, user_password, create_time) </span><br><span class="line">      values(#&#123;userName&#125;, #&#123;userPassword&#125; , #&#123;createTime, jdbcType= TIMESTAMP&#125;)</span><br><span class="line">  &lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="Mapper-编写有哪几种方式？"><a href="#Mapper-编写有哪几种方式？" class="headerlink" title="Mapper 编写有哪几种方式？"></a>Mapper 编写有哪几种方式？</h4><p>第一种：接口实现类继承 SqlSessionDaoSupport：使用此种方法需要编写mapper 接口，mapper 接口实现类、mapper.xml 文件。</p>
+<ol>
+<li><p>在 sqlMapConfig.xml 中配置 mapper.xml 的位置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>定义 mapper 接口</p>
+</li>
+<li><p>实现类集成 SqlSessionDaoSupport</p>
+<p>mapper 方法中可以 this.getSqlSession()进行数据增删改查。</p>
+</li>
+<li><p>spring 配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot; &quot;</span> <span class="attr">class</span>=<span class="string">&quot;mapper 接口的实现&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactory&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>第二种：使用 org.mybatis.spring.mapper.MapperFactoryBean：</p>
+<ol>
+<li><p>在 sqlMapConfig.xml 中配置 mapper.xml 的位置，如果 mapper.xml 和mappre 接口的名称相同且在同一个目录，这里可以不用配置</p>
+</li>
+<li><p>定义 mapper 接口：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;mapper.xml 文件的地址&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>mapper.xml 中的 namespace 为 mapper 接口的地址</p>
+</li>
+<li><p>mapper 接口中的方法名和 mapper.xml 中的定义的 statement 的 id 保持一致</p>
+</li>
+<li><p>Spring 中定义</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;mapperInterface&quot;</span> <span class="attr">value</span>=<span class="string">&quot;mapper 接口地址&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>第三种：使用 mapper 扫描器：</p>
+<ol>
+<li><p>mapper.xml 文件编写：</p>
+<p>mapper.xml 中的 namespace 为 mapper 接口的地址；<br>mapper 接口中的方法名和 mapper.xml 中的定义的 statement 的 id 保持一致；</p>
+<p> 如果将 mapper.xml 和 mapper 接口的名称保持一致则不用在 sqlMapConfig.xml中进行配置。</p>
+</li>
+<li><p>定义 mapper 接口：</p>
+<p>注意 mapper.xml 的文件名和 mapper 的接口名称保持一致，且放在同一个目录</p>
+</li>
+<li><p>配置 mapper 扫描器：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;mapper 接口包地址</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;sqlSessionFactoryBeanName&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">value</span>=<span class="string">&quot;sqlSessionFactory&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用扫描器后从 spring 容器中获取 mapper 的实现对象。</p>
+</li>
+</ol>
+</li>
+<li><h4 id="Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？"><a href="#Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？" class="headerlink" title="Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？"></a>Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？</h4><ul>
+<li>不同的Xml映射文件，如果配置了namespace，那么id可以重复；如果没有配置namespace，那么id不能重复；毕竟namespace不是必须的，只是最佳实践而已。</li>
+<li>原因就是namespace+id是作为Map&lt;String, MappedStatement&gt;的key使用的，如果没有namespace，就剩下id，那么，id重复会导致数据互相覆盖。有了namespace，自然id就可以重复，namespace不同，namespace+id自然也就不同。</li>
+</ul>
+</li>
+<li><h4 id="Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"><a href="#Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？" class="headerlink" title="Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"></a>Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？</h4><ul>
+<li><p>第一种是使用<code>&lt;resultMap&gt;</code>标签，逐一定义列名和对象属性名之间的映射关系。</p>
+</li>
+<li><p>第二种是使用sql列的别名功能，将列别名书写为对象属性名，比如T_NAME AS NAME，对象属性名一般是name，小写，但是列名不区分大小写，Mybatis会忽略列名大小写，智能找到与之对应对象属性名，你甚至可以写成T_NAME AS NaMe，Mybatis一样可以正常工作。</p>
+<blockquote>
+<p>有了列名与属性名的映射关系后，Mybatis通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><h4 id="Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？"><a href="#Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？" class="headerlink" title="Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？"></a>Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？</h4><ul>
+<li>还有很多其他的标签，<code>&lt;resultMap&gt;</code>、<code>&lt;parameterMap&gt;</code>、<code>&lt;sql&gt;</code>、<code>&lt;include&gt;</code>、<code>&lt;selectKey&gt;</code>，加上动态sql的9个标签，trim|where|set|foreach|if|choose|when|otherwise|bind等，其中<code>&lt;sql&gt;</code>为sql片段标签，通过<code>&lt;include&gt;</code>标签引入sql片段，<code>&lt;selectKey&gt;</code>为不支持自增的主键生成策略标签。</li>
+</ul>
+</li>
+<li><h4 id="Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理吗？"><a href="#Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理吗？" class="headerlink" title="Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理吗？"></a>Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理吗？</h4><ul>
+<li>Mybatis动态sql可以让我们在Xml映射文件内，以标签的形式编写动态sql，完成逻辑判断和动态拼接sql的功能，Mybatis提供了9种动态sql标签trim|where|set|foreach|if|choose|when|otherwise|bind。</li>
+<li>其执行原理为，使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能。</li>
+</ul>
+</li>
+<li><h4 id="Mybatis是如何进行分页的？分页插件的原理是什么？"><a href="#Mybatis是如何进行分页的？分页插件的原理是什么？" class="headerlink" title="Mybatis是如何进行分页的？分页插件的原理是什么？"></a>Mybatis是如何进行分页的？分页插件的原理是什么？</h4><ul>
+<li><p>Mybatis使用RowBounds对象进行分页，它是针对ResultSet结果集执行的内存分页，而非物理分页，可以在sql内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。</p>
+</li>
+<li><p>分页插件的基本原理是使用Mybatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的sql，然后重写sql，根据dialect方言，添加对应的物理分页语句和物理分页参数。</p>
+</li>
+<li><p>举例：select * from student，拦截sql后重写为：select t.* from (select * from student) t limit 0, 10</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Mybatis的一级、二级缓存"><a href="#Mybatis的一级、二级缓存" class="headerlink" title="Mybatis的一级、二级缓存"></a>Mybatis的一级、二级缓存</h4><ul>
+<li><p>一级缓存: 基于 PerpetualCache 的 HashMap 本地缓存，其存储作用域为 Session，当 Session flush 或 close 之后，该 Session 中的所有 Cache 就将清空，默认打开一级缓存。</p>
+</li>
+<li><p>二级缓存与一级缓存其机制相同，默认也是采用 PerpetualCache，HashMap 存储，不同在于其存储作用域为 Mapper(Namespace)，并且可自定义存储源，如 Ehcache。默认不打开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口(可用来保存对象的状态),可在它的映射文件中配置<code>&lt;cache/&gt;</code></p>
+</li>
+<li><p>对于缓存数据更新机制，当某一个作用域(一级缓存 Session/二级缓存Namespaces)的进行了C/U/D 操作后，默认该作用域下所有 select 中的缓存将被 clear。</p>
+</li>
+</ul>
+</li>
+</ul>
+</id></resultMap>]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_框架_Spring基础面试题</title>
+    <url>/posts/847babcc/</url>
+    <content><![CDATA[<h2 id="初级·框架·Spring基础面试题"><a href="#初级·框架·Spring基础面试题" class="headerlink" title="初级·框架·Spring基础面试题"></a>初级·框架·Spring基础面试题</h2><ul>
+<li><h4 id="什么是spring"><a href="#什么是spring" class="headerlink" title="什么是spring?"></a>什么是spring?</h4><ul>
+<li><p>Spring是<strong>一个轻量级Java开发框架</strong>。</p>
+</li>
+<li><p>Spring最根本的使命是<strong>解决企业级应用开发的复杂性，即简化Java开发</strong>。</p>
+</li>
+<li><p><strong>依赖注入（dependency injection，DI）和面向切面编程（aspect-oriented programming，AOP）</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring的俩大核心概念"><a href="#Spring的俩大核心概念" class="headerlink" title="Spring的俩大核心概念"></a>Spring的俩大核心概念</h4><ul>
+<li><p>IOC（控制翻转）：</p>
+<ul>
+<li>控制翻转，也叫依赖注入，他就是不会直接创建对象，只是把对象声明出来，在代码中不直接与对象和服务进行连接，但是在配置文件中描述了哪一项组件需要哪一项服务，容器将他们组件起来。在一般的IOC场景中容器创建了所有的对象，并设置了必要的属性将他们联系在一起，等到需要使用的时候才把他们声明出来，使用注解就很方便了，容器会自动根据注解把对象组合起来</li>
+</ul>
+</li>
+<li><p>AOP（面对切面编程）</p>
+<ul>
+<li>面对切面编程，这是一种编程模式，他允许程序员通过自定义的横切点进行模块 化，将那些影响多个类的行为封装到课重用的模块中。 例子：比如日志输出，不使用AOP的话就需要把日志的输出语句放在所有类中，方法中，但是有了AOP就可以把日志输出语句封装一个可重用模块，在以声明的方式将他们放在类中，每次使用类就自动完成了日志输出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="Spring框架的设计目标，设计理念，和核心是什么"><a href="#Spring框架的设计目标，设计理念，和核心是什么" class="headerlink" title="Spring框架的设计目标，设计理念，和核心是什么"></a>Spring框架的设计目标，设计理念，和核心是什么</h4><ul>
+<li><p><strong>Spring设计目标</strong>：Spring为开发者提供一个一站式轻量级应用开发平台；</p>
+</li>
+<li><p><strong>Spring设计理念</strong>：在JavaEE开发中，支持<strong>POJO和JavaBean开发方式</strong>，使应用面向接口开发，充分支持OOP（面向对象）设计方法；Spring通过IOC容器实现对象耦合关系的管理，并实现依赖反转，将对象之间的依赖关系交给IOC容器，实现解耦；</p>
+</li>
+<li><p><strong>Spring框架的核心</strong>：IOC容器和AOP模块。通过IOC容器管理POJO对象以及他们之间的耦合关系；通过AOP以动态非侵入的方式增强服务。</p>
+</li>
+<li><p>IOC让相互协作的组件<strong>保持松散的耦合</strong>，而AOP编程允许你把遍布于应用各层的功能分离出来形成<strong>可重用的功能组件</strong>。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring的优缺点是什么？"><a href="#Spring的优缺点是什么？" class="headerlink" title="Spring的优缺点是什么？"></a>Spring的优缺点是什么？</h4><ul>
+<li><p><strong>优点</strong></p>
+<ul>
+<li><p>方便解耦，简化开发</p>
+</li>
+<li><p>AOP编程的支持</p>
+</li>
+<li><p>声明式事务的支持</p>
+</li>
+<li><p>方便程序的测试</p>
+</li>
+<li><p>方便集成各种优秀框架</p>
+</li>
+<li><p>降低JavaEE API的使用难度</p>
+</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>Spring明明一个很轻量级的框架，却给人感觉大而全</li>
+<li>Spring依赖反射，反射影响性能</li>
+<li>使用门槛升高，入门Spring需要较长时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring由哪些模块组成？"><a href="#Spring由哪些模块组成？" class="headerlink" title="Spring由哪些模块组成？"></a>Spring由哪些模块组成？</h4><ul>
+<li><p>spring core：提供了框架的基本组成部分，包括控制反转和依赖注入）功能。</p>
+</li>
+<li><p>spring beans：提供了BeanFactory，是工厂模式的一个经典实现，Spring将管理对象称为Bean。</p>
+</li>
+<li><p>spring context：构建于 core 封装包基础上的 context 封装包，提供了一种框架式的对象访问方法。</p>
+</li>
+<li><p>spring jdbc：提供了一个JDBC的抽象层，消除了烦琐的JDBC编码和数据库厂商特有的错误代码解析， 用于简化JDBC。</p>
+</li>
+<li><p>spring aop：提供了面向切面的编程实现，让你可以自定义拦截器、切点等。</p>
+</li>
+<li><p>spring Web：提供了针对 Web 开发的集成特性，例如文件上传，利用 servlet listeners 进行 ioc 容器初始化和针对 Web 的 ApplicationContext。</p>
+</li>
+<li><p>spring test：主要为测试提供支持的，支持使用JUnit或TestNG对Spring组件进行单元测试和集成测试。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring-框架中都用到了哪些设计模式？"><a href="#Spring-框架中都用到了哪些设计模式？" class="headerlink" title="Spring 框架中都用到了哪些设计模式？"></a>Spring 框架中都用到了哪些设计模式？</h4><ul>
+<li><p>工厂模式：BeanFactory就是简单工厂模式的体现，用来创建对象的实例；</p>
+</li>
+<li><p>单例模式：Bean默认为单例模式。</p>
+</li>
+<li><p>代理模式：Spring的AOP功能用到了JDK的动态代理和CGLIB字节码生成技术；</p>
+</li>
+<li><p>模板方法：用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。</p>
+</li>
+<li><p>观察者模式：定义对象键一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都会得到通知被制动更新，如Spring中listener的实现–ApplicationListener。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring-应用程序有哪些不同组件？"><a href="#Spring-应用程序有哪些不同组件？" class="headerlink" title="Spring 应用程序有哪些不同组件？"></a>Spring 应用程序有哪些不同组件？</h4><ul>
+<li>接口 - 定义功能。</li>
+<li>Bean 类 - 它包含属性，setter 和 getter 方法，函数等。</li>
+<li>Bean 配置文件 - 包含类的信息以及如何配置它们。</li>
+<li>Spring 面向切面编程（AOP） - 提供面向切面编程的功能。</li>
+<li>用户程序 - 它使用接口。</li>
+</ul>
+</li>
+<li><h4 id="什么是Spring-IOC-容器？"><a href="#什么是Spring-IOC-容器？" class="headerlink" title="什么是Spring IOC 容器？"></a>什么是Spring IOC 容器？</h4><ul>
+<li>控制反转即IOC (Inversion of Control)，它把传统上由程序代码直接操控的对象的调用权交给容器，通过容器来实现对象组件的装配和管理。所谓的“控制反转”概念就是对组件对象控制权的转移，从程序代码本身转移到了外部容器。</li>
+<li>Spring IOC 负责创建对象，管理对象：通过<strong>依赖注入（DI）</strong>，装配对象，配置对象，并且管理这些对象的整个生命周期。</li>
+</ul>
+</li>
+<li><h4 id="控制反转-IOC-有什么作用"><a href="#控制反转-IOC-有什么作用" class="headerlink" title="控制反转(IOC)有什么作用"></a>控制反转(IOC)有什么作用</h4><ul>
+<li>管理对象的创建和依赖关系的维护</li>
+<li>解耦，由容器去维护具体的对象    </li>
+</ul>
+</li>
+<li><h4 id="Spring-IOC-的实现机制"><a href="#Spring-IOC-的实现机制" class="headerlink" title="Spring IOC 的实现机制"></a>Spring IOC 的实现机制</h4><ul>
+<li><p>Spring 中的 IOC 的实现原理就是工厂模式加反射机制。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Fruit</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">implements</span> <span class="title">Fruit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">implements</span> <span class="title">Fruit</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Orange&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Fruit <span class="title">getInstance</span><span class="params">(String ClassName)</span> </span>&#123;</span><br><span class="line">        Fruit f=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            f=(Fruit)Class.forName(ClassName).newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] a)</span> </span>&#123;</span><br><span class="line">        Fruit f=Factory.getInstance(<span class="string">&quot;io.github.dunwu.spring.Apple&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(f!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            f.eat();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="BeanFactory-和-ApplicationContext有什么区别？"><a href="#BeanFactory-和-ApplicationContext有什么区别？" class="headerlink" title="BeanFactory 和 ApplicationContext有什么区别？"></a>BeanFactory 和 ApplicationContext有什么区别？</h4><ul>
+<li>BeanFactory和ApplicationContext是Spring的两大核心接口，都可以当做Spring的容器。其中ApplicationContext是BeanFactory的子接口。</li>
+<li>依赖关系<ul>
+<li>BeanFactory：是Spring里面最底层的接口，包含了各种Bean的定义，读取bean配置文档，管理bean的加载、实例化，控制bean的生命周期，维护bean之间的依赖关系。</li>
+</ul>
+</li>
+<li>ApplicationContext接口作为BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：<ul>
+<li>继承MessageSource，因此支持国际化。</li>
+<li>统一的资源文件访问方式。</li>
+<li>提供在监听器中注册bean的事件。</li>
+<li>同时加载多个配置文件。</li>
+<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</li>
+</ul>
+</li>
+<li>加载方式<ul>
+<li>BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，我们就不能发现一些存在的Spring的配置问题。如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
+<li>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例bean ,确保当你需要的时候，你就不用等待，因为它们已经创建好了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>  相对于基本的BeanFactory，ApplicationContext 唯一的不足是占用内存空间。当应用程序配置Bean较多时，程序启动较慢。</p>
+<ul>
+<li><p>创建方式</p>
+<ul>
+<li>BeanFactory通常以编程的方式被创建，ApplicationContext还能以声明的方式创建，如使用ContextLoader。</li>
+</ul>
+</li>
+<li><p>注册方式</p>
+<ul>
+<li>BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。</li>
+</ul>
+</li>
+<li><h4 id="ApplicationContext通常的实现是什么？"><a href="#ApplicationContext通常的实现是什么？" class="headerlink" title="ApplicationContext通常的实现是什么？"></a>ApplicationContext通常的实现是什么？</h4><ul>
+<li><p><strong>FileSystemXmlApplicationContext</strong> ：此容器从一个XML文件中加载beans的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</p>
+</li>
+<li><p><strong>ClassPathXmlApplicationContext</strong>：此容器也从一个XML文件中加载beans的定义，这里，你需要正确设置classpath因为这个容器将在classpath里找bean配置。</p>
+</li>
+<li><p><strong>WebXmlApplicationContext</strong>：此容器加载一个XML文件，此文件定义了一个WEB应用的所有bean。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是Spring的依赖注入？"><a href="#什么是Spring的依赖注入？" class="headerlink" title="什么是Spring的依赖注入？"></a>什么是Spring的依赖注入？</h4><ul>
+<li>控制反转IOC是一个很大的概念，可以用不同的方式来实现。其主要实现方式有两种：<strong>依赖注入和依赖查找</strong></li>
+<li>依赖注入：所谓依赖注入，即组件之间的依赖关系由容器在应用系统运行期来决定，也就是由容器动态地将某种依赖关系的目标对象实例注入到应用系统中的各个关联的组件之中。组件不做定位查询，只提供普通的Java方法让容器去决定依赖关系。</li>
+</ul>
+</li>
+<li><h4 id="依赖注入的基本原则"><a href="#依赖注入的基本原则" class="headerlink" title="依赖注入的基本原则"></a>依赖注入的基本原则</h4><ul>
+<li>依赖注入的基本原则是：<strong>应用组件不应该负责查找资源或者其他依赖的协作对象</strong>。配置对象的工作应该由IOC容器负责，“查找资源”的逻辑应该从应用组件的代码中抽取出来，交给IOC容器负责。容器全权负责组件的装配，它会把符合依赖关系的对象通过属性或者是构造器传递给需要的对象。</li>
+</ul>
+</li>
+<li><h4 id="依赖注入有什么优势"><a href="#依赖注入有什么优势" class="headerlink" title="依赖注入有什么优势"></a>依赖注入有什么优势</h4><ul>
+<li>查找定位操作与应用代码完全无关。</li>
+<li>不依赖于容器的API，可以很容易地在任何容器以外使用应用对象。</li>
+<li>不需要特殊的接口，绝大多数对象可以做到完全不必依赖容器。</li>
+</ul>
+</li>
+<li><h4 id="有哪些不同类型的依赖注入实现方式？"><a href="#有哪些不同类型的依赖注入实现方式？" class="headerlink" title="有哪些不同类型的依赖注入实现方式？"></a>有哪些不同类型的依赖注入实现方式？</h4><ul>
+<li><p>依赖注入是时下最流行的IOC实现方式，依赖注入分为接口注入（Interface Injection），Setter方法注入（Setter Injection）和构造器注入（Constructor Injection）三种方式。其中接口注入由于在灵活性和易用性比较差，现在从Spring4开始已被废弃。</p>
+</li>
+<li><p><strong>构造器依赖注入</strong>：构造器依赖注入通过容器触发一个类的构造器来实现的，该类有一系列参数，每个参数代表一个对其他类的依赖。</p>
+</li>
+<li><p><strong>Setter方法注入</strong>：Setter方法注入是容器通过调用无参构造器或无参static工厂 方法实例化bean之后，调用该bean的setter方法，即实现了基于setter的依赖注入。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="构造器依赖注入和-Setter方法注入的区别"><a href="#构造器依赖注入和-Setter方法注入的区别" class="headerlink" title="构造器依赖注入和 Setter方法注入的区别"></a>构造器依赖注入和 Setter方法注入的区别</h4><table>
+<thead>
+<tr>
+<th><strong>构造函数注入</strong></th>
+<th><strong>setter</strong> <strong>注入</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>没有部分注入</td>
+<td>有部分注入</td>
+</tr>
+<tr>
+<td>不会覆盖 setter 属性</td>
+<td>会覆盖 setter 属性</td>
+</tr>
+<tr>
+<td>任意修改都会创建一个新实例</td>
+<td>任意修改不会创建一个新实例</td>
+</tr>
+<tr>
+<td>适用于设置很多属性</td>
+<td>适用于设置少量属性</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<ul>
+<li><p>两种依赖方式都可以使用，构造器注入和Setter方法注入。构造器参数实现强制依赖，setter方法实现可选依赖。</p>
+</li>
+<li><h4 id="什么是Spring-beans？"><a href="#什么是Spring-beans？" class="headerlink" title="什么是Spring beans？"></a>什么是Spring beans？</h4><ul>
+<li>Spring beans 是那些形成Spring应用的主干的java对象。它们被Spring IOC容器初始化，装配，和管理。这些beans通过容器中配置的元数据创建。比如，以XML文件中 的形式定义。</li>
+</ul>
+</li>
+<li><h4 id="Spring有几种配置方式"><a href="#Spring有几种配置方式" class="headerlink" title="Spring有几种配置方式"></a>Spring有几种配置方式</h4><ul>
+<li>XML配置文件。</li>
+<li>基于注解的配置。</li>
+<li>基于java的配置。</li>
+</ul>
+</li>
+<li><h4 id="Spring基于xml注入bean的几种方式"><a href="#Spring基于xml注入bean的几种方式" class="headerlink" title="Spring基于xml注入bean的几种方式"></a>Spring基于xml注入bean的几种方式</h4><ul>
+<li>Set方法注入；</li>
+<li>构造器注入：<ol>
+<li>通过index设置参数的位置；</li>
+<li>通过type设置参数类型；</li>
+</ol>
+</li>
+<li>静态工厂注入；</li>
+<li>实例工厂；</li>
+</ul>
+</li>
+<li><h4 id="解释Spring支持的几种bean的作用域"><a href="#解释Spring支持的几种bean的作用域" class="headerlink" title="解释Spring支持的几种bean的作用域"></a>解释Spring支持的几种bean的作用域</h4><ul>
+<li><p><strong>singleton :</strong> bean在每个Spring ioc 容器中只有一个实例。</p>
+</li>
+<li><p><strong>prototype</strong>：一个bean的定义可以有多个实例。</p>
+</li>
+<li><p><strong>request</strong>：每次http请求都会创建一个bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+</li>
+<li><p><strong>session</strong>：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+</li>
+<li><p><strong>global-session</strong>：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring框架中的单例bean是线程安全的吗？"><a href="#Spring框架中的单例bean是线程安全的吗？" class="headerlink" title="Spring框架中的单例bean是线程安全的吗？"></a>Spring框架中的单例bean是线程安全的吗？</h4><ul>
+<li><p>不是，Spring框架中的单例bean不是线程安全的。</p>
+<p>spring 中的 bean 默认是单例模式，spring 框架并没有对单例 bean 进行多线程的封装处理。</p>
+</li>
+<li><p>实际上大部分时候 spring bean 无状态的（比如 dao 类），所有某种程度上来说 bean 也是安全的，但如果 bean 有状态的话（比如 view model 对象），那就要开发者自己去保证线程安全了，最简单的就是改变 bean 的作用域，把“singleton”变更为“prototype”，这样请求 bean 相当于 new Bean()了，所以就可以保证线程安全了。</p>
+<ul>
+<li>有状态就是有数据存储功能。</li>
+<li>无状态就是不会保存数据。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring如何处理线程并发问题？"><a href="#Spring如何处理线程并发问题？" class="headerlink" title="Spring如何处理线程并发问题？"></a>Spring如何处理线程并发问题？</h4><ul>
+<li><p>在一般情况下，只有无状态的Bean才可以在多线程环境下共享，在Spring中，绝大部分Bean都可以声明为singleton作用域，因为Spring对一些Bean中非线程安全状态采用ThreadLocal进行处理，解决线程安全问题。</p>
+</li>
+<li><p>ThreadLocal和线程同步机制都是为了解决多线程中相同变量的访问冲突问题。同步机制采用了“时间换空间”的方式，仅提供一份变量，不同的线程在访问前需要获取锁，没获得锁的线程则需要排队。而ThreadLocal采用了“空间换时间”的方式。</p>
+</li>
+<li><p>ThreadLocal会为每一个线程提供一个独立的变量副本，从而隔离了多个线程对数据的访问冲突。因为每一个线程都拥有自己的变量副本，从而也就没有必要对该变量进行同步了。ThreadLocal提供了线程安全的共享对象，在编写多线程代码时，可以把不安全的变量封装进ThreadLocal。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="解释Spring框架中bean的生命周期"><a href="#解释Spring框架中bean的生命周期" class="headerlink" title="解释Spring框架中bean的生命周期"></a>解释Spring框架中bean的生命周期</h4><ul>
+<li>在传统的Java应用中，bean的生命周期很简单。使用Java关键字new进行bean实例化，然后该bean就可以使用了。一旦该bean不再被使用，则由Java自动进行垃圾回收。相比之下，Spring容器中的bean的生命周期就显得相对复杂多了。正确理解Spring bean的生命周期非常重要，因为你或许要利用Spring提供的扩展点来自定义bean的创建过程。下图展示了bean装载到Spring应用上下文中的一个典型的生命周期过程。</li>
+</ul>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/13/1717443ebe68c24f~tplv-t2oaga2asx-watermark.awebp" alt="img"></p>
+<ul>
+<li>bean在Spring容器中从创建到销毁经历了若干阶段，每一阶段都可以针对Spring如何管理bean进行个性化定制。</li>
+<li>正如你所见，在bean准备就绪之前，bean工厂执行了若干启动步骤。</li>
+</ul>
+</li>
+<li><h4 id="在-Spring中如何注入一个java集合？"><a href="#在-Spring中如何注入一个java集合？" class="headerlink" title="在 Spring中如何注入一个java集合？"></a>在 Spring中如何注入一个java集合？</h4><ul>
+<li>Spring提供了以下四种集合类的配置元素(配置标签)：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">该标签用来装配可重复的list值。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">该标签用来装配没有重复的set值。</td>
+</tr>
+<tr>
+<td align="center">该标签可用来注入键和值可以为任何类型的键值对。</td>
+</tr>
+<tr>
+<td align="center">该标签支持注入键和值都是字符串类型的键值对。</td>
+</tr>
+</tbody></table>
+</li>
+<li><h4 id="什么是bean装配？什么是bean的自动装配？"><a href="#什么是bean装配？什么是bean的自动装配？" class="headerlink" title="什么是bean装配？什么是bean的自动装配？"></a>什么是bean装配？什么是bean的自动装配？</h4><ul>
+<li>装配，或bean 装配是指在Spring 容器中把bean组装到一起，前提是容器需要知道bean的依赖关系，如何通过依赖注入来把它们装配到一起。</li>
+<li>在Spring框架中，在配置文件中设定bean的依赖关系是一个很好的机制，Spring 容器能够自动装配相互合作的bean，这意味着容器不需要和配置，能通过Bean工厂自动处理bean之间的协作。这意味着 Spring可以通过向Bean Factory中注入的方式自动搞定bean之间的依赖关系。</li>
+</ul>
+</li>
+<li><h4 id="解释不同方式的自动装配，spring-自动装配-bean-有哪些方式？"><a href="#解释不同方式的自动装配，spring-自动装配-bean-有哪些方式？" class="headerlink" title="解释不同方式的自动装配，spring 自动装配 bean 有哪些方式？"></a>解释不同方式的自动装配，spring 自动装配 bean 有哪些方式？</h4><ul>
+<li><p>在spring中，对象无需自己查找或创建与其关联的其他对象，由容器负责把需要相互协作的对象引用赋予各个对象，使用autowire来配置自动装载模式。</p>
+</li>
+<li><p>在Spring框架xml配置中共有5种自动装配：</p>
+<ul>
+<li>no：默认的方式是不进行自动装配的，通过手工设置ref属性来进行装配bean。</li>
+<li>byName：通过bean的名称进行自动装配，如果一个bean的 property 与另一bean 的name 相同，就进行自动装配。</li>
+<li>byType：通过参数的数据类型进行自动装配。</li>
+<li>constructor：利用构造函数进行装配，并且构造函数的参数通过byType进行装配。</li>
+<li>autodetect：自动探测，如果有构造方法，通过 construct的方式自动装配，否则使用 byType的方式自动装配。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="使用-Autowired注解自动装配的过程是怎样的？"><a href="#使用-Autowired注解自动装配的过程是怎样的？" class="headerlink" title="使用@Autowired注解自动装配的过程是怎样的？"></a>使用@Autowired注解自动装配的过程是怎样的？</h4><ul>
+<li><p>使用@Autowired注解来自动装配指定的bean。在使用@Autowired注解之前需要在Spring配置文件进行配置，&lt;context:annotation-config /&gt;。</p>
+</li>
+<li><p>在启动spring IOC时，容器自动装载了一个AutowiredAnnotationBeanPostProcessor后置处理器，当容器扫描到@Autowied、@Resource或@Inject时，就会在IOC容器自动查找需要的bean，并装配给该对象的属性。在使用@Autowired时，首先在容器中查询对应类型的bean：</p>
+<ul>
+<li>如果查询结果刚好为一个，就将该bean装配给@Autowired指定的数据；</li>
+<li>如果查询的结果不止一个，那么@Autowired会根据名称来查找；</li>
+<li>如果上述查找的结果为空，那么会抛出异常。解决方法时，使用required=false。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="自动装配有哪些局限性？"><a href="#自动装配有哪些局限性？" class="headerlink" title="自动装配有哪些局限性？"></a>自动装配有哪些局限性？</h4><ul>
+<li>自动装配的局限性是：<ul>
+<li><strong>重写</strong>：你仍需用 和 配置来定义依赖，意味着总要重写自动装配。</li>
+<li><strong>基本数据类型</strong>：你不能自动装配简单的属性，如基本数据类型，String字符串，和类。</li>
+<li><strong>模糊特性</strong>：自动装配不如显式装配精确，如果有可能，建议使用显式装配。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是基于Java的Spring注解配置-给一些注解的例子"><a href="#什么是基于Java的Spring注解配置-给一些注解的例子" class="headerlink" title="什么是基于Java的Spring注解配置? 给一些注解的例子"></a>什么是基于Java的Spring注解配置? 给一些注解的例子</h4><ul>
+<li><p>基于Java的配置，允许你在少量的Java注解的帮助下，进行你的大部分Spring配置而非通过XML文件。</p>
+</li>
+<li><p>以@Configuration 注解为例，它用来标记类可以当做一个bean的定义，被Spring IOC容器使用。</p>
+</li>
+<li><p>另一个例子是@Bean注解，它表示此方法将要返回一个对象，作为一个bean注册进Spring应用上下文。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StudentBean <span class="title">myStudent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> StudentBean();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="怎样开启注解装配？"><a href="#怎样开启注解装配？" class="headerlink" title="怎样开启注解装配？"></a>怎样开启注解装配？</h4><ul>
+<li>注解装配在默认情况下是不开启的，为了使用注解装配，我们必须在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素。</li>
+</ul>
+</li>
+<li><h4 id="Component-Controller-Repository-Service-有何区别？"><a href="#Component-Controller-Repository-Service-有何区别？" class="headerlink" title="@Component, @Controller, @Repository, @Service 有何区别？"></a>@Component, @Controller, @Repository, @Service 有何区别？</h4><ul>
+<li><p>@Component：这将 java 类标记为 bean。它是任何 Spring 管理组件的通用构造型。spring 的组件扫描机制现在可以将其拾取并将其拉入应用程序环境中。</p>
+</li>
+<li><p>@Controller：这将一个类标记为 Spring Web MVC 控制器。标有它的 Bean 会自动导入到 IOC 容器中。</p>
+</li>
+<li><p>@Service：此注解是组件注解的特化。它不会对 @Component 注解提供任何其他行为。您可以在服务层类中使用 @Service 而不是 @Component，因为它以更好的方式指定了意图。</p>
+</li>
+<li><p>@Repository：这个注解是具有类似用途和功能的 @Component 注解的特化。它为 DAO 提供了额外的好处。它将 DAO 导入 IOC 容器，并使未经检查的异常有资格转换为 Spring DataAccessException。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Required-注解有什么作用"><a href="#Required-注解有什么作用" class="headerlink" title="@Required 注解有什么作用"></a>@Required 注解有什么作用</h4><ul>
+<li><p>这个注解表明bean的属性必须在配置的时候设置，通过一个bean定义的显式的属性值或通过自动装配，若@Required注解的bean属性未被设置，容器将抛出BeanInitializationException。示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Required</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> string <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="Autowired-注解有什么作用"><a href="#Autowired-注解有什么作用" class="headerlink" title="@Autowired 注解有什么作用"></a>@Autowired 注解有什么作用</h4><ul>
+<li>@Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。@Autowired 注解提供了更细粒度的控制，包括在何处以及如何完成自动装配。它的用法和@Required一样，修饰setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> string <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h4 id="Autowired和-Resource之间的区别"><a href="#Autowired和-Resource之间的区别" class="headerlink" title="@Autowired和@Resource之间的区别"></a>@Autowired和@Resource之间的区别</h4><ul>
+<li>@Autowired和@Resource可用于：构造函数、成员变量、Setter方法    </li>
+<li>@Autowired和@Resource之间的区别在于<ul>
+<li>@Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。</li>
+<li>@Resource默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Qualifier-注解有什么作用"><a href="#Qualifier-注解有什么作用" class="headerlink" title="@Qualifier 注解有什么作用"></a>@Qualifier 注解有什么作用</h4><ul>
+<li>当您创建多个相同类型的 bean 并希望仅使用属性装配其中一个 bean 时，您可以使用@Qualifier 注解和 @Autowired 通过指定应该装配哪个确切的 bean 来消除歧义。    </li>
+</ul>
+</li>
+<li><h4 id="RequestMapping-注解有什么用？"><a href="#RequestMapping-注解有什么用？" class="headerlink" title="@RequestMapping 注解有什么用？"></a>@RequestMapping 注解有什么用？</h4><ul>
+<li>@RequestMapping 注解用于将特定 HTTP 请求方法映射到将处理相应请求的控制器中的特定类/方法。此注释可应用于两个级别：<ul>
+<li>类级别：映射请求的 URL</li>
+<li>方法级别：映射 URL 以及 HTTP 请求方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring支持的事务管理类型，-spring-事务实现方式有哪些？"><a href="#Spring支持的事务管理类型，-spring-事务实现方式有哪些？" class="headerlink" title="Spring支持的事务管理类型， spring 事务实现方式有哪些？"></a>Spring支持的事务管理类型， spring 事务实现方式有哪些？</h4><ul>
+<li>Spring支持两种类型的事务管理：<ul>
+<li><strong>编程式事务管理</strong>：这意味你通过编程的方式管理事务，给你带来极大的灵活性，但是难维护。</li>
+<li><strong>声明式事务管理</strong>：这意味着你可以将业务代码和事务管理分离，你只需用注解和XML配置来管理事务。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="说一下-spring-的事务隔离？"><a href="#说一下-spring-的事务隔离？" class="headerlink" title="说一下 spring 的事务隔离？"></a>说一下 spring 的事务隔离？</h4><ul>
+<li><p>spring 有五大隔离级别，默认值为 ISOLATION_DEFAULT（使用数据库的设置），其他四个隔离级别和数据库的隔离级别一致：</p>
+<ol>
+<li>ISOLATION_DEFAULT：用底层数据库的设置隔离级别，数据库设置的是什么我就用什么；</li>
+<li>ISOLATION_READ_UNCOMMITTED：未提交读，最低隔离级别、事务未提交前，就可被其他事务读取（会出现幻读、脏读、不可重复读）；</li>
+<li>ISOLATION_READ_COMMITTED：提交读，一个事务提交后才能被其他事务读取到（会造成幻读、不可重复读），SQL server 的默认级别；</li>
+<li>ISOLATION_REPEATABLE_READ：可重复读，保证多次读取同一个数据时，其值都和事务开始时候的内容是一致，禁止读取到别的事务未提交的数据（会造成幻读），MySQL 的默认级别；</li>
+<li>ISOLATION_SERIALIZABLE：序列化，代价最高最可靠的隔离级别，该隔离级别能防止脏读、不可重复读、幻读。</li>
+</ol>
+</li>
+<li><p><strong>脏读</strong> ：表示一个事务能够读取另一个事务中还未提交的数据。比如，某个事务尝试插入记录 A，此时该事务还未提交，然后另一个事务尝试读取到了记录 A。</p>
+</li>
+<li><p><strong>不可重复读</strong> ：是指在一个事务内，多次读同一数据。</p>
+</li>
+<li><p><strong>幻读</strong> ：指同一个事务内多次查询返回的结果集不一样。比如同一个事务 A 第一次查询时候有 n 条记录，但是第二次同等条件下查询却有 n+1 条记录，这就好像产生了幻觉。发生幻读的原因也是另外一个事务新增或者删除或者修改了第一个事务结果集里面的数据，同一个记录的数据内容被修改了，所有数据行的记录就变多或者变少了。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="Spring框架的事务管理有哪些优点？"><a href="#Spring框架的事务管理有哪些优点？" class="headerlink" title="Spring框架的事务管理有哪些优点？"></a>Spring框架的事务管理有哪些优点？</h4><ul>
+<li>为不同的事务API 如 JTA，JDBC，Hibernate，JPA 和JDO，提供一个不变的编程模式。</li>
+<li>为编程式事务管理提供了一套简单的API而不是一些复杂的事务API</li>
+<li>支持声明式事务管理。</li>
+<li>和Spring各种数据访问抽象层很好得集成。</li>
+</ul>
+</li>
+<li><h4 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h4><ul>
+<li>AOP(Aspect-Oriented Programming)，一般称为面向切面编程，作为面向对象的一种补充，用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取并封装为一个可重用的模块，这个模块被命名为“切面”（Aspect），减少系统中的重复代码，降低了模块间的耦合度，同时提高了系统的可维护性。可用于权限认证、日志、事务处理等。</li>
+</ul>
+</li>
+<li><h4 id="Spring-AOP-and-AspectJ-AOP-有什么区别？AOP-有哪些实现方式？"><a href="#Spring-AOP-and-AspectJ-AOP-有什么区别？AOP-有哪些实现方式？" class="headerlink" title="Spring AOP and AspectJ AOP 有什么区别？AOP 有哪些实现方式？"></a>Spring AOP and AspectJ AOP 有什么区别？AOP 有哪些实现方式？</h4><ul>
+<li>AOP实现的关键在于 代理模式，AOP代理主要分为静态代理和动态代理。静态代理的代表为AspectJ；动态代理则以Spring AOP为代表。<ul>
+<li>AspectJ是静态代理的增强，所谓静态代理，就是AOP框架会在编译阶段生成AOP代理类，因此也称为编译时增强，他会在编译阶段将AspectJ(切面)织入到Java字节码中，运行的时候就是增强之后的AOP对象。            </li>
+<li>Spring AOP使用的动态代理，所谓的动态代理就是说AOP框架不会去修改字节码，而是每次运行时在内存中临时为方法生成一个AOP对象，这个AOP对象包含了目标对象的全部方法，并且在特定的切点做了增强处理，并回调原对象的方法。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="JDK动态代理和CGLIB动态代理的区别"><a href="#JDK动态代理和CGLIB动态代理的区别" class="headerlink" title="JDK动态代理和CGLIB动态代理的区别"></a>JDK动态代理和CGLIB动态代理的区别</h4><ul>
+<li>Spring AOP中的动态代理主要有两种方式，JDK动态代理和CGLIB动态代理：<ul>
+<li>JDK动态代理只提供接口的代理，不支持类的代理。核心InvocationHandler接口和Proxy类，InvocationHandler 通过invoke()方法反射来调用目标类中的代码，动态地将横切逻辑和业务编织在一起；接着，Proxy利用 InvocationHandler动态创建一个符合某一接口的的实例, 生成目标类的代理对象。</li>
+<li>如果代理类没有实现 InvocationHandler 接口，那么Spring AOP会选择使用CGLIB来动态代理目标类。CGLIB（Code Generation Library），是一个代码生成的类库，可以在运行时动态的生成指定类的一个子类对象，并覆盖其中特定方法并添加增强代码，从而实现AOP。CGLIB是通过继承的方式做的动态代理，因此如果某个类被标记为final，那么它是无法使用CGLIB做动态代理的。</li>
+</ul>
+</li>
+<li>静态代理与动态代理区别在于生成AOP代理对象的时机不同，相对来说AspectJ的静态代理方式具有更好的性能，但是AspectJ需要特定的编译器进行处理，而Spring AOP则无需特定的编译器处理。</li>
+</ul>
+<blockquote>
+<p>InvocationHandler 的 invoke(Object proxy,Method method,Object[] args)：proxy是最终生成的代理实例; method 是被代理目标实例的某个具体方法; args 是被代理目标实例某个方法的具体入参, 在方法反射调用时使用。</p>
+</blockquote>
+</li>
+<li><h4 id="解释一下Spring-AOP里面的几个名词"><a href="#解释一下Spring-AOP里面的几个名词" class="headerlink" title="解释一下Spring AOP里面的几个名词"></a>解释一下Spring AOP里面的几个名词</h4><p>（1）切面（Aspect）：切面是通知和切点的结合。通知和切点共同定义了切面的全部内容。 在Spring AOP中，切面可以使用通用类（基于模式的风格） 或者在普通类中以 @AspectJ 注解来实现。</p>
+<p>（2）连接点（Join point）：指方法，在Spring AOP中，一个连接点 总是 代表一个方法的执行。 应用可能有数以千计的时机应用通知。这些时机被称为连接点。连接点是在应用执行过程中能够插入切面的一个点。这个点可以是调用方法时、抛出异常时、甚至修改一个字段时。切面代码可以利用这些点插入到应用的正常流程之中，并添加新的行为。</p>
+<p>（3）通知（Advice）：在AOP术语中，切面的工作被称为通知。</p>
+<p>（4）切入点（Pointcut）：切点的定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称，或是利用正则表达式定义所匹配的类和方法名称来指定这些切点。</p>
+<p>（5）引入（Introduction）：引入允许我们向现有类添加新方法或属性。</p>
+<p>（6）目标对象（Target Object）： 被一个或者多个切面（aspect）所通知（advise）的对象。它通常是一个代理对象。也有人把它叫做 被通知（adviced） 对象。 既然Spring AOP是通过运行时代理实现的，这个对象永远是一个 被代理（proxied） 对象。</p>
+<p>（7）织入（Weaving）：织入是把切面应用到目标对象并创建新的代理对象的过程。在目标对象的生命周期里有多少个点可以进行织入：</p>
+<ul>
+<li>编译期：切面在目标类编译时被织入。AspectJ的织入编译器是以这种方式织入切面的。</li>
+<li>类加载期：切面在目标类加载到JVM时被织入。需要特殊的类加载器，它可以在目标类被引入应用之前增强该目标类的字节码。AspectJ5的加载时织入就支持以这种方式织入切面。</li>
+<li>运行期：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP容器会为目标对象动态地创建一个代理对象。SpringAOP就是以这种方式织入切面。</li>
+</ul>
+</li>
+<li><h4 id="Spring通知有哪些类型？"><a href="#Spring通知有哪些类型？" class="headerlink" title="Spring通知有哪些类型？"></a>Spring通知有哪些类型？</h4><ul>
+<li><p>在AOP术语中，切面的工作被称为通知，实际上是程序执行时要通过SpringAOP框架触发的代码段。</p>
+</li>
+<li><p>Spring切面可以应用5种类型的通知：</p>
+<ol>
+<li>前置通知（Before）：在目标方法被调用之前调用通知功能；</li>
+<li>后置通知（After）：在目标方法完成之后调用通知，此时不会关心方法的输出是什么；</li>
+<li>返回通知（After-returning ）：在目标方法成功执行之后调用通知；</li>
+<li>异常通知（After-throwing）：在目标方法抛出异常后调用通知；</li>
+<li>环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是切面-Aspect？"><a href="#什么是切面-Aspect？" class="headerlink" title="什么是切面 Aspect？"></a>什么是切面 Aspect？</h4><ul>
+<li><p>aspect 由 pointcount 和 advice 组成，切面是通知和切点的结合。 它既包含了横切逻辑的定义, 也包括了连接点的定义. Spring AOP 就是负责实施切面的框架, 它将切面所定义的横切逻辑编织到切面所指定的连接点中.  AOP 的工作重心在于如何将增强编织目标对象的连接点上, 这里包含两个工作:</p>
+<ul>
+<li>如何通过 pointcut 和 advice 定位到特定的 joinpoint 上</li>
+<li>如何在 advice 中编写切面代码.</li>
+</ul>
+</li>
+<li><p>可以简单地认为, 使用 @Aspect 注解的类就是切面.</p>
+</li>
+</ul>
+</li>
+<li><h4 id="解释基于XML-Schema方式的切面实现"><a href="#解释基于XML-Schema方式的切面实现" class="headerlink" title="解释基于XML Schema方式的切面实现"></a>解释基于XML Schema方式的切面实现</h4><ul>
+<li>在这种情况下，切面由常规类以及基于XML的配置实现。</li>
+</ul>
+</li>
+<li><h4 id="解释基于注解的切面实现"><a href="#解释基于注解的切面实现" class="headerlink" title="解释基于注解的切面实现"></a>解释基于注解的切面实现</h4><ul>
+<li>在这种情况下(基于@AspectJ的实现)，涉及到的切面声明的风格与带有java5标注的普通java类一致。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>框架</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初级_JAVASE基础(多线程)面试题</title>
+    <url>/posts/1a83dbd8/</url>
+    <content><![CDATA[<h2 id="初级-JAVASE基础-多线程-面试题"><a href="#初级-JAVASE基础-多线程-面试题" class="headerlink" title="初级_JAVASE基础(多线程)面试题"></a>初级_JAVASE基础(多线程)面试题</h2><ul>
+<li><h4 id="为什么要使用并发编程"><a href="#为什么要使用并发编程" class="headerlink" title="为什么要使用并发编程"></a>为什么要使用并发编程</h4><ul>
+<li><strong>提升多核CPU的利用率；</strong></li>
+<li>充分利用多核CPU的计算能力；<ul>
+<li>方便进行业务拆分，提升应用性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="并发编程三个必要因素是什么？"><a href="#并发编程三个必要因素是什么？" class="headerlink" title="并发编程三个必要因素是什么？"></a>并发编程三个必要因素是什么？</h4><ul>
+<li><p>原子性：原子，即一个不可再被分割的颗粒。原子性指的是一个或多个操作要么全部执行成功，要么全部执行失败。</p>
+</li>
+<li><p>可见性：一个线程对共享变量的修改,另一个线程能够立刻看到。（synchronized,volatile）</p>
+</li>
+<li><p>有序性：程序执行的顺序按照代码的先后顺序执行。（处理器可能会对指令进行重排序）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="并行和并发有什么区别？"><a href="#并行和并发有什么区别？" class="headerlink" title="并行和并发有什么区别？"></a>并行和并发有什么区别？</h4><ul>
+<li>并发：多个任务在同一个 CPU 核上，按细分的时间片轮流(交替)执行，从逻辑上来看那些任务是同时执行。</li>
+<li>并行：单位时间内，多个处理器或多核处理器同时处理多个任务，是真正意义上的“同时进行”。        </li>
+</ul>
+</li>
+<li><h4 id="什么是多线程？"><a href="#什么是多线程？" class="headerlink" title="什么是多线程？"></a>什么是多线程？</h4><p>多线程：多线程是指程序中包含多个执行流，即在<strong>一个程序中可以同时运行多个不同的线程来执行不同的任务</strong>。</p>
+</li>
+<li><h4 id="多线程的优劣性"><a href="#多线程的优劣性" class="headerlink" title="多线程的优劣性"></a>多线程的优劣性</h4><ul>
+<li><h4 id="多线程的好处"><a href="#多线程的好处" class="headerlink" title="多线程的好处"></a>多线程的好处</h4><ul>
+<li>可以<strong>提高 CPU 的利用率</strong>。</li>
+</ul>
+</li>
+<li><h4 id="多线程的劣势："><a href="#多线程的劣势：" class="headerlink" title="多线程的劣势："></a>多线程的劣势：</h4><ul>
+<li>线程也是程序，所以线程需要占用内存，<strong>线程越多占用内存也越多</strong>；</li>
+<li>多线程需要协调和管理，所以<strong>需要 CPU 时间跟踪线程</strong>；</li>
+<li>线程之间对共享资源的访问会相互影响，必须<strong>解决竞用共享资源的问题</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="线程和进程区别"><a href="#线程和进程区别" class="headerlink" title="线程和进程区别"></a>线程和进程区别</h4><ul>
+<li><p>进程：一个在<strong>内存中运行的应用程序</strong>。 每个正在系统上运行的程序都是一个进程</p>
+</li>
+<li><p>线程：<strong>进程中的一个执行任务</strong>（控制单元）， 它负责在程序里独立执行。</p>
+</li>
+<li><p>进程与线程的区别</p>
+<ul>
+<li><p>根本区别：<strong>进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</strong></p>
+</li>
+<li><p>资源开销：程序之间的切换会有较大的开销；线程之间切换的开销小。</p>
+</li>
+<li><p>包含关系：线程是进程的一部分。</p>
+</li>
+<li><p>内存分配：同一进程的线程共享本进程的地址空间和资源，而进程与进程之间的地址空间和资源是相互独立的</p>
+</li>
+<li><p>影响关系：一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃有可能导致整个进程都死掉。</p>
+</li>
+<li><p>执行过程：每个独立的进程有程序运行的入口、顺序执行序列和程序出口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制，两者均可并发执行</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是上下文切换"><a href="#什么是上下文切换" class="headerlink" title="什么是上下文切换?"></a>什么是上下文切换?</h4><ul>
+<li>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是<strong>为每个线程分配时间片并轮转</strong>的形式。当<strong>一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换</strong>。</li>
+<li>上下文切换通常是<strong>计算密集型的</strong>。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，<strong>上下文切换对系统来说意味着消耗大量的 CPU 时间</strong>，事实上，可能是操作系统中时间消耗最大的操作。</li>
+</ul>
+</li>
+<li><h4 id="什么是线程死锁"><a href="#什么是线程死锁" class="headerlink" title="什么是线程死锁"></a>什么是线程死锁</h4><ul>
+<li>死锁是指两个或两个以上的进程（线程）在执行过程中，<strong>由于竞争资源或者由于彼此通信而造成的一种阻塞的现象</strong>，此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程（线程）称为死锁进程（线程）。</li>
+<li>多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。</li>
+</ul>
+</li>
+<li><h4 id="形成死锁的四个必要条件是什么"><a href="#形成死锁的四个必要条件是什么" class="headerlink" title="形成死锁的四个必要条件是什么"></a>形成死锁的四个必要条件是什么</h4><ul>
+<li><p><strong>互斥条件</strong>：在一段时间内某资源只由一个进程占用。如果此时还有其它进程请求资源，就只能等待，直至占有资源的进程用毕释放。</p>
+</li>
+<li><p><strong>占有且等待条件</strong>：指进程已经保持至少一个资源，但又提出了新的资源请求，而该资源已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。</p>
+</li>
+<li><p><strong>不可抢占条件</strong>：别人已经占有了某项资源，你不能因为自己也需要该资源，就去把别人的资源抢过来。</p>
+</li>
+<li><p><strong>循环等待条件</strong>：若干进程之间形成一种头尾相接的循环等待资源关系。（比如一个进程集合，A在等B，B在等C，C在等A）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何避免线程死锁"><a href="#如何避免线程死锁" class="headerlink" title="如何避免线程死锁"></a>如何避免线程死锁</h4><ul>
+<li>避免一个线程同时获得多个锁</li>
+<li>避免一个线程在锁内同时占用多个资源，尽量保证每个锁只占用一个资源</li>
+<li>尝试使用定时锁，使用lock.tryLock(timeout)来替代使用内部锁机制</li>
+</ul>
+</li>
+<li><h4 id="创建线程的四种方式"><a href="#创建线程的四种方式" class="headerlink" title="创建线程的四种方式"></a>创建线程的四种方式</h4><ul>
+<li><p>继承 Thread 类；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">&quot; run()方法正在执行...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>实现 Runnable 接口；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">&quot; run()方法执行中...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>实现 Callable 接口；</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCallable</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">&quot; call()方法执行中...&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>使用匿名内部类方式</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateRunnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建多线程创建开始</span></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;i:&quot;</span> + i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="说一下-runnable-和-callable-有什么区别"><a href="#说一下-runnable-和-callable-有什么区别" class="headerlink" title="说一下 runnable 和 callable 有什么区别"></a>说一下 runnable 和 callable 有什么区别</h4><ul>
+<li><p><strong>相同点：</strong></p>
+<ul>
+<li>都是接口</li>
+<li>都可以编写多线程程序</li>
+<li>都采用Thread.start()启动线程</li>
+</ul>
+</li>
+<li><p><strong>主要区别：</strong></p>
+<ul>
+<li>Runnable 接口 run 方法无返回值；Callable 接口 call 方法有返回值，是个泛型，和Future、FutureTask配合可以用来获取异步执行的结果</li>
+<li>Runnable 接口 run 方法只能抛出运行时异常，且无法捕获处理；Callable 接口 call 方法允许抛出异常，可以获取异常信息 注：Callalbe接口支持返回执行结果，需要调用FutureTask.get()得到，此方法会阻塞主进程的继续往下执行，如果不调用不会阻塞。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="线程的-run-和-start-有什么区别？"><a href="#线程的-run-和-start-有什么区别？" class="headerlink" title="线程的 run()和 start()有什么区别？"></a>线程的 run()和 start()有什么区别？</h4><ul>
+<li><p>每个线程都是通过某个特定Thread对象所对应的方法run()来完成其操作的，<strong>run()方法称为线程体</strong>。通过调用Thread类的<strong>start()方法来启动一个线程</strong>。</p>
+</li>
+<li><p><strong>start() 方法用于启动线程，run() 方法用于执行线程的运行时代码</strong>。run() 可以重复调用，而 start() 只能调用一次。</p>
+</li>
+<li><p>start()方法来启动一个线程，真正实现了多线程运行。调用start()方法无需等待run方法体代码执行完毕，可以直接继续执行其他的代码； 此时线程是处于就绪状态，并没有运行。 然后通过此Thread类调用方法run()来完成其运行状态， run()方法运行结束， 此线程终止。然后CPU再调度其它线程。</p>
+</li>
+<li><p>run()方法是在本线程里的，只是线程里的一个函数，而不是多线程的。 如果直接调用run()，其实就相当于是调用了一个普通函数而已，直接待用run()方法必须等待run()方法执行完毕才能执行下面的代码，所以执行路径还是只有一条，根本就没有线程的特征，所以在多线程执行时要使用start()方法而不是run()方法。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？"><a href="#为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？" class="headerlink" title="为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？"></a>为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？</h4><ul>
+<li>new 一个 Thread，线程进入了新建状态。调用 start() 方法，会启动一个线程并使线程进入了就绪状态，当分配到<code>时间片</code>后就可以开始运行了。 start() 会执行线程的相应准备工作，然后自动执行 run() 方法的内容，这是真正的多线程工作。</li>
+<li>而直接执行 run() 方法，会把 run 方法当成一个 main 线程下的普通方法去执行，并不会在某个线程中执行它，所以这并不是多线程工作。</li>
+</ul>
+<p>总结： 调用 start 方法方可启动线程并使线程进入就绪状态，而 run 方法只是 thread 的一个普通方法调用，还是在主线程里执行。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h4><p><img src="/posts/1a83dbd8/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.jpg" alt="线程的状态"></p>
+<ul>
+<li><p>新建(new)：新创建了一个线程对象。</p>
+</li>
+<li><p>就绪（可运行状态）(runnable)：线程对象创建后，当调用线程对象的 start()方法，该线程处于就绪状态，等待被线程调度选中，获取cpu的使用权。</p>
+</li>
+<li><p>运行(running)：可运行状态(runnable)的线程获得了cpu时间片（timeslice），执行程序代码。</p>
+<blockquote>
+<p>注：就绪状态是进入到运行状态的唯一入口，也就是说，线程要想进入运行状态执行，首先必须处于就绪状态中；</p>
+</blockquote>
+</li>
+<li><p>阻塞(block)：处于运行状态中的线程由于某种原因，暂时放弃对 CPU的使用权，停止执行，此时进入阻塞状态，直到其进入到就绪状态，才 有机会再次被 CPU 调用以进入到运行状态。</p>
+<ul>
+<li>阻塞的情况分三种：<ul>
+<li>(一). 等待阻塞：运行状态中的线程执行 wait()方法，JVM会把该线程放入等待队列(waitting queue)中，使本线程进入到等待阻塞状态；</li>
+<li>(二). 同步阻塞：线程在获取 synchronized 同步锁失败(因为锁被其它线程所占用)，，则JVM会把该线程放入锁池(lock pool)中，线程会进入同步阻塞状态；</li>
+<li>(三). 其他阻塞: 通过调用线程的 sleep()或 join()或发出了 I/O 请求时，线程会进入到阻塞状态。当 sleep()状态超时、join()等待线程终止或者超时、或者 I/O 处理完毕时，线程重新转入就绪状态。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>死亡(dead)(结束)：线程run()、main()方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="请说出与线程同步以及线程调度相关的方法。"><a href="#请说出与线程同步以及线程调度相关的方法。" class="headerlink" title="请说出与线程同步以及线程调度相关的方法。"></a>请说出与线程同步以及线程调度相关的方法。</h4><ul>
+<li><p>wait()：使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁；</p>
+</li>
+<li><p>sleep()：使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要处理 InterruptedException 异常；</p>
+</li>
+<li><p>notify()：唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，而是由 JVM 确定唤醒哪个线程，而且与优先级无关；</p>
+</li>
+<li><p>notityAll()：唤醒所有处于等待状态的线程，该方法并不是将对象的锁给所有线程，而是让它们竞争，只有获得锁的线程才能进入就绪状态；</p>
+</li>
+</ul>
+</li>
+<li><h4 id="sleep-和-wait-有什么区别？"><a href="#sleep-和-wait-有什么区别？" class="headerlink" title="sleep() 和 wait() 有什么区别？"></a>sleep() 和 wait() 有什么区别？</h4><ul>
+<li><p>类的不同：sleep() 是 Thread线程类的静态方法，wait() 是 Object类的方法。</p>
+</li>
+<li><p>是否释放锁：sleep() 不释放锁；wait() 释放锁。</p>
+</li>
+<li><p>用途不同：Wait 通常被用于线程间交互/通信，sleep 通常被用于暂停执行。</p>
+</li>
+<li><p>用法不同：wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify() 或者 notifyAll() 方法。sleep() 方法执行完成后，线程会自动苏醒。或者可以使用wait(long timeout)超时后线程会自动苏醒。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="线程的-sleep-方法和-yield-方法有什么区别？"><a href="#线程的-sleep-方法和-yield-方法有什么区别？" class="headerlink" title="线程的 sleep()方法和 yield()方法有什么区别？"></a>线程的 sleep()方法和 yield()方法有什么区别？</h4><ul>
+<li><p>sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；</p>
+</li>
+<li><p>线程执行 sleep()方法后转入阻塞（blocked）状态，而执行 yield()方法后转入就绪（ready）状态；</p>
+</li>
+<li><p>sleep()方法声明抛出 InterruptedException，而 yield()方法没有声明任何异常；</p>
+</li>
+<li><p>sleep()方法比 yield()方法（跟操作系统 CPU 调度相关）具有更好的可移植性，通常不建议使用yield()方法来控制并发线程的执行。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何停止一个正在运行的线程？"><a href="#如何停止一个正在运行的线程？" class="headerlink" title="如何停止一个正在运行的线程？"></a>如何停止一个正在运行的线程？</h4><ul>
+<li>在java中有以下3种方法可以终止正在运行的线程：<ul>
+<li>使用退出标志，使线程正常退出，也就是当run方法完成后线程终止。</li>
+<li>使用stop方法强行终止，但是不推荐这个方法，因为stop和suspend及resume一样都是过期作废的方法。</li>
+<li>使用interrupt方法中断线程。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Java-中你怎样唤醒一个阻塞的线程？"><a href="#Java-中你怎样唤醒一个阻塞的线程？" class="headerlink" title="Java 中你怎样唤醒一个阻塞的线程？"></a>Java 中你怎样唤醒一个阻塞的线程？</h4><ul>
+<li>首先 ，wait()、notify() 方法是针对对象的，调用任意对象的 wait()方法都将导致线程阻塞，阻塞的同时也将释放该对象的锁，相应地，调用任意对象的 notify()方法则将随机解除该对象阻塞的线程，但它需要重新获取该对象的锁，直到获取成功才能往下执行；</li>
+<li>其次，wait、notify 方法必须在 synchronized 块或方法中被调用，并且要保证同步块或方法的锁对象与调用 wait、notify 方法的对象是同一个，如此一来在调用 wait 之前当前线程就已经成功获取某对象的锁，执行 wait 阻塞后当前线程就将之前获取的对象锁释放。</li>
+</ul>
+</li>
+<li><h4 id="notify-和-notifyAll-有什么区别？"><a href="#notify-和-notifyAll-有什么区别？" class="headerlink" title="notify() 和 notifyAll() 有什么区别？"></a>notify() 和 notifyAll() 有什么区别？</h4><ul>
+<li><p>如果线程调用了对象的 wait()方法，那么线程便会处于该对象的等待池中，等待池中的线程不会去竞争该对象的锁。</p>
+</li>
+<li><p>notifyAll() 会唤醒所有的线程，notify() 只会唤醒一个线程。</p>
+</li>
+<li><p>notifyAll() 调用后，会将全部线程由等待池移到锁池，然后参与锁的竞争，竞争成功则继续执行，如果不成功则留在锁池等待锁被释放后再次参与竞争。而 notify()只会唤醒一个线程，具体唤醒哪一个线程由虚拟机控制。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="如何在两个线程间共享数据？"><a href="#如何在两个线程间共享数据？" class="headerlink" title="如何在两个线程间共享数据？"></a>如何在两个线程间共享数据？</h4><p>在两个线程间共享变量即可实现共享。</p>
+</li>
+<li><h4 id="Java-如何实现多线程之间的通讯和协作？"><a href="#Java-如何实现多线程之间的通讯和协作？" class="headerlink" title="Java 如何实现多线程之间的通讯和协作？"></a>Java 如何实现多线程之间的通讯和协作？</h4><ul>
+<li><p>可以通过中断 和 共享变量的方式实现线程间的通讯和协作</p>
+</li>
+<li><p>比如说最经典的生产者-消费者模型：当队列满时，生产者需要等待队列有空间才能继续往里面放入商品，而在等待的期间内，生产者必须释放对临界资源（即队列）的占用权。因为生产者如果不释放对临界资源的占用权，那么消费者就无法消费队列中的商品，就不会让队列有空间，那么生产者就会一直无限等待下去。因此，一般情况下，当队列满时，会让生产者交出对临界资源的占用权，并进入挂起状态。然后等待消费者消费了商品，然后消费者通知生产者队列有空间了。同样地，当队列空时，消费者也必须等待，等待生产者通知它队列中有商品了。这种互相通信的过程就是线程间的协作。</p>
+</li>
+<li><p>Java中线程通信协作的最常见方式：</p>
+<ul>
+<li>一.syncrhoized加锁的线程的Object类的wait()/notify()/notifyAll()</li>
+<li>二.ReentrantLock类加锁的线程的Condition类的await()/signal()/signalAll()</li>
+</ul>
+</li>
+<li><p>线程间直接的数据交换：</p>
+<ul>
+<li>三.通过管道进行线程间通信：字节流、字符流</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="什么是线程同步和线程互斥，有哪几种实现方式？"><a href="#什么是线程同步和线程互斥，有哪几种实现方式？" class="headerlink" title="什么是线程同步和线程互斥，有哪几种实现方式？"></a>什么是线程同步和线程互斥，有哪几种实现方式？</h4><ul>
+<li><p>当一个线程对共享的数据进行操作时，应使之成为一个”原子操作“，即在没有完成相关操作之前，不允许其他线程打断它，否则，就会破坏数据的完整性，必然会得到错误的处理结果，这就是线程的同步。</p>
+</li>
+<li><p>在多线程应用中，考虑不同线程之间的数据同步和防止死锁。当两个或多个线程之间同时等待对方释放资源的时候就会形成线程之间的死锁。为了防止死锁的发生，需要通过同步来实现线程安全。</p>
+</li>
+<li><p>线程互斥是指对于共享的进程系统资源，在各单个线程访问时的排它性。当有若干个线程都要使用某一共享资源时，任何时刻最多只允许一个线程去使用，其它要使用该资源的线程必须等待，直到占用资源者释放该资源。线程互斥可以看成是一种特殊的线程同步。</p>
+</li>
+<li><p>线程间的同步方法大体可分为两类：用户模式和内核模式。顾名思义，内核模式就是指利用系统内核对象的单一性来进行同步，使用时需要切换内核态与用户态，而用户模式就是不需要切换到内核态，只在用户态完成操作。</p>
+</li>
+<li><p>用户模式下的方法有：原子操作（例如一个单一的全局变量），临界区。内核模式下的方法有：事件，信号量，互斥量。</p>
+</li>
+<li><p>实现线程同步的方法</p>
+<ul>
+<li>同步代码方法：sychronized 关键字修饰的方法</li>
+<li>同步代码块：sychronized 关键字修饰的代码块</li>
+<li>使用特殊变量域volatile实现线程同步：volatile关键字为域变量的访问提供了一种免锁机制</li>
+<li>使用重入锁实现线程同步：reentrantlock类是可冲入、互斥、实现了lock接口的锁他与sychronized方法具有相同的基本行为和语义</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="如果你提交任务时，线程池队列已满，这时会发生什么"><a href="#如果你提交任务时，线程池队列已满，这时会发生什么" class="headerlink" title="如果你提交任务时，线程池队列已满，这时会发生什么"></a>如果你提交任务时，线程池队列已满，这时会发生什么</h4><p>（1）如果使用的是无界队列 LinkedBlockingQueue，也就是无界队列的话，没关系，继续添加任务到阻塞队列中等待执行，因为 LinkedBlockingQueue 可以近乎认为是一个无穷大的队列，可以无限存放任务</p>
+<p>（2）如果使用的是有界队列比如 ArrayBlockingQueue，任务首先会被添加到ArrayBlockingQueue 中，ArrayBlockingQueue 满了，会根据maximumPoolSize 的值增加线程数量，如果增加了线程数量还是处理不过来，ArrayBlockingQueue 继续满，那么则会使用拒绝策略RejectedExecutionHandler 处理满了的任务，默认是 AbortPolicy</p>
+</li>
+<li><h4 id="你对线程优先级的理解是什么？"><a href="#你对线程优先级的理解是什么？" class="headerlink" title="你对线程优先级的理解是什么？"></a>你对线程优先级的理解是什么？</h4><ul>
+<li><p>每一个线程都是有优先级的，一般来说，高优先级的线程在运行时会具有优先权，但这依赖于线程调度的实现，这个实现是和操作系统相关的(OS dependent)。我们可以定义线程的优先级，但是这并不能保证高优先级的线程会在低优先级的线程前执行。线程优先级是一个 int 变量(从 1-10)，1 代表最低优先级，10 代表最高优先级。</p>
+</li>
+<li><p>Java 的线程优先级调度会委托给操作系统去处理，所以与具体的操作系统优先级有关，如非特别需要，一般无需设置线程优先级。</p>
+</li>
+<li><p>当然，如果你真的想设置优先级可以通过setPriority()方法设置，但是设置了不一定会该变，这个是不准确的</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="多线程的常用方法"><a href="#多线程的常用方法" class="headerlink" title="多线程的常用方法"></a>多线程的常用方法</h4><table>
+<thead>
+<tr>
+<th align="center">方法 名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">sleep()</td>
+<td align="center">强迫一个线程睡眠Ｎ毫秒</td>
+</tr>
+<tr>
+<td align="center">isAlive()</td>
+<td align="center">判断一个线程是否存活。</td>
+</tr>
+<tr>
+<td align="center">join()</td>
+<td align="center">等待线程终止</td>
+</tr>
+<tr>
+<td align="center">activeCount()</td>
+<td align="center">程序中活跃的线程数</td>
+</tr>
+<tr>
+<td align="center">enumerate()</td>
+<td align="center">枚举程序中的线程</td>
+</tr>
+<tr>
+<td align="center">currentThread()</td>
+<td align="center">得到当前线程</td>
+</tr>
+<tr>
+<td align="center">setName()</td>
+<td align="center">为线程设置一个名称</td>
+</tr>
+<tr>
+<td align="center">wait()</td>
+<td align="center">强迫一个线程等待</td>
+</tr>
+<tr>
+<td align="center">notify()</td>
+<td align="center">通知一个线程继续运行</td>
+</tr>
+<tr>
+<td align="center">setPriority()</td>
+<td align="center">设置一个线程的优先级</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<ul>
+<li><h4 id="并发关键字-synchronized-？"><a href="#并发关键字-synchronized-？" class="headerlink" title="并发关键字 synchronized ？"></a>并发关键字 synchronized ？</h4><ul>
+<li>在 Java 中，synchronized 关键字是用来<strong>控制线程同步的</strong>，就是在多线程的环境下，控制 synchronized 代码段不被多个线程同时执行。synchronized 可以修饰类、方法、变量。</li>
+<li>另外，在 Java 早期版本中，synchronized属于重量级锁，效率低下，因为监视器锁（monitor）是依赖于底层的操作系统的 Mutex Lock 来实现的，Java 的线程是映射到操作系统的原生线程之上的。JDK1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。</li>
+</ul>
+</li>
+<li><h4 id="说说自己是怎么使用-synchronized-关键字，在项目中用到了吗"><a href="#说说自己是怎么使用-synchronized-关键字，在项目中用到了吗" class="headerlink" title="说说自己是怎么使用 synchronized 关键字，在项目中用到了吗"></a>说说自己是怎么使用 synchronized 关键字，在项目中用到了吗</h4></li>
+<li></li>
+<li><h4 id="单例模式了解吗？给我解释一下双重检验锁方式实现单例模式！”"><a href="#单例模式了解吗？给我解释一下双重检验锁方式实现单例模式！”" class="headerlink" title="单例模式了解吗？给我解释一下双重检验锁方式实现单例模式！”"></a>单例模式了解吗？给我解释一下双重检验锁方式实现单例模式！”</h4><ul>
+<li><p>修饰实例方法: 作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁</p>
+</li>
+<li><p>修饰静态方法: 也就是给当前类加锁，会作用于类的所有对象实例，因为静态成员不属于任何一个实例对象，是类成员（ static 表明这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态 synchronized 方法，而线程B需要调用这个实例对象所属类的静态 synchronized 方法，是允许的，不会发生互斥现象，因为访问静态 synchronized 方法占用的锁是当前类的锁，而访问非静态 synchronized 方法占用的锁是当前实例对象锁。</p>
+</li>
+<li><p>修饰代码块: 指定加锁对象，对给定对象加锁，进入同步代码库前要获得给定对象的锁。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="synchronized-和-Lock-有什么区别？"><a href="#synchronized-和-Lock-有什么区别？" class="headerlink" title="synchronized 和 Lock 有什么区别？"></a>synchronized 和 Lock 有什么区别？</h4><ul>
+<li><p>首先synchronized是Java内置关键字，在JVM层面，Lock是个Java类；</p>
+</li>
+<li><p>synchronized 可以给类、方法、代码块加锁；而 lock 只能给代码块加锁。</p>
+</li>
+<li><p>synchronized 不需要手动获取锁和释放锁，使用简单，发生异常会自动释放锁，不会造成死锁；而 lock 需要自己加锁和释放锁，如果使用不当没有 unLock()去释放锁就会造成死锁。</p>
+</li>
+<li><p>通过 Lock 可以知道有没有成功获取锁，而 synchronized 却无法办到。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="synchronized-和-ReentrantLock-区别是什么？"><a href="#synchronized-和-ReentrantLock-区别是什么？" class="headerlink" title="synchronized 和 ReentrantLock 区别是什么？"></a>synchronized 和 ReentrantLock 区别是什么？</h4><ul>
+<li><p>synchronized 是和 if、else、for、while 一样的关键字，ReentrantLock 是类，这是二者的本质区别。既然 ReentrantLock 是类，那么它就提供了比synchronized 更多更灵活的特性，可以被继承、可以有方法、可以有各种各样的类变量</p>
+</li>
+<li><p>synchronized 早期的实现比较低效，对比 ReentrantLock，大多数场景性能都相差较大，但是在 Java 6 中对 synchronized 进行了非常多的改进。</p>
+</li>
+<li><p>相同点：两者都是可重入锁</p>
+<ul>
+<li>两者都是可重入锁。“可重入锁”概念是：自己可以再次获取自己的内部锁。比如一个线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果不可锁重入的话，就会造成死锁。同一个线程每次获取锁，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。</li>
+</ul>
+</li>
+<li><p>主要区别如下：</p>
+<ul>
+<li>ReentrantLock 使用起来比较灵活，但是必须有释放锁的配合动作；</li>
+<li>ReentrantLock 必须手动获取与释放锁，而 synchronized 不需要手动释放和开启锁；</li>
+<li>ReentrantLock 只适用于代码块锁，而 synchronized 可以修饰类、方法、变量等。</li>
+<li>二者的锁机制其实也是不一样的。ReentrantLock 底层调用的是 Unsafe 的park 方法加锁，synchronized 操作的应该是对象头中 mark word</li>
+</ul>
+</li>
+<li><p>Java中每一个对象都可以作为锁，这是synchronized实现同步的基础：</p>
+<ul>
+<li>普通同步方法，锁是当前实例对象</li>
+<li>静态同步方法，锁是当前类的class对象</li>
+<li>同步方法块，锁是括号里面的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="Lock-接口和synchronized-对比同步它有什么优势？"><a href="#Lock-接口和synchronized-对比同步它有什么优势？" class="headerlink" title="Lock 接口和synchronized 对比同步它有什么优势？"></a>Lock 接口和synchronized 对比同步它有什么优势？</h4><ul>
+<li><p>Lock 接口比同步方法和同步块提供了更具扩展性的锁操作。他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。</p>
+</li>
+<li><p>它的优势有：</p>
+<ol>
+<li>可以使锁更公平</li>
+<li>可以使线程在等待锁的时候响应中断</li>
+<li>可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间</li>
+<li>可以在不同的范围，以不同的顺序获取和释放锁</li>
+</ol>
+</li>
+<li><p>整体上来说 Lock 是 synchronized 的扩展版，Lock 提供了无条件的、可轮询的(tryLock 方法)、定时的(tryLock 带参方法)、可中断的(lockInterruptibly)、可多条件队列的(newCondition 方法)锁操作。另外 Lock 的实现类基本都支持非公平锁(默认)和公平锁，synchronized 只支持非公平锁，当然，在大部分情况下，非公平锁是高效的选择。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"><a href="#乐观锁和悲观锁的理解及如何实现，有哪些实现方式？" class="headerlink" title="乐观锁和悲观锁的理解及如何实现，有哪些实现方式？"></a>乐观锁和悲观锁的理解及如何实现，有哪些实现方式？</h4><ul>
+<li>悲观锁：总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。再比如 Java 里面的同步原语 synchronized 关键字的实现也是悲观锁。</li>
+<li>乐观锁：顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于 write_condition 机制，其实都是提供的乐观锁。在 Java中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。</li>
+</ul>
+</li>
+<li><h4 id="什么是-CAS"><a href="#什么是-CAS" class="headerlink" title="什么是 CAS"></a>什么是 CAS</h4><ul>
+<li><p>CAS 是 compare and swap 的缩写，即我们所说的比较交换。</p>
+</li>
+<li><p>cas 是一种基于锁的操作，而且是乐观锁。在 java 中锁分为乐观锁和悲观锁。悲观锁是将资源锁住，等一个之前获得锁的线程释放锁之后，下一个线程才可以访问。而乐观锁采取了一种宽泛的态度，通过某种方式不加锁来处理资源，比如通过给记录加 version 来获取数据，性能较悲观锁有很大的提高。</p>
+</li>
+<li><p>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。如果内存地址里面的值和 A 的值是一样的，那么就将内存里面的值更新成 B。CAS是通过无限循环来获取数据的，若果在第一轮循环中，a 线程获取地址里面的值被b 线程修改了，那么 a 线程需要自旋，到下次循环才有可能机会执行。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="CAS-的会产生什么问题？"><a href="#CAS-的会产生什么问题？" class="headerlink" title="CAS 的会产生什么问题？"></a>CAS 的会产生什么问题？</h4><ul>
+<li>1、ABA 问题：</li>
+</ul>
+<p>比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且 two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行 CAS 操作发现内存中仍然是 A，然后 one 操作成功。尽管线程 one 的 CAS 操作成功，但可能存在潜藏的问题。从 Java1.5 开始 JDK 的 atomic包里提供了一个类 AtomicStampedReference 来解决 ABA 问题。</p>
+<ul>
+<li>2、循环时间长开销大：</li>
+</ul>
+<p>对于资源竞争严重（线程冲突严重）的情况，CAS 自旋的概率会比较大，从而浪费更多的 CPU 资源，效率低于 synchronized。</p>
+<ul>
+<li>3、只能保证一个共享变量的原子操作：</li>
+</ul>
+<p>当对一个共享变量执行操作时，我们可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，这个时候就可以用锁。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="死锁与活锁的区别，死锁与饥饿的区别？"><a href="#死锁与活锁的区别，死锁与饥饿的区别？" class="headerlink" title="死锁与活锁的区别，死锁与饥饿的区别？"></a>死锁与活锁的区别，死锁与饥饿的区别？</h4><ul>
+<li><p>死锁：是指两个或两个以上的进程（或线程）在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，它们都将无法推进下去。</p>
+</li>
+<li><p>活锁：任务或者执行者没有被阻塞，由于某些条件没有满足，导致一直重复尝试，失败，尝试，失败。</p>
+</li>
+<li><p>活锁和死锁的区别在于，处于活锁的实体是在不断的改变状态，这就是所谓的“活”， 而处于死锁的实体表现为等待；活锁有可能自行解开，死锁则不能。</p>
+</li>
+<li><p>饥饿：一个或者多个线程因为种种原因无法获得所需要的资源，导致一直无法执行的状态。</p>
+</li>
+<li><p>Java 中导致饥饿的原因：</p>
+<ul>
+<li>1、高优先级线程吞噬所有的低优先级线程的 CPU 时间。</li>
+<li>2、线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。</li>
+<li>3、线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的 wait 方法)，因为其他线程总是被持续地获得唤醒。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是线程池？线程池作用？"><a href="#什么是线程池？线程池作用？" class="headerlink" title="什么是线程池？线程池作用？"></a>什么是线程池？线程池作用？</h4><ul>
+<li><p>Java中的线程池是运用场景最多的并发框架，几乎所有需要异步或并发执行任务的程序都可以使用线程池。在开发过程中，合理地使用线程池能够带来许多好处。</p>
+<ul>
+<li>降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li>提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。</li>
+<li>提高线程的可管理性。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。但是，要做到合理利用</li>
+</ul>
+</li>
+<li><h4 id="线程池作用"><a href="#线程池作用" class="headerlink" title="线程池作用"></a>线程池作用</h4><ul>
+<li>线程池是为突然大量爆发的线程设计的，通过有限的几个固定线程为大量的操作服务，减少了创建和销毁线程所需的时间，从而提高效率。</li>
+<li>如果一个线程所需要执行的时间非常长的话，就没必要用线程池了(不是不能作长时间操作，而是不宜。本来降低线程创建和销毁，结果你那么久我还不好控制还不如直接创建线程)，况且我们还不能控制线程池中线程的开始、挂起、和中止。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="线程池有什么优点？"><a href="#线程池有什么优点？" class="headerlink" title="线程池有什么优点？"></a>线程池有什么优点？</h4><ul>
+<li><p>降低资源消耗：重用存在的线程，减少对象创建销毁的开销。</p>
+</li>
+<li><p>提高响应速度。可有效的控制最大并发线程数，提高系统资源的使用率，同时避免过多资源竞争，避免堵塞。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</p>
+</li>
+<li><p>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</p>
+</li>
+<li><p>附加功能：提供定时执行、定期执行、单线程、并发数控制等功能。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="什么是ThreadPoolExecutor？"><a href="#什么是ThreadPoolExecutor？" class="headerlink" title="什么是ThreadPoolExecutor？"></a>什么是ThreadPoolExecutor？</h4><ul>
+<li><p><strong>ThreadPoolExecutor就是线程池</strong></p>
+<p>ThreadPoolExecutor其实也是JAVA的一个类，我们一般通过Executors工厂类的方法，通过传入不同的参数，就可以构造出适用于不同应用场景下的ThreadPoolExecutor（线程池）</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">corePoolSize 核心线程数量</span><br><span class="line">maximumPoolSize 最大线程数量</span><br><span class="line">keepAliveTime 线程保持时间，N个时间单位</span><br><span class="line">unit 时间单位（比如秒，分）</span><br><span class="line">workQueue 阻塞队列</span><br><span class="line">threadFactory 线程工厂</span><br><span class="line">handler 线程池拒绝策略</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="线程池四种创建方式？"><a href="#线程池四种创建方式？" class="headerlink" title="线程池四种创建方式？"></a>线程池四种创建方式？</h4><ul>
+<li>newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</li>
+<li>newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</li>
+<li>newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。</li>
+<li>newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</li>
+</ul>
+</li>
+<li><h4 id="Java-中-Executor-和-Executors-的区别？"><a href="#Java-中-Executor-和-Executors-的区别？" class="headerlink" title="Java 中 Executor 和 Executors 的区别？"></a>Java 中 Executor 和 Executors 的区别？</h4><ul>
+<li>Executors 工具类的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。</li>
+<li>Executor 接口对象能执行我们的线程任务。</li>
+<li>ExecutorService 接口继承了 Executor 接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</li>
+<li>使用 ThreadPoolExecutor 可以创建自定义线程池。</li>
+</ul>
+</li>
+<li><h4 id="四种构建线程池的区别及特点？"><a href="#四种构建线程池的区别及特点？" class="headerlink" title="四种构建线程池的区别及特点？"></a>四种构建线程池的区别及特点？</h4></li>
+<li></li>
+<li><h4 id="线程池都有哪些状态？"><a href="#线程池都有哪些状态？" class="headerlink" title="线程池都有哪些状态？"></a>线程池都有哪些状态？</h4><ul>
+<li>RUNNING：这是最正常的状态，接受新的任务，处理等待队列中的任务。</li>
+<li>SHUTDOWN：不接受新的任务提交，但是会继续处理等待队列中的任务。</li>
+<li>STOP：不接受新的任务提交，不再处理等待队列中的任务，中断正在执行任务的线程。</li>
+<li>TIDYING：所有的任务都销毁了，workCount 为 0，线程池的状态在转换为 TIDYING 状态时，会执行钩子方法 terminated()。</li>
+<li>TERMINATED：terminated()方法结束后，线程池的状态就会变成这个。</li>
+</ul>
+</li>
+<li><h4 id="线程池的执行原理？"><a href="#线程池的执行原理？" class="headerlink" title="线程池的执行原理？"></a>线程池的执行原理？</h4><ol>
+<li>判断线程池里的核心线程是否都在执行任务，如果不是（核心线程空闲或者还有核心线程没有被创建）则创建一个新的工作线程来执行任务。如果核心线程都在执行任务，则进入下个流程。</li>
+<li>线程池判断工作队列是否已满，如果工作队列没有满，则将新提交的任务存储在这个工作队列里。如果工作队列满了，则进入下个流程。</li>
+<li>判断线程池里的线程是否都处于工作状态，如果没有，则创建一个新的工作线程来执行任务。如果已经满了，则交给饱和策略来处理这个任务。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>JavaSE</tag>
+        <tag>多线程</tag>
       </tags>
   </entry>
 </search>

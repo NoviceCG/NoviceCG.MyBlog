@@ -6,7 +6,7 @@
   <link href="https://novicecg.github.io/atom.xml" rel="self"/>
   
   <link href="https://novicecg.github.io/"/>
-  <updated>2021-11-22T10:16:28.943Z</updated>
+  <updated>2021-11-23T09:11:50.011Z</updated>
   <id>https://novicecg.github.io/</id>
   
   <author>
@@ -17,55 +17,245 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test3</title>
-    <link href="https://novicecg.github.io/posts/64bcbdce/"/>
-    <id>https://novicecg.github.io/posts/64bcbdce/</id>
-    <published>2021-11-22T10:15:22.000Z</published>
-    <updated>2021-11-22T10:16:28.943Z</updated>
+    <title>初级_MySQL基础面试题</title>
+    <link href="https://novicecg.github.io/posts/55aa21a3/"/>
+    <id>https://novicecg.github.io/posts/55aa21a3/</id>
+    <published>2021-11-23T09:01:08.000Z</published>
+    <updated>2021-11-23T09:11:50.011Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h3 id=&quot;这是第三次测试&quot;&gt;&lt;a href=&quot;#这是第三次测试&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;初级-MySQL基础面试题&quot;&gt;&lt;a href=&quot;#初级-MySQL基础面试题&quot; class=&quot;headerlink&quot; title=&quot;初级_MySQL基础面试题&quot;&gt;&lt;/a&gt;初级_MySQL基础面试题&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h4</summary>
         
       
     
     
     
-    <category term="good" scheme="https://novicecg.github.io/categories/good/"/>
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-    <category term="good" scheme="https://novicecg.github.io/tags/good/"/>
+    <category term="MySQL" scheme="https://novicecg.github.io/tags/MySQL/"/>
+    
+    <category term="数据库" scheme="https://novicecg.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
-    <title>test2</title>
-    <link href="https://novicecg.github.io/posts/13bb8d58/"/>
-    <id>https://novicecg.github.io/posts/13bb8d58/</id>
-    <published>2021-11-22T08:57:55.000Z</published>
-    <updated>2021-11-22T09:05:13.289Z</updated>
+    <title>初级_框架_Mybatis基础面试题</title>
+    <link href="https://novicecg.github.io/posts/58d59bc0/"/>
+    <id>https://novicecg.github.io/posts/58d59bc0/</id>
+    <published>2021-11-23T08:55:30.000Z</published>
+    <updated>2021-11-23T09:12:19.923Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;这是第二次测试&quot;&gt;&lt;a href=&quot;#这是第二次测试&quot; class=&quot;headerlink&quot; title=&quot;这是第二次测试&quot;&gt;&lt;/a&gt;这是第二次测试&lt;/h2&gt;&lt;p&gt;1&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;3&lt;/p&gt;
-&lt;h4 id=&quot;4&quot;&gt;&lt;a href=&quot;#4&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;初级·框架·Mybatis基础面试题&quot;&gt;&lt;a href=&quot;#初级·框架·Mybatis基础面试题&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
-    <category term="test" scheme="https://novicecg.github.io/categories/test/"/>
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-    <category term="test" scheme="https://novicecg.github.io/tags/test/"/>
+    <category term="框架" scheme="https://novicecg.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="MyBatis" scheme="https://novicecg.github.io/tags/MyBatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_框架_SpringMVC基础面试题</title>
+    <link href="https://novicecg.github.io/posts/1c13398b/"/>
+    <id>https://novicecg.github.io/posts/1c13398b/</id>
+    <published>2021-11-23T08:55:03.000Z</published>
+    <updated>2021-11-23T09:12:54.833Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级·框架·SpringMVC基础面试题&quot;&gt;&lt;a href=&quot;#初级·框架·SpringMVC基础面试题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="SpringMVC" scheme="https://novicecg.github.io/tags/SpringMVC/"/>
+    
+    <category term="框架" scheme="https://novicecg.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_框架_Spring基础面试题</title>
+    <link href="https://novicecg.github.io/posts/847babcc/"/>
+    <id>https://novicecg.github.io/posts/847babcc/</id>
+    <published>2021-11-23T08:54:46.000Z</published>
+    <updated>2021-11-23T09:13:17.790Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级·框架·Spring基础面试题&quot;&gt;&lt;a href=&quot;#初级·框架·Spring基础面试题&quot; class=&quot;headerlink&quot; title=&quot;初级·框架·Spring基础面试题&quot;&gt;&lt;/a&gt;初级·框架·Spring基础面试题&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h4</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="框架" scheme="https://novicecg.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+    <category term="Spring" scheme="https://novicecg.github.io/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_JAVASE基础(JVM)面试题</title>
+    <link href="https://novicecg.github.io/posts/17cf4952/"/>
+    <id>https://novicecg.github.io/posts/17cf4952/</id>
+    <published>2021-11-23T08:53:17.000Z</published>
+    <updated>2021-11-23T09:57:56.318Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级-JAVASE基础-JVM-面试题&quot;&gt;&lt;a href=&quot;#初级-JAVASE基础-JVM-面试题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="JavaSE" scheme="https://novicecg.github.io/tags/JavaSE/"/>
+    
+    <category term="JVM" scheme="https://novicecg.github.io/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_JAVASE基础(多线程)面试题</title>
+    <link href="https://novicecg.github.io/posts/1a83dbd8/"/>
+    <id>https://novicecg.github.io/posts/1a83dbd8/</id>
+    <published>2021-11-23T08:53:04.000Z</published>
+    <updated>2021-11-23T09:57:09.760Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级-JAVASE基础-多线程-面试题&quot;&gt;&lt;a href=&quot;#初级-JAVASE基础-多线程-面试题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="JavaSE" scheme="https://novicecg.github.io/tags/JavaSE/"/>
+    
+    <category term="多线程" scheme="https://novicecg.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_JAVASE基础(集合)面试题</title>
+    <link href="https://novicecg.github.io/posts/6a4ee6c0/"/>
+    <id>https://novicecg.github.io/posts/6a4ee6c0/</id>
+    <published>2021-11-23T08:52:54.000Z</published>
+    <updated>2021-11-23T09:13:49.823Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级-JAVASE基础-集合-面试题&quot;&gt;&lt;a href=&quot;#初级-JAVASE基础-集合-面试题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="JavaSE" scheme="https://novicecg.github.io/tags/JavaSE/"/>
+    
+    <category term="集合" scheme="https://novicecg.github.io/tags/%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_JAVASE基础(异常)面试题</title>
+    <link href="https://novicecg.github.io/posts/f1536d8d/"/>
+    <id>https://novicecg.github.io/posts/f1536d8d/</id>
+    <published>2021-11-23T08:51:27.000Z</published>
+    <updated>2021-11-23T09:55:54.167Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级-JAVASE基础-异常-面试题&quot;&gt;&lt;a href=&quot;#初级-JAVASE基础-异常-面试题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="JavaSE" scheme="https://novicecg.github.io/tags/JavaSE/"/>
+    
+    <category term="异常" scheme="https://novicecg.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初级_JAVASE基础面试题</title>
+    <link href="https://novicecg.github.io/posts/a474a1c2/"/>
+    <id>https://novicecg.github.io/posts/a474a1c2/</id>
+    <published>2021-11-23T08:47:48.000Z</published>
+    <updated>2021-11-23T09:10:47.016Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;初级-JAVASE基础面试题&quot;&gt;&lt;a href=&quot;#初级-JAVASE基础面试题&quot; class=&quot;headerlink&quot; title=&quot;初级_JAVASE基础面试题&quot;&gt;&lt;/a&gt;初级_JAVASE基础面试题&lt;/h2&gt;&lt;h3 id=&quot;Java概述&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="https://novicecg.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="JavaSE" scheme="https://novicecg.github.io/tags/JavaSE/"/>
     
   </entry>
   
